@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from 'emailjs-com';
 
 // Simple spinner component
 const Spinner = () => (
@@ -53,17 +54,27 @@ const Contact = () => {
     setIsLoading(true); // Set loading state to true when submission starts
     setFormStatus("Sending...");
 
-    try {
-      // Simulate form submission delay
-      setTimeout(() => {
-        setFormStatus("Message sent successfully!");
-        setIsLoading(false); // Set loading state to false after submission
-        setFormData({ name: "", email: "", message: "" });
-      }, 2000);
-    } catch (error) {
-      setFormStatus("There was an error sending your message.");
-      setIsLoading(false); // Stop loading on error
-    }
+    // Send email via emailjs
+    emailjs.send(
+      'service_eq4eyls', // Your EmailJS service ID
+      'template_y5sjvps', // Your EmailJS template ID
+      formData,
+      'KN6JReFWM2o71Mr5f' // Your User ID from EmailJS
+    )
+      .then(
+        (response) => {
+          console.log('SUCCESS:', response);
+          setFormStatus('Email sent successfully!');
+          setFormData({ name: "", email: "", message: "" }); // Clear form fields
+        },
+        (error) => {
+          console.log('FAILED:', error);
+          setFormStatus('Failed to send email.');
+        }
+      )
+      .finally(() => {
+        setIsLoading(false); // Stop loading regardless of success or failure
+      });
   };
 
   return (
@@ -125,9 +136,7 @@ const Contact = () => {
 
             {formStatus && (
               <p
-                className={`text-center mt-4 ${
-                  formStatus.includes("success") ? "text-green-500" : "text-red-500"
-                }`}
+                className={`text-center mt-4 ${formStatus.includes("success") ? "text-green-500" : "text-red-500"}`}
               >
                 {formStatus}
               </p>
@@ -140,28 +149,24 @@ const Contact = () => {
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  // Show spinner while loading
                   <Spinner />
+                ) : formStatus.includes("success") ? (
+                  <svg
+                    className="h-6 w-6 text-green-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
                 ) : (
-                  // Show check icon once submission is complete
-                  formStatus.includes("success") ? (
-                    <svg
-                      className="h-6 w-6 text-green-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  ) : (
-                    "Send Message"
-                  )
+                  "Send Message"
                 )}
               </button>
             </div>
