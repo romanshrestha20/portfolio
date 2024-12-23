@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  transition: background-color 0.3s, color 0.3s;
+  scroll-behavior: smooth;
+}
+
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+/* Fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Apply fadeIn animation to components */
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
