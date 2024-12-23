@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/romanshrestha20/portfolio.git/static/css/main.82b5c73d.css",
+    "main.js": "/romanshrestha20/portfolio.git/static/js/main.74dd4d31.js",
+    "static/media/logo.svg": "/romanshrestha20/portfolio.git/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/romanshrestha20/portfolio.git/index.html",
+    "main.82b5c73d.css.map": "/romanshrestha20/portfolio.git/static/css/main.82b5c73d.css.map",
+    "main.74dd4d31.js.map": "/romanshrestha20/portfolio.git/static/js/main.74dd4d31.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.82b5c73d.css",
+    "static/js/main.74dd4d31.js"
+  ]
+}
