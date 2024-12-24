@@ -10,7 +10,7 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow fixed w-full z-10 transition-colors">
+    <nav className="bg-white dark:bg-gray-800 shadow fixed w-full z-10 transition-colors font-mono">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14">
           {/* Logo */}
@@ -19,7 +19,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex space-x-4">
+          <div className="hidden md:flex space-x-4 font-mono">
             <a
               href="#about"
               className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
@@ -57,7 +57,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-800 shadow-md">
+          <div className="md:hidden bg-white dark:bg-gray-800 shadow-md font-mono">
             <div className="space-y-4 pt-4 pb-4">
               <a
                 href="#about"
