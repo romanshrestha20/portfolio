@@ -1,5 +1,4 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
-import { motion } from 'framer-motion'; // Import motion
+import React, { Suspense, lazy } from 'react';
 import './App.css';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
@@ -38,15 +37,6 @@ class ErrorBoundary extends React.Component {
 }
 
 function App() {
-  // Manage the delay of the lazy-loaded components
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // Delay the loading by 0.5 seconds after the component is mounted
-    const timer = setTimeout(() => setIsLoaded(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="App dark:bg-gray-800">
       <ErrorBoundary>
@@ -65,71 +55,22 @@ function App() {
             </div>
           }
         >
-          {/* Delay for Navbar */}
-          {isLoaded && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }} // 0.5 second delay
-            >
-              <Navbar />
-            </motion.div>
-          )}
-
-          {/* Delay for About */}
-          {isLoaded && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1 }} // 0.5 second delay
-            >
-              <About />
-            </motion.div>
-          )}
-
-          {/* Delay for Projects */}
-          {isLoaded && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.5 }} // 0.5 second delay
-            >
-              <Projects />
-            </motion.div>
-          )}
-
-          {/* Delay for Skills */}
-          {isLoaded && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 2 }} // 0.5 second delay
-            >
-              <Skills />
-            </motion.div>
-          )}
-
-          {/* Delay for Contact */}
-          {isLoaded && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 2.5 }} // 0.5 second delay
-            >
-              <Contact />
-            </motion.div>
-          )}
-
-          {/* Delay for Footer */}
-          {isLoaded && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 3 }} // 0.5 second delay
-            >
-              <Footer />
-            </motion.div>
-          )}
+          <Navbar />
+          <div className="transition-opacity opacity-0 animate-fadeIn delay-500">
+            <About />
+          </div>
+          <div className="transition-opacity opacity-0 animate-fadeIn delay-700">
+            <Projects />
+          </div>
+          <div className="transition-opacity opacity-0 animate-fadeIn delay-700">
+            <Skills />
+          </div>
+          <div className="transition-opacity opacity-0 animate-fadeIn delay-700">
+            <Contact />
+          </div>
+          <div className="transition-opacity opacity-0 animate-fadeIn delay-700">
+            <Footer />
+          </div>
         </Suspense>
       </ErrorBoundary>
     </div>

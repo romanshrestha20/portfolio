@@ -15,58 +15,15 @@ const Projects = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {/* Single Project Card */}
-          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:scale-105 transform transition-all duration-300"
-          >
-            <img src="/path/to/project-image.jpg" alt="Project" className="w-full h-48 object-cover" />
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Project Name</h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-2">
-                A brief description of what this project is about. Highlight key features or technologies used.
-              </p>
-              <div className="mt-4">
-                <a
-                  href="https://github.com/your-profile/project-repo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  View Project
-                </a>
-              </div>
-            </div>
-          </motion.div><motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:scale-105 transform transition-all duration-300"
-          >
-            <img src="/path/to/project-image.jpg" alt="Project" className="w-full h-48 object-cover" />
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Project Name</h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-2">
-                A brief description of what this project is about. Highlight key features or technologies used.
-              </p>
-              <div className="mt-4">
-                <a
-                  href="https://github.com/your-profile/project-repo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  View Project
-                </a>
-              </div>
-            </div>
-          </motion.div><motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:scale-105 transform transition-all duration-300"
+            whileHover={{
+              scale: 1.05, // Scale up when hovered
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)" // Add shadow on hover
+            }}
+            className="max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300"
           >
             <img src="/path/to/project-image.jpg" alt="Project" className="w-full h-48 object-cover" />
             <div className="p-6">
@@ -88,7 +45,65 @@ const Projects = () => {
           </motion.div>
 
           {/* Repeat for other projects */}
-        
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{
+              scale: 1.05, // Scale up when hovered
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)" // Add shadow on hover
+            }}
+            className="max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300"
+          >
+            <img src="/path/to/project-image.jpg" alt="Project" className="w-full h-48 object-cover" />
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Project Name</h3>
+              <p className="text-gray-600 dark:text-gray-300 mt-2">
+                A brief description of what this project is about. Highlight key features or technologies used.
+              </p>
+              <div className="mt-4">
+                <a
+                  href="https://github.com/your-profile/project-repo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  View Project
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{
+              scale: 1.05, // Scale up when hovered
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)" // Add shadow on hover
+            }}
+            className="max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300"
+          >
+            <img src="/path/to/project-image.jpg" alt="Project" className="w-full h-48 object-cover" />
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Project Name</h3>
+              <p className="text-gray-600 dark:text-gray-300 mt-2">
+                A brief description of what this project is about. Highlight key features or technologies used.
+              </p>
+              <div className="mt-4">
+                <a
+                  href="https://github.com/your-profile/project-repo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  View Project
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Repeat for other projects */}
         </div>
       </div>
     </section>

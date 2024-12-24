@@ -1,8 +1,19 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'; // Import motion for animations
 import { Download, Linkedin, Github, Instagram, ArrowDown } from 'lucide-react';
 
 export default function About() {
+  const scrollToProjects = () => {
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({
+        behavior: 'smooth', // Smooth scrolling
+        block: 'start', // Scroll to the top of the element
+        inline: 'nearest', // Scroll horizontally to the nearest edge
+      });
+    }
+  };
+
   return (
     <section id="about" className="py-20 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,7 +21,7 @@ export default function About() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-extrabold text-blue-600 dark:text-blue-400 mb-4 font-poppins">
@@ -25,18 +36,21 @@ export default function About() {
         <div className="flex flex-col md:flex-row items-center gap-16">
           {/* Left Section: Profile Image and CV Download */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             className="flex flex-col items-center w-full md:w-1/3 mb-8 md:mb-0"
           >
             {/* Profile Image (use img instead of next/image) */}
-            <img
+            <motion.img
               src="/profile.jpg"
               alt="Profile Picture"
               width={224}
               height={224}
               className="rounded-full border-4 border-blue-600 dark:border-blue-400 shadow-lg mb-6 transition-transform transform hover:scale-105"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             />
             <a
               href="https://drive.google.com/file/d/1edylUMY-0jSeB2pjS3OVT_3Uky5qDjI4/view?usp=drive_link"
@@ -82,9 +96,9 @@ export default function About() {
 
           {/* Right Section: About Text */}
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             className="w-full md:w-2/3 px-6 md:px-12"
           >
             <div className="mb-10">
@@ -105,12 +119,13 @@ export default function About() {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Arrow Animation */}
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          className="mt-16"
+          className="mt-16 cursor-pointer"
+          onClick={scrollToProjects} // Scroll to Projects when clicked
         >
           <ArrowDown className="mx-auto text-gray-400" />
         </motion.div>
