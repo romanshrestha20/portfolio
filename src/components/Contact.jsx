@@ -9,7 +9,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import ChatIcon from "@mui/icons-material/Chat";
 import { motion } from "framer-motion";
 
-// Spinner component with dark mode adaptation
+// Spinner component
 const Spinner = () => (
   <div className="flex justify-center items-center">
     <CircularProgress className="text-gray-900 dark:text-white" size={24} />
@@ -23,15 +23,42 @@ const Contact = () => {
     message: "",
   });
 
+  const [formErrors, setFormErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
   const [formStatus, setFormStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // Handle form input changes
+  const validateField = (name, value) => {
+    switch (name) {
+      case "name":
+        return value.trim() === "" ? "Name is required." : "";
+      case "email":
+        return /\S+@\S+\.\S+/.test(value)
+          ? ""
+          : "Please enter a valid email address.";
+      case "message":
+        return value.trim() === "" ? "Message is required." : "";
+      default:
+        return "";
+    }
+  };
+
+  // Handle input changes with validation
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+    }));
+
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: validateField(name, value),
     }));
   };
 
@@ -40,8 +67,17 @@ const Contact = () => {
     e.preventDefault();
     const { name, email, message } = formData;
 
-    if (!name || !email || !message) {
-      setFormStatus("All fields are required.");
+    const errors = {
+      name: validateField("name", name),
+      email: validateField("email", email),
+      message: validateField("message", message),
+    };
+
+    setFormErrors(errors);
+
+    // Check for errors
+    if (Object.values(errors).some((error) => error !== "")) {
+      setFormStatus("Please fix the errors above.");
       return;
     }
 
@@ -52,13 +88,14 @@ const Contact = () => {
       .send(
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
         process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-        { name, email, message }, // Ensure correct data format
+        { name, email, message },
         process.env.REACT_APP_EMAILJS_USER_ID
       )
       .then(
         () => {
           setFormStatus("Email sent successfully!");
           setFormData({ name: "", email: "", message: "" });
+          setFormErrors({ name: "", email: "", message: "" });
         },
         (error) => {
           console.error("FAILED:", error);
@@ -86,7 +123,7 @@ const Contact = () => {
           <h2 className="text-4xl font-extrabold text-blue-600 dark:text-blue-400">
             Contact Me
           </h2>
-          <p className=" font-mono text-lg text-gray-600 dark:text-gray-300 mt-2">
+          <p className="font-mono text-lg text-gray-600 dark:text-gray-300 mt-2">
             I'd love to hear from you! Fill out the form below.
           </p>
         </motion.div>
@@ -110,6 +147,8 @@ const Contact = () => {
                 variant="outlined"
                 placeholder="Your Name"
                 required
+                error={!!formErrors.name}
+                helperText={formErrors.name}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -135,6 +174,8 @@ const Contact = () => {
                 variant="outlined"
                 placeholder="Your Email"
                 required
+                error={!!formErrors.email}
+                helperText={formErrors.email}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -162,6 +203,8 @@ const Contact = () => {
                 multiline
                 rows={4}
                 required
+                error={!!formErrors.message}
+                helperText={formErrors.message}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment
@@ -205,26 +248,7 @@ const Contact = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
               >
-                {isLoading ? (
-                  <Spinner />
-                ) : formStatus.includes("success") ? (
-                  <svg
-                    className="h-6 w-6 text-green-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                ) : (
-                  "Send Message"
-                )}
+                {isLoading ? <Spinner /> : "Send Message"}
               </motion.button>
             </div>
           </form>
