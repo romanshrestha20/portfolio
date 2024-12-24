@@ -2,6 +2,14 @@ import React, { Suspense, lazy } from 'react';
 import './App.css';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
+
+// Importing Google Fonts
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 
 // Lazy-loaded components
 const Navbar = lazy(() => import('./components/Navbar'));
@@ -21,7 +29,7 @@ function App() {
               </h1>
               {/* Spinner centered */}
               <div className="border-t-4 border-blue-600 dark:border-blue-400 border-solid w-16 h-16 rounded-full animate-spin mb-4 mx-auto"></div>
-              <p className="text-lg dark:text-blue-300 text-blue-500">Please wait while we load the content...</p>
+              <p className="font-mono text-lg dark:text-blue-300 text-blue-500">Please wait while we load the content...</p>
             </div>
           </div>
         }
@@ -41,6 +49,9 @@ function App() {
         </div>
         <div className="transition-opacity opacity-0 animate-fadeIn delay-700">
           <Contact />
+        </div>
+        <div className="transition-opacity opacity-0 animate-fadeIn delay-700">
+          <Footer />
         </div>
         
       </Suspense>
