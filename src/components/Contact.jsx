@@ -79,7 +79,7 @@ const Contact = () => {
           <h2 className="text-4xl font-extrabold text-blue-600 dark:text-blue-400">
             Contact Me
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">
+          <p className=" font-mono text-lg text-gray-600 dark:text-gray-300 mt-2">
             I'd love to hear from you! Fill out the form below.
           </p>
         </div>
@@ -148,7 +148,10 @@ const Contact = () => {
                 required
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start" style={{ alignSelf: 'flex-start', marginTop: '2px' }}>
+                    <InputAdornment
+                      position="start"
+                      style={{ alignSelf: "flex-start", marginTop: "2px" }}
+                    >
                       <ChatIcon className="text-gray-600 dark:text-gray-300" />
                     </InputAdornment>
                   ),
