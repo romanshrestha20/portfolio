@@ -1,5 +1,5 @@
 # Portfolio
-
+![alt text](Screenshot_25-12-2024_11926_127.0.0.1.jpeg)
 Welcome to my personal portfolio website! This project is built using React and showcases my projects, skills, and experiences in web development. The site is designed to be responsive and user-friendly, providing a seamless experience across different devices.
 
 ## Table of Contents
