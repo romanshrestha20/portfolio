@@ -8,7 +8,7 @@ const projects = [
     description:
       "A web app for creating, reading, updating, and deleting blog posts with user authentication and profiles.",
     image:
-      "https://raw.githubusercontent.com/romanshrestha20/portfolio/refs/heads/main/public/image.png?token=GHSAT0AAAAAAC4J54EFESQEYAZUH7UXL76WZ3LJZRA",
+      "https://raw.githubusercontent.com/romanshrestha20/portfolio/refs/heads/main/public/Screenshot_25-12-2024_11926_127.0.0.1.jpeg?token=GHSAT0AAAAAAC4J54EFIHYP5MKCMKRQUETGZ3LJ7NA",
     link: "https://github.com/romanshrestha20/django-blog",
   },
   {
