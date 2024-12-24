@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import DarkModeToggle from "./DarkModeToggle";
 import HamburgerMenu from "./HamburgerMenu";
 import useDarkMode from "./useDarkMode";
@@ -14,36 +15,53 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14">
           {/* Logo */}
-          <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-xl font-bold text-blue-600 dark:text-blue-400"
+          >
             <a href="#home">MyPortfolio</a>
-          </div>
+          </motion.div>
 
           {/* Desktop Links */}
           <div className="hidden md:flex space-x-4 font-mono">
-            <a
+            <motion.a
               href="#about"
               className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
               About
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#projects"
               className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
               Projects
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#skills"
               className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
               Skills
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#contact"
               className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
               Contact
-            </a>
+            </motion.a>
           </div>
 
           {/* Dark Mode Toggle */}
@@ -51,40 +69,63 @@ const Navbar = () => {
             <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
             {/* Hamburger Menu */}
-            <HamburgerMenu isOpen={isOpen} toggleMenu={toggleMenu} />
+            <motion.div
+              initial={{ rotate: 0 }}
+              animate={{ rotate: isOpen ? 45 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <HamburgerMenu isOpen={isOpen} toggleMenu={toggleMenu} />
+            </motion.div>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-800 shadow-md font-mono">
+          <motion.div
+            className="md:hidden bg-white dark:bg-gray-800 shadow-md font-mono"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="space-y-4 pt-4 pb-4">
-              <a
+              <motion.a
                 href="#about"
                 className="block text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
               >
                 About
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="#projects"
                 className="block text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
                 Projects
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="#skills"
                 className="block text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
                 Skills
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="#contact"
                 className="block text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition mb-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
               >
                 Contact
-              </a>
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </nav>

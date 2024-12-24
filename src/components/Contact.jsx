@@ -7,6 +7,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import PersonIcon from "@mui/icons-material/Person";
 import MailIcon from "@mui/icons-material/Mail";
 import ChatIcon from "@mui/icons-material/Chat";
+import { motion } from "framer-motion";
 
 // Spinner component with dark mode adaptation
 const Spinner = () => (
@@ -75,17 +76,30 @@ const Contact = () => {
       className="py-16 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        {/* Heading Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
           <h2 className="text-4xl font-extrabold text-blue-600 dark:text-blue-400">
             Contact Me
           </h2>
           <p className=" font-mono text-lg text-gray-600 dark:text-gray-300 mt-2">
             I'd love to hear from you! Fill out the form below.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
+        {/* Form Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-lg mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md"
+        >
           <form onSubmit={handleSubmit}>
+            {/* Name Field */}
             <Box mb={2}>
               <TextField
                 label="Name"
@@ -110,6 +124,7 @@ const Contact = () => {
               />
             </Box>
 
+            {/* Email Field */}
             <Box mb={2}>
               <TextField
                 label="Email"
@@ -134,6 +149,7 @@ const Contact = () => {
               />
             </Box>
 
+            {/* Message Field */}
             <Box mb={2}>
               <TextField
                 label="Message"
@@ -163,8 +179,12 @@ const Contact = () => {
               />
             </Box>
 
+            {/* Form Status */}
             {formStatus && (
-              <p
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
                 className={`text-center mt-4 ${
                   formStatus.includes("success")
                     ? "text-green-500"
@@ -172,14 +192,18 @@ const Contact = () => {
                 }`}
               >
                 {formStatus}
-              </p>
+              </motion.p>
             )}
 
+            {/* Submit Button */}
             <div className="flex justify-center mt-6">
-              <button
+              <motion.button
                 type="submit"
                 className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
                 disabled={isLoading}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
               >
                 {isLoading ? (
                   <Spinner />
@@ -201,10 +225,10 @@ const Contact = () => {
                 ) : (
                   "Send Message"
                 )}
-              </button>
+              </motion.button>
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
