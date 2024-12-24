@@ -7,14 +7,16 @@ const projects = [
     name: "Django Blog",
     description:
       "A web app for creating, reading, updating, and deleting blog posts with user authentication and profiles.",
-    image: "/images/image.png",
+    image:
+      "https://raw.githubusercontent.com/romanshrestha20/portfolio/refs/heads/main/public/image.png?token=GHSAT0AAAAAAC4J54EFESQEYAZUH7UXL76WZ3LJZRA",
     link: "https://github.com/romanshrestha20/django-blog",
   },
   {
     name: "AWAP Movie Application",
     description:
       "Keeps users updated with the latest movies and TV shows, featuring popular and trending titles.",
-    image: "/images/Screenshot_25-12-2024_0462_mango-rock-0b5b48e10.5.azurestaticapps.net.jpeg",
+    image:
+      "https://raw.githubusercontent.com/romanshrestha20/portfolio/refs/heads/main/public/Screenshot_25-12-2024_0462_mango-rock-0b5b48e10.5.azurestaticapps.net.jpeg?token=GHSAT0AAAAAAC4J54EENYEESB6NRI5QBYEIZ3LJZ7Q",
     link: "https://github.com/AWAP-Group8-2024/Movie-App.git",
   },
   {
@@ -59,14 +61,18 @@ const Projects = () => {
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
+                transition: { duration: 0.3 },
               }}
               className="max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300"
             >
-              <img
+              {/* Project Image with hover effect */}
+              <motion.img
                 src={project.image}
                 alt={project.name}
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-cover rounded-t-lg transition-transform transform hover:scale-110"
+                whileHover={{ scale: 1.1 }}
               />
+
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
                   {project.name}
