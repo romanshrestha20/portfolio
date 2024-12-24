@@ -9,7 +9,12 @@ html {
 
 body {
   transition: background-color 0.3s, color 0.3s;
+  font-family: 'Roboto', sans-serif;
+
 }
+
+
+
 /* Fade-in animation */
 @keyframes fadeIn {
   0% {

@@ -11,10 +11,12 @@ module.exports = {
         accent: "#FC5130",
         dark: "#050401",
       },
+      fontFamily: {
+        mono: ['Roboto Mono', 'monospace'], // Add Roboto Mono font as a monospace option
+      },
     },
   },
   plugins: [
     require('@tailwindcss/forms'),
   ],
 };
-

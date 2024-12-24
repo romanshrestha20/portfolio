@@ -1,4 +1,3 @@
-// Example React component
 import React from 'react';
 
 const Skills = () => {
@@ -7,7 +6,7 @@ const Skills = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-extrabold text-blue-600 dark:text-blue-400">My Skills</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">
+          <p className="font-mono text-lg text-gray-600 dark:text-gray-300">
             Technologies I work with
           </p>
         </div>
@@ -17,19 +16,19 @@ const Skills = () => {
           {/* Example of Font Awesome Icon usage */}
           <div className="text-center">
             <i className="fab fa-react text-5xl text-blue-600 dark:text-blue-400"></i>
-            <p className="text-xl mt-2 text-gray-800 dark:text-gray-100">React</p>
+            <p className="font-mono text-xl mt-2 text-gray-800 dark:text-gray-100">React</p> {/* Changed font to mono */}
           </div>
           <div className="text-center">
             <i className="fab fa-js-square text-5xl text-yellow-600 dark:text-yellow-400"></i>
-            <p className="text-xl mt-2 text-gray-800 dark:text-gray-100">JavaScript</p>
+            <p className="font-mono text-xl mt-2 text-gray-800 dark:text-gray-100">JavaScript</p> {/* Changed font to mono */}
           </div>
           <div className="text-center">
             <i className="fab fa-node text-5xl text-green-600 dark:text-green-400"></i>
-            <p className="text-xl mt-2 text-gray-800 dark:text-gray-100">Node.js</p>
+            <p className="font-mono text-xl mt-2 text-gray-800 dark:text-gray-100">Node.js</p> {/* Changed font to mono */}
           </div>
           <div className="text-center">
             <i className="fab fa-docker text-5xl text-blue-400 dark:text-blue-600"></i>
-            <p className="text-xl mt-2 text-gray-800 dark:text-gray-100">Docker</p>
+            <p className="font-mono text-xl mt-2 text-gray-800 dark:text-gray-100">Docker</p> {/* Changed font to mono */}
           </div>
         </div>
       </div>
