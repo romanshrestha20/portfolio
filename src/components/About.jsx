@@ -64,7 +64,7 @@ export default function About() {
               href="https://drive.google.com/file/d/1edylUMY-0jSeB2pjS3OVT_3Uky5qDjI4/view?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-primary text-white rounded-lg hover:bg-accent transition-all flex items-center space-x-3 mb-6"
+              className="px-8 py-4 bg-primary text-white rounded-lg hover:bg-blue-600 transition-all flex items-center space-x-3 mb-6"
               aria-label="Download CV"
             >
               <Download className="h-5 w-5" />
@@ -77,7 +77,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}
-                className={`${iconColors.linkedin} hover:text-blue-700 dark:hover:text-blue-500 transition`}
+                className={`${iconColors.linkedin} hover:text-blue-700 dark:hover:text-blue-500 transition-all duration-300`}
                 aria-label="LinkedIn Profile"
               >
                 <Linkedin className="h-8 w-8" />
@@ -87,7 +87,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}
-                className={`${iconColors.github} hover:text-gray-600 dark:hover:text-gray-400 transition`}
+                className={`${iconColors.github} hover:text-gray-600 dark:hover:text-gray-400 transition-all duration-300`}
                 aria-label="GitHub Profile"
               >
                 <Github className="h-8 w-8" />
@@ -97,7 +97,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}
-                className={`${iconColors.instagram} hover:text-pink-700 dark:hover:text-pink-500 transition`}
+                className={`${iconColors.instagram} hover:text-pink-700 dark:hover:text-pink-500 hover:scale-110 transition-all duration-300`}
                 aria-label="Instagram Profile"
               >
                 <Instagram className="h-8 w-8" />
@@ -137,7 +137,7 @@ export default function About() {
           className="mt-16 cursor-pointer"
           onClick={scrollToProjects} // Scroll to Projects when clicked
         >
-          <ArrowDown className="mx-auto text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition" />
+          <ArrowDown className="mx-auto text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-all" />
         </motion.div>
       </div>
     </section>
