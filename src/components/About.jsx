@@ -73,7 +73,7 @@ export default function About() {
             {/* Social Links */}
             <div className="flex justify-center md:justify-start space-x-6">
               <motion.a
-                href="https://www.linkedin.com/in/roman-shrestha"
+                href="https://www.linkedin.com/in/romanshrr/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}
@@ -93,7 +93,7 @@ export default function About() {
                 <Github className="h-8 w-8" />
               </motion.a>
               <motion.a
-                href="https://www.instagram.com/roman_shrestha"
+                href="https://www.instagram.com/romanshrr/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}
