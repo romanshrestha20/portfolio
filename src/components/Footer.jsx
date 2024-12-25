@@ -29,7 +29,7 @@ const Footer = () => {
                 {/* Social Media Links */}
                 <div className="flex items-center space-x-6">
                     <a
-                        href="https://www.linkedin.com/in/yourusername"
+                        href="https://www.linkedin.com/in/romanshrr/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-lg hover:text-blue-500 dark:hover:text-blue-400 flex items-center space-x-2 transition-all"
@@ -37,13 +37,13 @@ const Footer = () => {
                         <FaLinkedin className="h-6 w-6" />
                     </a>
                     <a
-                        href="mailto:your.email@example.com"
+                        href="mailto:stha.roman20@outlook.com"
                         className="text-lg hover:text-red-500 dark:hover:text-red-400 flex items-center space-x-2 transition-all"
                     >
                         <FaEnvelope className="h-6 w-6" />
                     </a>
                     <a
-                        href="https://github.com/yourusername"
+                        href="https://github.com/romanshrestha20"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-lg hover:text-gray-400 dark:hover:text-gray-500 flex items-center space-x-2 transition-all"
