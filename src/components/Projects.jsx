@@ -8,7 +8,7 @@ const projects = [
     description:
       "A web app for creating, reading, updating, and deleting blog posts with user authentication and profiles.",
     image:
-      "https://raw.githubusercontent.com/romanshrestha20/portfolio/refs/heads/main/public/Screenshot_25-12-2024_11926_127.0.0.1.jpeg?token=GHSAT0AAAAAAC4J54EFIHYP5MKCMKRQUETGZ3LJ7NA",
+      "https://github.com/romanshrestha20/portfolio/blob/main/public/Screenshot_25-12-2024_11926_127.0.0.1.jpeg?raw=true",
     link: "https://github.com/romanshrestha20/django-blog",
   },
   {
@@ -16,7 +16,7 @@ const projects = [
     description:
       "Keeps users updated with the latest movies and TV shows, featuring popular and trending titles.",
     image:
-      "https://raw.githubusercontent.com/romanshrestha20/portfolio/refs/heads/main/public/Screenshot_25-12-2024_0462_mango-rock-0b5b48e10.5.azurestaticapps.net.jpeg?token=GHSAT0AAAAAAC4J54EENYEESB6NRI5QBYEIZ3LJZ7Q",
+      "https://github.com/romanshrestha20/portfolio/blob/main/public/Screenshot_25-12-2024_0462_mango-rock-0b5b48e10.5.azurestaticapps.net.jpeg?raw=true",
     link: "https://github.com/AWAP-Group8-2024/Movie-App.git",
   },
   {
