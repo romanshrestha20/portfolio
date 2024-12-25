@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-16 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+    <section id="skills" className="py-16 bg-background dark:bg-gray-900 text-gray-900 dark:text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-blue-600 dark:text-blue-400">My Skills</h2>
+          <h2 className="text-4xl font-extrabold text-primary dark:text-blue-400">My Skills</h2>
           <p className="font-mono text-lg text-gray-600 dark:text-gray-300">
             Technologies I work with
           </p>
@@ -61,7 +61,7 @@ const Skills = () => {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <i className="fab fa-python text-5xl text-green-500 dark:text-green-300"></i>
+            <i className="fab fa-python text-5xl text-green-600 dark:text-green-400"></i>
             <p className="font-mono text-xl mt-2 text-gray-800 dark:text-gray-100">Python</p>
           </motion.div>
           <motion.div

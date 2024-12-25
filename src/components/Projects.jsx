@@ -38,11 +38,11 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-16 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
+      className="py-16 bg-background dark:bg-gray-900 text-gray-900 dark:text-white"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-blue-600 dark:text-blue-400">
+          <h2 className="text-4xl font-extrabold text-primary dark:text-blue-400">
             My Projects
           </h2>
           <p className="font-mono text-lg text-gray-600 dark:text-gray-300 mt-2">

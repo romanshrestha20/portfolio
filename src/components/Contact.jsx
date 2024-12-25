@@ -110,7 +110,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-16 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
+      className="py-16 bg-background dark:bg-dark text-gray-900 dark:text-white"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading Section */}
@@ -120,7 +120,7 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-extrabold text-blue-600 dark:text-blue-400">
+          <h2 className="text-4xl font-extrabold text-primary dark:text-blue-400">
             Contact Me
           </h2>
           <p className="font-mono text-lg text-gray-600 dark:text-gray-300 mt-2">
@@ -230,8 +230,8 @@ const Contact = () => {
                 transition={{ duration: 0.5 }}
                 className={`text-center mt-4 ${
                   formStatus.includes("success")
-                    ? "text-green-500"
-                    : "text-red-500"
+                    ? "text-green-600"
+                    : "text-red-600"
                 }`}
               >
                 {formStatus}
@@ -242,7 +242,7 @@ const Contact = () => {
             <div className="flex justify-center mt-6">
               <motion.button
                 type="submit"
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
+                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary transition"
                 disabled={isLoading}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
