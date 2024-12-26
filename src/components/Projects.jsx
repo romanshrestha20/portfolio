@@ -23,7 +23,8 @@ const projects = [
     name: "Another Project",
     description:
       "Another example description, which is short and doesn't need an expand option.",
-    image: "https://plus.unsplash.com/premium_photo-1682656220562-32fde8256295?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:
+      "https://plus.unsplash.com/premium_photo-1682656220562-32fde8256295?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     link: "https://github.com/your-profile/project-repo",
   },
 ];
@@ -42,7 +43,7 @@ const Projects = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-primary dark:text-blue-400">
+          <h2 className="text-4xl font-extrabold text-primary dark:text-blue-500">
             My Projects
           </h2>
           <p className="font-mono text-lg text-gray-600 dark:text-gray-300 mt-2">
@@ -51,7 +52,7 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -63,14 +64,13 @@ const Projects = () => {
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
                 transition: { duration: 0.3 },
               }}
-              className="max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300"
             >
-              {/* Project Image with hover effect */}
-              <motion.img
+              {/* Project Image */}
+              <img
                 src={project.image}
                 alt={project.name}
-                className="w-full h-48 object-cover rounded-t-lg transition-transform transform hover:scale-110"
-                whileHover={{ scale: 1.1 }}
+                className="w-full h-48 sm:h-56 object-cover rounded-t-lg"
               />
 
               <div className="p-6">
@@ -80,20 +80,22 @@ const Projects = () => {
                 <p className="text-gray-600 dark:text-gray-300 mt-2">
                   {expanded === index
                     ? project.description
-                    : project.description.slice(0, 60) + "..."}
+                    : project.description.length > 60
+                    ? project.description.slice(0, 60) + "..."
+                    : project.description}
                 </p>
                 {project.description.length > 60 && (
-                  <div className="mt-4 flex items-center space-x-2 cursor-pointer">
-                    <span
-                      onClick={() => toggleExpand(index)}
-                      className="text-blue-600 dark:text-blue-400 hover:underline"
-                    >
+                  <div
+                    className="mt-4 flex items-center space-x-2 cursor-pointer"
+                    onClick={() => toggleExpand(index)}
+                  >
+                    <span className="text-blue-600 dark:text-blue-400 hover:underline">
                       {expanded === index ? "Show Less" : "Read More"}
                     </span>
                     <ArrowDown
-                      className={`h-5 w-5 ${
-                        expanded === index ? "transform rotate-180" : ""
-                      } transition-transform`}
+                      className={`h-5 w-5 transform transition-transform ${
+                        expanded === index ? "rotate-180" : ""
+                      }`}
                     />
                   </div>
                 )}

@@ -21,7 +21,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20 bg-background dark:bg-gray-900 text-gray-900 dark:text-white">
+    <section id="about" className="py-20 bg-background dark:bg-gray-900 text-gray-900 w-full dark:text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading Section */}
         <motion.div 
@@ -45,18 +45,13 @@ export default function About() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col items-center w-full md:w-1/3 mb-8 md:mb-0"
+            className="flex flex-col items-center w-full md:w-1/3 max-w-sm"
           >
-            <motion.div
-              className="relative w-56 h-56 mb-6"
-            >
+            <motion.div className="relative w-56 h-56 mb-6">
               <motion.img
                 src="https://images.unsplash.com/photo-1735081204311-eaaecd5b1782?q=80&w=1772&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Profile Picture"
                 className="absolute inset-0 w-full h-full object-cover rounded-full border-4 border-primary dark:border-blue-400 shadow-lg transition-transform transform hover:scale-105"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
               />
             </motion.div>
 
@@ -70,8 +65,9 @@ export default function About() {
               <Download className="h-5 w-5" />
               <span>Download My CV</span>
             </a>
+
             {/* Social Links */}
-            <div className="flex justify-center md:justify-start space-x-6">
+            <div className="flex justify-center space-x-6">
               <motion.a
                 href="https://www.linkedin.com/in/romanshrr/"
                 target="_blank"
@@ -97,7 +93,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}
-                className={`${iconColors.instagram} hover:text-pink-700 dark:hover:text-pink-500 hover:scale-110 transition-all duration-300`}
+                className={`${iconColors.instagram} hover:text-pink-700 dark:hover:text-pink-500 transition-all duration-300`}
                 aria-label="Instagram Profile"
               >
                 <Instagram className="h-8 w-8" />
@@ -110,23 +106,19 @@ export default function About() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="w-full md:w-2/3 px-6 md:px-12"
+            className="flex-grow md:px-12"
           >
-            <div className="mb-10">
-              <p className="font-serif text-xl leading-relaxed text-gray-800 dark:text-gray-300 tracking-wide">
-                Hi! I'm <strong className="text-primary dark:text-blue-400">Roman Shrestha</strong> 👋, and I'm passionate about
-                solving problems 💡 and exploring new technologies 🚀. I've worked with{" "}
-                <strong className="text-primary dark:text-blue-400">Java, JavaScript, React, Python, and Linux</strong>, and
-                I'm always excited to learn and grow in the tech world 💻.
-              </p>
-            </div>
-            <div>
-              <p className="mt-6 font-serif text-xl leading-relaxed text-gray-800 dark:text-gray-300 tracking-wide">
-                When I'm not coding, I love spending time on <strong className="text-green-600 dark:text-green-400">football ⚽</strong> and{" "}
-                <strong className="text-primary dark:text-blue-400">traveling 🌍</strong>. Football keeps me active 🏃‍♂️ and teaches me the value of teamwork 🤝,
-                while traveling helps me gain fresh perspectives ✈️ and inspire my creative side 🎨.
-              </p>
-            </div>
+            <p className="font-serif text-xl leading-relaxed text-gray-800 dark:text-gray-300 tracking-wide">
+              Hi! I'm <strong className="text-primary dark:text-blue-400">Roman Shrestha</strong> 👋, and I'm passionate about
+              solving problems 💡 and exploring new technologies 🚀. I've worked with{" "}
+              <strong className="text-primary dark:text-blue-400">Java, JavaScript, React, Python, and Linux</strong>, and
+              I'm always excited to learn and grow in the tech world 💻.
+            </p>
+            <p className="mt-6 font-serif text-xl leading-relaxed text-gray-800 dark:text-gray-300 tracking-wide">
+              When I'm not coding, I love spending time on <strong className="text-green-600 dark:text-green-400">football ⚽</strong> and{" "}
+              <strong className="text-primary dark:text-blue-400">traveling 🌍</strong>. Football keeps me active 🏃‍♂️ and teaches me the value of teamwork 🤝,
+              while traveling helps me gain fresh perspectives ✈️ and inspire my creative side 🎨.
+            </p>
           </motion.div>
         </div>
 
@@ -134,8 +126,8 @@ export default function About() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          className="mt-16 cursor-pointer"
-          onClick={scrollToProjects} // Scroll to Projects when clicked
+          className="mt-16 text-center"
+          onClick={scrollToProjects}
         >
           <ArrowDown className="mx-auto text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-all" />
         </motion.div>
