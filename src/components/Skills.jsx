@@ -6,7 +6,9 @@ const Skills = () => {
     <section id="skills" className="py-16 bg-background dark:bg-gray-900 text-gray-900 dark:text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-primary dark:text-blue-400">My Skills</h2>
+        <h2 className="text-4xl font-extrabold text-primary dark:text-blue-500 mb-4 font-poppins">
+        My Skills
+          </h2>
           <p className="font-mono text-lg text-gray-600 dark:text-gray-300">
             Technologies I work with
           </p>

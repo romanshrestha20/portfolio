@@ -120,10 +120,10 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-primary dark:text-blue-500">
-            Contact Me
+          <h2 className="text-4xl font-extrabold text-primary dark:text-blue-500 mb-4 font-poppins">
+          Contact Me
           </h2>
-          <p className="font-mono text-lg sm:text-xl text-gray-600 dark:text-gray-300 mt-2">
+          <p className="font-mono text-lg text-gray-600 dark:text-gray-300">
             I'd love to hear from you! Fill out the form below.
           </p>
         </motion.div>
