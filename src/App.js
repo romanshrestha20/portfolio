@@ -38,8 +38,8 @@ class ErrorBoundary extends React.Component {
 
 function App() {
   return (
-    <div className="App dark:bg-gray-800">
-      <ErrorBoundary>
+<div className="App dark:bg-gray-800 w-full overflow-x-hidden">
+<ErrorBoundary>
         <Suspense
           fallback={
             <div className="min-h-screen dark:bg-gray-800 bg-gray-100 flex flex-col items-center justify-center">
