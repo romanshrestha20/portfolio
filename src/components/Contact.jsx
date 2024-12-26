@@ -110,17 +110,17 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-16 bg-background dark:bg-dark text-gray-900 dark:text-white"
+      className="py-20 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Heading Section */}
+      {/* Heading Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-extrabold text-primary dark:text-blue-400">
+          <h2 className="text-4xl font-extrabold text-primary dark:text-blue-500">
             Contact Me
           </h2>
           <p className="font-mono text-lg text-gray-600 dark:text-gray-300 mt-2">
