@@ -109,15 +109,13 @@ export default function About() {
             className="flex-grow md:px-12"
           >
             <p className="font-serif text-xl leading-relaxed text-gray-800 dark:text-gray-300 tracking-wide">
-              Hi! I'm <strong className="text-primary dark:text-blue-400">Roman Shrestha</strong> 👋, and I'm passionate about
-              solving problems 💡 and exploring new technologies 🚀. I've worked with{" "}
-              <strong className="text-primary dark:text-blue-400">Java, JavaScript, React, Python, and Linux</strong>, and
-              I'm always excited to learn and grow in the tech world 💻.
+              Hi! I'm <strong className="text-primary dark:text-blue-400">Roman Shrestha</strong> 👋. I'm passionate about solving problems 💡 and exploring new technologies 🚀.
             </p>
             <p className="mt-6 font-serif text-xl leading-relaxed text-gray-800 dark:text-gray-300 tracking-wide">
-              When I'm not coding, I love spending time on <strong className="text-green-600 dark:text-green-400">football ⚽</strong> and{" "}
-              <strong className="text-primary dark:text-blue-400">traveling 🌍</strong>. Football keeps me active 🏃‍♂️ and teaches me the value of teamwork 🤝,
-              while traveling helps me gain fresh perspectives ✈️ and inspire my creative side 🎨.
+              I've worked with <strong className="text-primary dark:text-blue-400">Java, JavaScript, React, Python, and Linux</strong>. I'm always excited to learn and grow in the tech world 💻.
+            </p>
+            <p className="mt-6 font-serif text-xl leading-relaxed text-gray-800 dark:text-gray-300 tracking-wide">
+              When I'm not coding, I love spending time on <strong className="text-green-600 dark:text-green-400">football ⚽</strong> and <strong className="text-primary dark:text-blue-400">traveling 🌍</strong>. Football keeps me active 🏃‍♂️ and teaches me the value of teamwork 🤝, while traveling helps me gain fresh perspectives ✈️ and inspire my creative side 🎨.
             </p>
           </motion.div>
         </div>

@@ -6,7 +6,7 @@ const Footer = () => {
         <footer className="bg-slate-900 dark:bg-gray-900 text-white dark:text-gray-300 py-6">
             <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                 {/* Privacy and Terms Links */}
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 ml-6">
                     <a
                         href="/privacy-policy"
                         className="text-sm hover:text-gray-400 dark:hover:text-gray-500 transition-all"
@@ -27,7 +27,7 @@ const Footer = () => {
                 </p>
 
                 {/* Social Media Links */}
-                <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-6 mr-7">
                     <a
                         href="https://www.linkedin.com/in/romanshrr/"
                         target="_blank"
