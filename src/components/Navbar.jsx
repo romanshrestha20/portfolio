@@ -23,7 +23,7 @@ const Navbar = () => {
             transition={{ duration: 0.5 }}
             className="text-xl font-bold text-blue-600 dark:text-blue-400"
           >
-            <a href="#home">MyPortfolio</a>
+            <a href="#about">MyPortfolio</a>
           </motion.div>
 
           {/* Desktop Links */}
@@ -44,7 +44,10 @@ const Navbar = () => {
 
           {/* Right Section */}
           <div className="flex items-center space-x-4">
-            <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+            <DarkModeToggle
+              darkMode={darkMode}
+              toggleDarkMode={toggleDarkMode}
+            />
 
             {/* Hamburger Menu */}
             <div className="md:hidden">
