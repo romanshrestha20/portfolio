@@ -12,7 +12,7 @@ const projects = [
     link: "https://github.com/romanshrestha20/django-blog",
   },
   {
-    name: "AWAP Movie Application",
+    name: "Movie Application",
     description:
       "Keeps users updated with the latest movies and TV shows, featuring popular and trending titles.",
     image:
