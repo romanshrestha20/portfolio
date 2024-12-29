@@ -1,6 +1,6 @@
 # Portfolio
 
-[![pages-build-deployment](https://github.com/romanshrestha20/portfolio/actions/workflows/pages/pages-build-deployment/badge.svg?event=deployment_status)](https://github.com/romanshrestha20/portfolio/actions/workflows/pages/pages-build-deployment)
+[![pages-build-deployment](https://github.com/romanshrestha20/portfolio/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/romanshrestha20/portfolio/actions/workflows/pages/pages-build-deployment)
 
 
 Welcome to my personal portfolio website! This project is built using React and showcases my projects, skills, and experiences in web development. The site is designed to be responsive and user-friendly, providing a seamless experience across different devices.
