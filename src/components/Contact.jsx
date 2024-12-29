@@ -114,21 +114,21 @@ const Contact = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl font-extrabold text-primary dark:text-blue-500 mb-4 font-poppins">
-          Contact Me
-          </h2>
-          <p className="font-mono text-lg text-gray-600 dark:text-gray-300">
-            I'd love to hear from you! Fill out the form below.
-          </p>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-extrabold text-primary dark:text-blue-500 mb-4 font-poppins">
+              Get In Touch
+            </h2>
+            <p className="font-mono text-lg text-gray-600 dark:text-gray-300">
+              Have a question or want to work together? Drop me a message below!
+            </p>
+          </motion.div>
 
-        {/* Form Section */}
+          {/* Form Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
