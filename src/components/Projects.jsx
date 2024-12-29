@@ -20,12 +20,12 @@ const projects = [
     link: "https://github.com/AWAP-Group8-2024/Movie-App.git",
   },
   {
-    name: "Another Project",
+    name: "My Book Library",
     description:
-      "Another example description, which is short and doesn't need an expand option.",
+      "A web app for managing books and authors, including adding, viewing, editing, and deleting records, with user authentication and profiles for personalized experiences.",
     image:
       "https://plus.unsplash.com/premium_photo-1682656220562-32fde8256295?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "https://github.com/your-profile/project-repo",
+    link: "https://github.com/romanshrestha20/my-book-library",
   },
 ];
 
