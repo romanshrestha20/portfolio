@@ -30,10 +30,10 @@ const projects = [
 ];
 
 const Projects = () => {
-  const [expanded, setExpanded] = useState(null);
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
   const toggleExpand = (index) => {
-    setExpanded(expanded === index ? null : index); // Toggle expansion
+    setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   return (
@@ -78,7 +78,7 @@ const Projects = () => {
                   {project.name}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mt-2">
-                  {expanded === index
+                  {expandedIndex === index
                     ? project.description
                     : project.description.length > 60
                     ? project.description.slice(0, 60) + "..."
@@ -90,11 +90,11 @@ const Projects = () => {
                     onClick={() => toggleExpand(index)}
                   >
                     <span className="text-blue-600 dark:text-blue-400 hover:underline">
-                      {expanded === index ? "Show Less" : "Read More"}
+                      {expandedIndex === index ? "Show Less" : "Read More"}
                     </span>
                     <ArrowDown
                       className={`h-5 w-5 transform transition-transform ${
-                        expanded === index ? "rotate-180" : ""
+                        expandedIndex === index ? "rotate-180" : ""
                       }`}
                     />
                   </div>
