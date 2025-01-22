@@ -1,3 +1,5 @@
+on: [push]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -11,7 +13,7 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build the project
         run: npm run build
@@ -24,6 +26,3 @@ jobs:
         run: npm run deploy
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          REACT_APP_EMAILJS_SERVICE_ID: ${{ secrets.REACT_APP_EMAILJS_SERVICE_ID }}
-          REACT_APP_EMAILJS_TEMPLATE_ID: ${{ secrets.REACT_APP_EMAILJS_TEMPLATE_ID }}
-          REACT_APP_EMAILJS_USER_ID: ${{ secrets.REACT_APP_EMAILJS_USER_ID }}
