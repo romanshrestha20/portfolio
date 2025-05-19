@@ -1,68 +1,80 @@
+
 # Portfolio
 
 [![pages-build-deployment](https://github.com/romanshrestha20/portfolio/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/romanshrestha20/portfolio/actions/workflows/pages/pages-build-deployment)
-
 [![Deploy](https://github.com/romanshrestha20/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/romanshrestha20/portfolio/actions/workflows/deploy.yml)
 
-Welcome to my personal portfolio website! This project is built using React and showcases my projects, skills, and experiences in web development. The site is designed to be responsive and user-friendly, providing a seamless experience across different devices.
+Welcome to my personal portfolio website! This project is built using React and showcases my projects, skills, and experiences in web development. The site is fully responsive and optimized for a seamless experience on all devices.
 
-![alt text](public/Screenshot_25-12-2024_13944_localhost.jpeg)
+🌐 **Live Demo:** [https://romanshrestha.info](https://romanshrestha.info)
+
+---
 
 ## Table of Contents
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+* [Features](#features)
+* [Technologies Used](#technologies-used)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Project Structure](#project-structure)
+* [Screenshots](#screenshots)
+* [Contributing](#contributing)
+* [License](#license)
+* [Contact](#contact)
+
+---
 
 ## Features
 
-- **Responsive Design**: The website is fully responsive and works on all devices.
-- **Project Showcase**: Displays a list of my projects with descriptions, images, and links to the source code.
-- **Skills Section**: Highlights my technical skills and proficiencies.
-- **Experience Section**: Details my professional experiences and roles.
-- **Contact Form**: Allows visitors to get in touch with me directly through the website.
+* **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices.
+* **Project Showcase**: Displays projects with detailed descriptions and source code links.
+* **Skills Section**: Highlights technical skills and proficiencies.
+* **Experience Section**: Shares professional experience and roles.
+* **Contact Form**: Enables visitors to send messages directly.
+* **Dark Mode Toggle**: User-friendly light/dark theme switch.
+
+---
 
 ## Technologies Used
 
-- **Frontend**: React, HTML, CSS, JavaScript
-- **Styling**: Tailwind CSS
-- **Deployment**: GitHub Pages
+* **Frontend**: React, HTML5, CSS3, JavaScript
+* **Styling**: Tailwind CSS
+* **Deployment**: GitHub Pages
+
+---
 
 ## Installation
 
 To run this project locally, follow these steps:
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/your-username/portfolio.git
-    ```
-2. **Navigate to the project directory**:
-    ```bash
-    cd portfolio
-    ```
-3. **Install dependencies**:
-    ```bash
-    npm install
-    ```
-4. **Start the development server**:
-    ```bash
-    npm start
-    ```
+```bash
+# Clone the repo
+git clone https://github.com/romanshrestha20/portfolio.git
 
-The website should now be running on `http://localhost:3000`.
+# Navigate into the project directory
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
+```
+
+Visit [http://localhost:3000](http://localhost:3000) to see the site in action.
+
+---
 
 ## Usage
 
-- **Home Page**: Introduction and brief overview of who I am.
-- **Projects Page**: Detailed view of my projects with images and links.
-- **Skills Page**: List of my technical skills.
-- **Experience Page**: My professional experiences and roles.
-- **Contact Page**: Form to send me a message directly.
+* **Home Page**: Introduction and brief overview.
+* **Projects Page**: View detailed projects with descriptions and links.
+* **Skills Page**: Overview of my technical skillset.
+* **Experience Page**: Highlights my career journey.
+* **Contact Page**: Form to get in touch.
+* **Footer**: Links to social media and GitHub.
+
+---
 
 ## Project Structure
 
@@ -70,22 +82,97 @@ The website should now be running on `http://localhost:3000`.
 portfolio/
 ├── public/
 │   ├── images/
-│   │   └── profile.jpg
+│   │   ├── homepage.png
+│   │   ├── projects.png
+│   │   ├── skills.png
+│   │   ├── contact.png
+│   │   └── contact-form-screenshot.png
 │   └── index.html
 ├── src/
 │   ├── components/
-│   │   ├── Header.jsx
-│   │   ├── Footer.jsx
-│   │   ├── Projects.jsx
-│   │   └── ContactForm.jsx
+│   │   ├── about/
+│   │   ├── common/
+│   │   ├── contact/
+│   │   ├── footer/
+│   │   ├── home/
+│   │   ├── navbar/
+│   │   ├── projects/
+│   │   ├── skills/
+│   │   ├── DarkModeToggle.jsx
+│   │   ├── HamburgerMenu.jsx
+│   │   └── NotFound.jsx
 │   ├── pages/
-│   │   ├── Home.jsx
-│   │   ├── Projects.jsx
-│   │   ├── Skills.jsx
-│   │   └── Experience.jsx
 │   ├── App.js
 │   ├── index.js
 │   └── styles.css
 ├── .gitignore
 ├── package.json
 └── README.md
+```
+
+---
+
+## Screenshots
+
+### Home
+
+![Home](public/images/homepage.png)
+*Welcoming introduction and overview.*
+
+---
+
+### Projects
+
+![Projects](public/images/projects.png)
+*Detailed project showcase.*
+
+---
+
+### Skills
+
+![Skills](public/images/skills.png)
+*Technical skills overview.*
+
+---
+
+### Contact Form
+
+![Contact Form](public/images/contact-form-screenshot.png)
+*User-friendly contact form.*
+
+---
+
+### Contact Section
+
+![Contact](public/images/contact.png)
+*Contact details and social links.*
+
+---
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to fork the repository and submit pull requests.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Contact
+
+You can reach me via the contact form on the website or directly at:
+
+✉️ **Email:** [stha.roman20@gmail.com](mailto:stha.roman20@gmail.com)
+
+🌐 **Website:** [https://romanshrestha.info](https://romanshrestha.info)
+
+🐦 **Twitter:** [@romanshrestha](https://twitter.com/romanshrestha)
+
+💼 **LinkedIn:** [linkedin.com/in/romanshrestha](https://linkedin.com/in/romanshrestha20)
+
+---
+
+If you want me to help you with the images folder organization or adding badges or GIFs, just ask!
