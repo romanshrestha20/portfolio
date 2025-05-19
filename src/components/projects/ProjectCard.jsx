@@ -19,11 +19,16 @@ export default function ProjectCard({ project }) {
       }}
       className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300"
     >
-      <img
-        src={project.image}
-        alt={project.name}
-        className="w-full h-48 sm:h-56 object-cover rounded-t-lg"
-      />
+    <img
+  src={project.image}
+  alt={project.name}
+  className="w-full aspect-video object-cover rounded-t-lg"
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = "https://placehold.co/600x400"; // <-- Replace with your fallback image path
+  }}
+/>
+
       <div className="p-6">
         <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
           {project.name}
