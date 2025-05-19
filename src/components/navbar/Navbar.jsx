@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import DarkModeToggle from "./DarkModeToggle";
-import HamburgerMenu from "./HamburgerMenu";
-import useDarkMode from "./useDarkMode";
+import useDarkMode from "../../hooks/useDarkMode";
+import DarkModeToggle from "../DarkModeToggle";
+import HamburgerMenu from "../HamburgerMenu";
 
 const navLinks = ["About", "Projects", "Skills", "Contact"];
 
