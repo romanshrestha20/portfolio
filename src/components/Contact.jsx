@@ -124,8 +124,11 @@ const Contact = () => {
               Get In Touch
             </h2>
             <p className="font-mono text-lg text-gray-600 dark:text-gray-300">
-              Have a question or want to work together? Drop me a message below!
-            </p>
+              Have a question or want to work together? 
+          </p>
+          <p className="font-mono text-lg text-gray-600 dark:text-gray-300">
+            Drop me a message below!
+          </p>
           </motion.div>
 
           {/* Form Section */}
