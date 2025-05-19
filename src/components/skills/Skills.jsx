@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import SkillItem from "./SkillItem";
 import SectionHeader from "../common/SectionHeader";
-import { iconClasses } from "@mui/material";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -45,9 +44,9 @@ const skills = [
     name: "Linux",
   },
   {
-    iconClasses: "fab fa-kotlin",
-    color: "text-purple-600 dark:text-purple-400",
-    name: "Kotlin",
+    iconClass: "fas fa-fire",
+    color: "text-orange-500 dark:text-orange-400",
+    name: "Firebase",
   },
 ];
 
