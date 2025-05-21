@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.869e4720.css",
-    "main.js": "/static/js/main.12691486.js",
+    "main.js": "/static/js/main.193b30d2.js",
     "static/js/186.6b31975d.chunk.js": "/static/js/186.6b31975d.chunk.js",
     "static/js/321.a9990736.chunk.js": "/static/js/321.a9990736.chunk.js",
     "static/js/52.9330d9b3.chunk.js": "/static/js/52.9330d9b3.chunk.js",
     "static/js/26.507432fe.chunk.js": "/static/js/26.507432fe.chunk.js",
-    "static/js/269.cc402215.chunk.js": "/static/js/269.cc402215.chunk.js",
+    "static/js/269.258ca98b.chunk.js": "/static/js/269.258ca98b.chunk.js",
     "static/js/546.849d1f15.chunk.js": "/static/js/546.849d1f15.chunk.js",
     "static/js/925.25a248fa.chunk.js": "/static/js/925.25a248fa.chunk.js",
     "static/js/79.f609d999.chunk.js": "/static/js/79.f609d999.chunk.js",
@@ -71,12 +71,12 @@
     "static/media/roboto-greek-ext-300-normal.woff": "/static/media/roboto-greek-ext-300-normal.b590dbe5c639944366d1.woff",
     "static/media/roboto-greek-ext-400-normal.woff": "/static/media/roboto-greek-ext-400-normal.16eb83b4a3b1ea994243.woff",
     "main.869e4720.css.map": "/static/css/main.869e4720.css.map",
-    "main.12691486.js.map": "/static/js/main.12691486.js.map",
+    "main.193b30d2.js.map": "/static/js/main.193b30d2.js.map",
     "186.6b31975d.chunk.js.map": "/static/js/186.6b31975d.chunk.js.map",
     "321.a9990736.chunk.js.map": "/static/js/321.a9990736.chunk.js.map",
     "52.9330d9b3.chunk.js.map": "/static/js/52.9330d9b3.chunk.js.map",
     "26.507432fe.chunk.js.map": "/static/js/26.507432fe.chunk.js.map",
-    "269.cc402215.chunk.js.map": "/static/js/269.cc402215.chunk.js.map",
+    "269.258ca98b.chunk.js.map": "/static/js/269.258ca98b.chunk.js.map",
     "546.849d1f15.chunk.js.map": "/static/js/546.849d1f15.chunk.js.map",
     "925.25a248fa.chunk.js.map": "/static/js/925.25a248fa.chunk.js.map",
     "79.f609d999.chunk.js.map": "/static/js/79.f609d999.chunk.js.map",
@@ -86,6 +86,6 @@
   },
   "entrypoints": [
     "static/css/main.869e4720.css",
-    "static/js/main.12691486.js"
+    "static/js/main.193b30d2.js"
   ]
 }
