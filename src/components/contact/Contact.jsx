@@ -17,7 +17,12 @@ const Contact = () => {
         >
           <SectionHeader
             title="Get In Touch"
-            subtitle="Have a question or want to work together?  Drop me a message below!"
+            subtitle={
+              <>
+                Have a question or want to work together? <br />
+                Drop me a message below!
+              </>
+            }
           />
         </motion.div>
         <br />
