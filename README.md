@@ -1,178 +1,299 @@
 
-# Portfolio
+# 🚀 Roman Shrestha's Portfolio
 
 [![pages-build-deployment](https://github.com/romanshrestha20/portfolio/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/romanshrestha20/portfolio/actions/workflows/pages/pages-build-deployment)
 [![Deploy](https://github.com/romanshrestha20/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/romanshrestha20/portfolio/actions/workflows/deploy.yml)
+[![React](https://img.shields.io/badge/React-19.0.0-61DAFB?logo=react)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.17-06B6D4?logo=tailwindcss)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer%20Motion-11.15.0-FF5722?logo=framer)](https://www.framer.com/motion/)
 
-Welcome to my personal portfolio website! This project is built using React and showcases my projects, skills, and experiences in web development. The site is fully responsive and optimized for a seamless experience on all devices.
+Welcome to my personal portfolio website! This modern, interactive portfolio showcases my journey as an aspiring software engineer and web developer. Built with cutting-edge technologies and featuring smooth animations, dark mode support, and a fully responsive design.
 
 🌐 **Live Demo:** [https://romanshrestha.info](https://romanshrestha.info)
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
-* [Features](#features)
-* [Technologies Used](#technologies-used)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Project Structure](#project-structure)
-* [Screenshots](#screenshots)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
-
----
-
-## Features
-
-* **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices.
-* **Project Showcase**: Displays projects with detailed descriptions and source code links.
-* **Skills Section**: Highlights technical skills and proficiencies.
-* **Experience Section**: Shares professional experience and roles.
-* **Contact Form**: Enables visitors to send messages directly.
-* **Dark Mode Toggle**: User-friendly light/dark theme switch.
+* [✨ Features](#-features)
+* [🛠️ Technologies Used](#️-technologies-used)
+* [⚡ Quick Start](#-quick-start)
+* [📁 Project Structure](#-project-structure)
+* [🖼️ Screenshots](#️-screenshots)
+* [🤝 Contributing](#-contributing)
+* [📄 License](#-license)
+* [📞 Contact](#-contact)
 
 ---
 
-## Technologies Used
+## ✨ Features
 
-* **Frontend**: React, HTML5, CSS3, JavaScript
-* **Styling**: Tailwind CSS
-* **Deployment**: GitHub Pages
+* **🎨 Modern UI/UX**: Clean, professional design with smooth animations using Framer Motion
+* **📱 Fully Responsive**: Optimized for all devices - desktop, tablet, and mobile
+* **🌙 Dark Mode Support**: Seamless light/dark theme toggle with persistent preferences
+* **💼 Project Showcase**: Interactive project cards with expandable descriptions and live links
+* **🎯 Skills Visualization**: Animated skill icons with hover effects
+* **📈 Educational Timeline**: Interactive timeline showing academic journey with current year highlighting
+* **📧 Contact Integration**: Functional contact form powered by EmailJS
+* **⚡ Performance Optimized**: Lazy loading, code splitting, and optimized bundle size
+* **🔍 SEO Ready**: Meta tags, Open Graph support, and search engine optimization
+* **🚀 Modern Tech Stack**: Built with React 19, Tailwind CSS, and Material-UI components
 
 ---
 
-## Installation
+## 🛠️ Technologies Used
 
-To run this project locally, follow these steps:
+### **Frontend Framework**
+* **React 19.0.0** - Latest React with concurrent features
+* **JavaScript (ES6+)** - Modern JavaScript features
+
+### **Styling & UI**
+* **Tailwind CSS 3.4.17** - Utility-first CSS framework
+* **Material-UI 6.3.0** - React components with Material Design
+* **Framer Motion 11.15.0** - Production-ready motion library
+* **Custom CSS** - Additional styling and animations
+
+### **Icons & Assets**
+* **Lucide React** - Beautiful, customizable icons
+* **React Icons** - Popular icon packs for React
+* **Google Fonts** - Poppins, Roboto Mono, Ubuntu fonts
+
+### **Functionality**
+* **EmailJS** - Contact form email integration
+* **React Router DOM** - Client-side routing
+* **JS Cookie** - Cookie management for theme persistence
+
+### **Development & Build**
+* **React Scripts 5.0.1** - Build tools and configuration
+* **PostCSS & Autoprefixer** - CSS processing
+* **GitHub Actions** - CI/CD pipeline
+* **GitHub Pages** - Static site hosting
+
+---
+
+## ⚡ Quick Start
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn package manager
+
+### Installation
 
 ```bash
-# Clone the repo
+# Clone the repository
 git clone https://github.com/romanshrestha20/portfolio.git
 
-# Navigate into the project directory
+# Navigate to project directory
 cd portfolio
 
 # Install dependencies
 npm install
 
-# Start the development server
+# Set up environment variables (optional)
+# Create a .env file in the root directory for EmailJS configuration:
+# REACT_APP_EMAILJS_SERVICE_ID=your_service_id
+# REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id  
+# REACT_APP_EMAILJS_USER_ID=your_user_id
+
+# Start development server
 npm start
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to see the site in action.
+The application will open at [http://localhost:3000](http://localhost:3000)
 
----
+### Available Scripts
 
-## Usage
-
-* **Home Page**: Introduction and brief overview.
-* **Projects Page**: View detailed projects with descriptions and links.
-* **Skills Page**: Overview of my technical skillset.
-* **Experience Page**: Highlights my career journey.
-* **Contact Page**: Form to get in touch.
-* **Footer**: Links to social media and GitHub.
-
----
-
-## Project Structure
-
-```plaintext
-portfolio/
-├── public/
-│   ├── images/
-│   │   ├── homepage.png
-│   │   ├── projects.png
-│   │   ├── skills.png
-│   │   ├── contact.png
-│   │   └── contact-form-screenshot.png
-│   └── index.html
-├── src/
-│   ├── components/
-│   │   ├── about/
-│   │   ├── common/
-│   │   ├── contact/
-│   │   ├── footer/
-│   │   ├── home/
-│   │   ├── navbar/
-│   │   ├── projects/
-│   │   ├── skills/
-│   │   ├── DarkModeToggle.jsx
-│   │   ├── HamburgerMenu.jsx
-│   │   └── NotFound.jsx
-│   ├── pages/
-│   ├── App.js
-│   ├── index.js
-│   └── styles.css
-├── .gitignore
-├── package.json
-└── README.md
+```bash
+npm start          # Start development server
+npm run build      # Build for production
+npm test           # Run tests
+npm run deploy     # Deploy to GitHub Pages
 ```
 
 ---
 
-## Screenshots
+## 📁 Project Structure
 
-### Home
+```plaintext
+portfolio/
+├── 📁 public/                    # Static assets
+│   ├── 🖼️ images/               # Screenshots and media
+│   ├── 🎨 boy.png               # Profile assets
+│   ├── 🌐 index.html            # HTML template
+│   └── 📄 manifest.json         # PWA configuration
+│
+├── 📁 src/                      # Source code
+│   ├── 📁 components/           # React components
+│   │   ├── 📁 about/            # About section components
+│   │   │   ├── About.jsx        # Main about component
+│   │   │   ├── AboutText.jsx    # About text content
+│   │   │   ├── ProfileCard.jsx  # Profile image & CV download
+│   │   │   ├── SocialLinks.jsx  # Social media links
+│   │   │   └── Timeline.jsx     # Educational timeline ⭐ NEW
+│   │   │
+│   │   ├── 📁 common/           # Reusable components
+│   │   │   ├── ErrorBoundary.jsx
+│   │   │   ├── Loader.jsx
+│   │   │   ├── SectionHeader.jsx
+│   │   │   ├── SectionWrapper.jsx
+│   │   │   └── Spinner.jsx
+│   │   │
+│   │   ├── 📁 contact/          # Contact form components
+│   │   │   ├── Contact.jsx
+│   │   │   ├── ContactForm.jsx
+│   │   │   ├── ContactInput.jsx
+│   │   │   └── ValidateField.js
+│   │   │
+│   │   ├── 📁 footer/           # Footer component
+│   │   ├── 📁 home/             # Home page component
+│   │   ├── 📁 navbar/           # Navigation component
+│   │   ├── 📁 projects/         # Project showcase
+│   │   ├── 📁 skills/           # Skills visualization
+│   │   │
+│   │   ├── DarkModeToggle.jsx   # Theme switcher
+│   │   ├── HamburgerMenu.jsx    # Mobile navigation
+│   │   └── NotFound.jsx         # 404 page
+│   │
+│   ├── 📁 config/               # Configuration files
+│   │   └── sections.js          # Section lazy loading config
+│   │
+│   ├── 📁 hooks/                # Custom React hooks
+│   │   └── useDarkMode.jsx      # Dark mode management
+│   │
+│   ├── App.js                   # Main app component
+│   ├── index.js                 # Entry point
+│   └── index.css                # Global styles
+│
+├── 📄 tailwind.config.js        # Tailwind configuration
+├── 📄 package.json              # Dependencies & scripts
+└── 📄 README.md                 # Project documentation
+```
 
+### 🏗️ Component Architecture
+
+- **🧩 Modular Design**: Each section is a separate component for maintainability
+- **♻️ Reusable Components**: Common components used across sections
+- **⚡ Lazy Loading**: Components are dynamically imported for better performance
+- **🎨 Consistent Styling**: Shared Tailwind classes and design system
+- **📱 Responsive**: Mobile-first design approach
+
+---
+
+## 🖼️ Screenshots
+
+### 🏠 Home & About Section
 ![Home](public/images/homepage.png)
-*Welcoming introduction and overview.*
+*Clean introduction with animated profile section and educational timeline*
 
----
-
-### Projects
-
+### 💼 Projects Showcase
 ![Projects](public/images/projects.png)
-*Detailed project showcase.*
+*Interactive project cards with expandable descriptions and live links*
 
----
-
-### Skills
-
+### 🎯 Skills Visualization
 ![Skills](public/images/skills.png)
-*Technical skills overview.*
+*Animated skill icons with hover effects and technology stack*
 
----
-
-### Contact Form
-
+### 📧 Contact Form
 ![Contact Form](public/images/contact-form-screenshot.png)
-*User-friendly contact form.*
+*Functional contact form with validation and email integration*
+
+### 📱 Responsive Design
+The portfolio is fully responsive and provides an optimal viewing experience across all devices.
 
 ---
 
-### Contact Section
+## 🚀 Key Features Highlights
 
-![Contact](public/images/contact.png)
-*Contact details and social links.*
+### 🎨 **Modern Design System**
+- Consistent color palette with light/dark mode support
+- Smooth animations and micro-interactions
+- Professional typography using Google Fonts
 
----
+### 📚 **Educational Timeline**
+- Automatically detects and highlights current academic year
+- Visual progress indicator with custom animations
+- Responsive design for all screen sizes
 
-## Contributing
+### 💼 **Dynamic Project Cards**
+- Expandable descriptions with "Read More" functionality
+- Hover effects and smooth transitions
+- External link integration for live demos
 
-Contributions, issues, and feature requests are welcome! Feel free to fork the repository and submit pull requests.
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Contact
-
-You can reach me via the contact form on the website or directly at:
-
-✉️ **Email:** [stha.roman20@gmail.com](mailto:stha.roman20@gmail.com)
-
-🌐 **Website:** [https://romanshrestha.info](https://romanshrestha.info)
-
-🐦 **Twitter:** [@romanshrestha](https://twitter.com/romanshrestha)
-
-💼 **LinkedIn:** [linkedin.com/in/romanshrestha](https://linkedin.com/in/romanshrestha20)
+### 🌙 **Advanced Dark Mode**
+- System preference detection
+- Cookie-based persistence
+- Smooth theme transitions
 
 ---
 
-If you want me to help you with the images folder organization or adding badges or GIFs, just ask!
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Here's how you can contribute:
+
+1. **🍴 Fork the repository**
+2. **🌿 Create a feature branch** (`git checkout -b feature/AmazingFeature`)
+3. **📝 Commit your changes** (`git commit -m 'Add some AmazingFeature'`)
+4. **📤 Push to the branch** (`git push origin feature/AmazingFeature`)
+5. **🔄 Open a Pull Request**
+
+### 🐛 Found a Bug?
+Please open an issue with:
+- Bug description
+- Steps to reproduce
+- Expected vs actual behavior
+- Screenshots (if applicable)
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 📞 Contact
+
+### 🌐 **Live Portfolio**
+Visit [https://romanshrestha.info](https://romanshrestha.info) to see the portfolio in action!
+
+### 📧 **Get In Touch**
+- **Email**: [stha.roman20@outlook.com](mailto:stha.roman20@outlook.com)
+- **Contact Form**: Available on the website with EmailJS integration
+- **Response Time**: Usually within 24-48 hours
+
+### 🔗 **Connect With Me**
+- **LinkedIn**: [linkedin.com/in/romanshrr](https://linkedin.com/in/romanshrr/)
+- **GitHub**: [github.com/romanshrestha20](https://github.com/romanshrestha20)
+- **Instagram**: [instagram.com/romanshrr](https://instagram.com/romanshrr/)
+
+### 💼 **Professional Opportunities**
+I'm actively seeking:
+- **Internship opportunities** in software engineering
+- **Web development projects** and collaborations
+- **Open source contributions** and community involvement
+
+---
+
+## � Acknowledgments
+
+- **React Team** for the amazing framework
+- **Tailwind CSS** for the utility-first approach
+- **Framer Motion** for smooth animations
+- **Material-UI** for beautiful components
+- **EmailJS** for contact form functionality
+- **GitHub Pages** for free hosting
+- **Unsplash** for beautiful stock photos
+
+---
+
+## 📈 Project Stats
+
+![GitHub repo size](https://img.shields.io/github/repo-size/romanshrestha20/portfolio)
+![GitHub last commit](https://img.shields.io/github/last-commit/romanshrestha20/portfolio)
+![GitHub stars](https://img.shields.io/github/stars/romanshrestha20/portfolio?style=social)
+
+---
+
+**⭐ If you found this portfolio helpful or inspiring, please consider giving it a star!**
+
+*Built with ❤️ by Roman Shrestha*
