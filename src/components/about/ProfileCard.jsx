@@ -14,7 +14,7 @@ export default function AboutText() {
       </motion.div>
 
       <a
-        href="https://drive.google.com/file/d/1edylUMY-0jSeB2pjS3OVT_3Uky5qDjI4/view?usp=drive_link"
+        href="https://drive.google.com/file/d/1P_dSCImycPxXuhAWe_FCgSB2bBXIgKgd/view?usp=drive_link"
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center px-8 py-4 mb-6 space-x-3 text-white transition-all rounded-lg bg-primary hover:bg-blue-600"
