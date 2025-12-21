@@ -2,12 +2,12 @@ import React from "react";
 
 const HamburgerMenu = ({ isOpen, toggleMenu }) => (
   <button
-    className="text-gray-600 dark:text-gray-300 focus:outline-none md:hidden"
+    className="focus:outline-none md:hidden text-textSecondary-light dark:text-textSecondary-dark"
     onClick={toggleMenu}
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6"
+      className="w-6 h-6"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
