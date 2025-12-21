@@ -17,23 +17,23 @@ export default function ProjectCard({ project }) {
         boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
         transition: { duration: 0.3 },
       }}
-      className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300"
+      className="overflow-hidden transition-all duration-300 transform rounded-lg shadow-lg bg-surface-light dark:bg-surface-dark"
     >
-    <img
-  src={project.image}
-  alt={project.name}
-  className="w-full aspect-video object-cover rounded-t-lg"
-  onError={(e) => {
-    e.target.onerror = null;
-    e.target.src = "https://placehold.co/600x400"; // <-- Replace with your fallback image path
-  }}
-/>
+      <img
+        src={project.image}
+        alt={project.name}
+        className="object-cover w-full rounded-t-lg aspect-video"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "https://placehold.co/600x400"; // <-- Replace with your fallback image path
+        }}
+      />
 
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+        <h3 className="text-xl font-semibold text-text-light dark:text-text-dark">
           {project.name}
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mt-2">
+        <p className="mt-2 text-textSecondary-light dark:text-textSecondary-dark">
           {expanded
             ? project.description
             : project.description.length > 60
@@ -42,10 +42,10 @@ export default function ProjectCard({ project }) {
         </p>
         {project.description.length > 60 && (
           <div
-            className="mt-4 flex items-center space-x-2 cursor-pointer"
+            className="flex items-center mt-4 space-x-2 cursor-pointer"
             onClick={toggleExpand}
           >
-            <span className="text-blue-600 dark:text-blue-400 hover:underline">
+            <span className="text-primary-light dark:text-primary-dark hover:underline">
               {expanded ? "Show Less" : "Read More"}
             </span>
             <ArrowDown
@@ -60,7 +60,7 @@ export default function ProjectCard({ project }) {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 dark:text-blue-400 hover:underline"
+            className="text-primary-light dark:text-primary-dark hover:underline"
           >
             View Project
           </a>

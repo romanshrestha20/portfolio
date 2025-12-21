@@ -48,7 +48,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-16 text-gray-900 bg-background dark:bg-gray-900 dark:text-white"
+      className="py-16 text-text-light bg-background-light dark:bg-background-dark dark:text-text-dark"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         <SectionHeader title="My Projects" subtitle="Explore some of the work I've done" />

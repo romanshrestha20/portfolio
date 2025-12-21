@@ -24,22 +24,22 @@ const NotFound = () => {
     <div
       className={`flex items-center justify-center min-h-screen ${
         darkMode
-          ? "bg-dark text-white"
-          : "bg-background text-gray-800"
+          ? "bg-background-dark text-text-dark"
+          : "bg-background-light text-text-light"
       } overflow-hidden`}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="text-center px-8 py-16 rounded-2xl shadow-2xl z-10 relative overflow-hidden"
+        className="relative z-10 px-8 py-16 overflow-hidden text-center shadow-2xl rounded-2xl"
       >
         {/* Animated Heading */}
         <motion.h1
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-600 mb-6"
+          className="mb-6 font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-accent-light to-primary-light"
         >
           404
         </motion.h1>
@@ -52,7 +52,9 @@ const NotFound = () => {
           className="mb-6"
         >
           <FaGhost
-            className={`text-7xl ${darkMode ? "text-gray-400" : "text-gray-800"} animate-bounce`}
+            className={`text-7xl ${
+              darkMode ? "text-textSecondary-dark" : "text-textSecondary-light"
+            } animate-bounce`}
           />
         </motion.div>
 
@@ -61,7 +63,7 @@ const NotFound = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-2xl font-semibold mb-8"
+          className="mb-8 text-2xl font-semibold"
         >
           It appears that the page you are looking for does not exist.
         </motion.p>
@@ -74,9 +76,9 @@ const NotFound = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="inline-flex items-center text-lg font-semibold text-blue-600 hover:text-blue-800 transition-all transform hover:scale-110"
+            className="inline-flex items-center text-lg font-semibold transition-all transform text-primary-light hover:text-accent-light hover:scale-110"
           >
-            <ArrowRightCircle className="h-8 w-8 mr-2" />
+            <ArrowRightCircle className="w-8 h-8 mr-2" />
             Take me Home
           </motion.a>
         </div>
