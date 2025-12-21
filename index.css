@@ -1404,6 +1404,11 @@ select {
   color: rgb(37 99 235 / var(--tw-text-opacity, 1));
 }
 
+.text-danger-light {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
+}
+
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity, 1));
@@ -1588,11 +1593,6 @@ body {
   background-color: rgb(249 168 37 / var(--tw-bg-opacity, 1));
 }
 
-.hover\:bg-blue-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
-}
-
 .hover\:text-accent-light:hover {
   --tw-text-opacity: 1;
   color: rgb(249 168 37 / var(--tw-text-opacity, 1));
@@ -1642,6 +1642,11 @@ body {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:ring-primary-light:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(26 115 232 / var(--tw-ring-opacity, 1));
 }
 
 .group:hover .group-hover\:opacity-100 {
@@ -1726,6 +1731,11 @@ body {
 .dark\:text-blue-400:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(96 165 250 / var(--tw-text-opacity, 1));
+}
+
+.dark\:text-danger-dark:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity, 1));
 }
 
 .dark\:text-gray-100:is(.dark *) {
@@ -1826,6 +1836,11 @@ body {
 .dark\:hover\:text-text-dark:hover:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(241 245 249 / var(--tw-text-opacity, 1));
+}
+
+.dark\:focus\:ring-primary-dark:focus:is(.dark *) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(100 181 246 / var(--tw-ring-opacity, 1));
 }
 
 @media (min-width: 640px) {
