@@ -1,6 +1,7 @@
 import React from "react";
 import { TextField, InputAdornment } from "@mui/material";
 
+
 const ContactInput = ({
   label,
   name,
@@ -13,6 +14,7 @@ const ContactInput = ({
   multiline = false,
   rows = 1,
 }) => {
+
   return (
     <TextField
       label={label}
@@ -31,7 +33,9 @@ const ContactInput = ({
         startAdornment: (
           <InputAdornment
             position="start"
-            style={multiline ? { alignSelf: "flex-start", marginTop: "2px" } : {}}
+            style={
+              multiline ? { alignSelf: "flex-start", marginTop: "2px" } : {}
+            }
           >
             {icon}
           </InputAdornment>
@@ -39,7 +43,7 @@ const ContactInput = ({
         style: { color: "inherit" },
       }}
       InputLabelProps={{
-        className: "text-gray-900 dark:text-white",
+        className: "text-text-light dark:text-text-dark",
       }}
     />
   );

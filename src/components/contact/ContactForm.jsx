@@ -80,7 +80,7 @@ const ContactForm = () => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-lg mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md"
+      className="max-w-lg p-8 mx-auto rounded-lg shadow-md bg-surface-light text-text-light dark:bg-surface-dark dark:text-text-dark"
     >
       <form onSubmit={handleSubmit}>
         <Box mb={2}>
@@ -92,7 +92,9 @@ const ContactForm = () => {
             placeholder="Your Name"
             error={formErrors.name}
             helperText={formErrors.name}
-            icon={<PersonIcon className="text-gray-600 dark:text-gray-300" />}
+            icon={
+              <PersonIcon className="text-textSecondary-light dark:text-textSecondary-dark" />
+            }
           />
         </Box>
 
@@ -105,7 +107,9 @@ const ContactForm = () => {
             placeholder="Your Email"
             error={formErrors.email}
             helperText={formErrors.email}
-            icon={<MailIcon className="text-gray-600 dark:text-gray-300" />}
+            icon={
+              <MailIcon className="text-textSecondary-light dark:text-textSecondary-dark" />
+            }
           />
         </Box>
 
@@ -118,7 +122,9 @@ const ContactForm = () => {
             placeholder="Your Message"
             error={formErrors.message}
             helperText={formErrors.message}
-            icon={<ChatIcon className="text-gray-600 dark:text-gray-300" />}
+            icon={
+              <ChatIcon className="text-textSecondary-light dark:text-textSecondary-dark" />
+            }
             multiline
             rows={4}
           />
@@ -130,7 +136,9 @@ const ContactForm = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             className={`text-center mt-4 ${
-              formStatus.includes("success") ? "text-green-600" : "text-red-600"
+              formStatus.includes("success")
+                ? "text-success-light dark:text-success-dark"
+                : "text-danger-light dark:text-danger-dark"
             }`}
           >
             {formStatus}
@@ -140,7 +148,7 @@ const ContactForm = () => {
         <div className="flex justify-center mt-6">
           <motion.button
             type="submit"
-            className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary transition"
+            className="px-6 py-3 transition rounded-lg bg-primary-light text-text-dark hover:bg-accent-light focus:outline-none focus:ring-2 focus:ring-primary-light dark:bg-primary-dark dark:text-text-dark dark:hover:bg-accent-dark dark:focus:ring-primary-dark"
             disabled={isLoading}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

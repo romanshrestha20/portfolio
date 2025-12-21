@@ -7,9 +7,9 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 w-full"
+      className="w-full py-20 text-text-light bg-background-light dark:bg-background-dark dark:text-text-dark"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
