@@ -17,7 +17,7 @@ export default function AboutText() {
         href="https://drive.google.com/file/d/1P_dSCImycPxXuhAWe_FCgSB2bBXIgKgd/view?usp=drive_link"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center px-8 py-4 mb-6 space-x-3 text-white transition-all rounded-lg bg-primary hover:bg-blue-600"
+        className="flex items-center px-8 py-4 mb-6 space-x-3 text-white transition-all bg-gray-800 rounded-lg hover:bg-blue-600"
         aria-label="Download CV"
       >
         <Download className="w-5 h-5" />

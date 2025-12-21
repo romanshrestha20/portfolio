@@ -18,7 +18,7 @@ export default function SocialLinks() {
         className={`${iconColors.linkedin} hover:text-blue-700 dark:hover:text-blue-500 transition-all duration-300`}
         aria-label="LinkedIn Profile"
       >
-        <Linkedin className="h-8 w-8" />
+        <Linkedin className="w-8 h-8" />
       </motion.a>
       <motion.a
         href="https://github.com/romanshrestha20"
@@ -28,7 +28,7 @@ export default function SocialLinks() {
         className={`${iconColors.github} hover:text-gray-600 dark:hover:text-gray-400 transition-all duration-300`}
         aria-label="GitHub Profile"
       >
-        <Github className="h-8 w-8" />
+        <Github className="w-8 h-8" />
       </motion.a>
       <motion.a
         href="https://www.instagram.com/romanshrr/"
@@ -38,7 +38,7 @@ export default function SocialLinks() {
         className={`${iconColors.instagram} hover:text-pink-700 dark:hover:text-pink-500 transition-all duration-300`}
         aria-label="Instagram Profile"
       >
-        <Instagram className="h-8 w-8" />
+        <Instagram className="w-8 h-8" />
       </motion.a>
     </div>
   );
