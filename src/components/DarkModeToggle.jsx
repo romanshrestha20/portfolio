@@ -60,10 +60,16 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const DarkModeToggle = ({ darkMode, toggleDarkMode }) => (
+const DarkModeToggle = ({ theme, toggleTheme }) => (
   <FormGroup>
     <FormControlLabel
-      control={<MaterialUISwitch sx={{ m: 1 }} checked={darkMode} onChange={toggleDarkMode} />}
+      control={
+        <MaterialUISwitch
+          sx={{ m: 1 }}
+          checked={theme === "dark"}
+          onChange={toggleTheme}
+        />
+      }
     />
   </FormGroup>
 );

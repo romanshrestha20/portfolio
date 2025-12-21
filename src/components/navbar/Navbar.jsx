@@ -10,7 +10,7 @@ const AnimatedNavLink = ({ link, index, onClick }) => (
   <motion.a
     key={link}
     href={`#${link.toLowerCase()}`}
-    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition block"
+    className="block text-gray-600 transition dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
     onClick={onClick}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
@@ -22,15 +22,18 @@ const AnimatedNavLink = ({ link, index, onClick }) => (
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { darkMode, toggleDarkMode } = useDarkMode();
+  const { theme, toggleTheme } = useDarkMode();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const handleLinkClick = () => setIsOpen(false);
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow fixed w-full z-50 transition-colors font-mono" aria-label="Main navigation">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14">
+    <nav
+      className="fixed z-50 w-full font-mono transition-colors bg-white shadow dark:bg-gray-800"
+      aria-label="Main navigation"
+    >
+      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -42,7 +45,7 @@ const Navbar = () => {
           </motion.div>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex space-x-6">
+          <div className="hidden space-x-6 md:flex">
             {navLinks.map((link, index) => (
               <AnimatedNavLink key={link} link={link} index={index} />
             ))}
@@ -50,7 +53,7 @@ const Navbar = () => {
 
           {/* Right Section */}
           <div className="flex items-center space-x-4">
-            <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+            <DarkModeToggle theme={theme} toggleTheme={toggleTheme} />
 
             {/* Hamburger */}
             <div className="md:hidden">
@@ -66,14 +69,19 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <motion.div
-            className="md:hidden bg-white dark:bg-gray-800 shadow-md font-mono absolute w-full left-0 top-14 z-40"
+            className="absolute left-0 z-40 w-full font-mono bg-white shadow-md md:hidden dark:bg-gray-800 top-14"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="space-y-4 py-4 px-6">
+            <div className="px-6 py-4 space-y-4">
               {navLinks.map((link, index) => (
-                <AnimatedNavLink key={link} link={link} index={index} onClick={handleLinkClick} />
+                <AnimatedNavLink
+                  key={link}
+                  link={link}
+                  index={index}
+                  onClick={handleLinkClick}
+                />
               ))}
             </div>
           </motion.div>

@@ -1,26 +1,40 @@
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import { useState, useEffect, useCallback } from "react";
 
-const useDarkMode = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    const savedTheme = Cookies.get("theme");
-    if (savedTheme === "dark") {
-      setDarkMode(true);
-      document.documentElement.classList.add("dark");
-    }
+export function useDarkMode() {
+  const getInitialTheme = useCallback(() => {
+    if (typeof window === "undefined") return "light";
+    const stored = localStorage.getItem("theme");
+    if (stored === "light" || stored === "dark") return stored;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
   }, []);
 
-  const toggleDarkMode = (event) => {
-    const newDarkModeState = event.target.checked;
-    setDarkMode(newDarkModeState);
-    document.documentElement.classList.toggle("dark", newDarkModeState);
-    Cookies.set("theme", newDarkModeState ? "dark" : "light", { expires: 365 });
-  };
+  const [theme, setTheme] = useState(getInitialTheme);
 
-  return { darkMode, toggleDarkMode };
-};
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = () => {
+      const stored = localStorage.getItem("theme");
+      if (!stored) {
+        setTheme(mq.matches ? "dark" : "light");
+      }
+    };
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
+  }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") root.classList.add("dark");
+    else root.classList.remove("dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () =>
+    setTheme((current) => (current === "dark" ? "light" : "dark"));
+
+  return { theme, toggleTheme };
+}
 
 export default useDarkMode;

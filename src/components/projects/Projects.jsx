@@ -2,13 +2,13 @@ import SectionHeader from "../common/SectionHeader";
 import ProjectCard from "./ProjectCard";
 
 const projects = [
-  {
-    name: "Django Blog",
+ {
+    name: "Hamro Pasal",
     description:
-      "A web app for creating, reading, updating, and deleting blog posts with user authentication and profiles.",
+      "An e-commerce platform for buying and selling products online with secure transactions and user-friendly interface.",
     image:
-      "https://github.com/romanshrestha20/portfolio/blob/main/public/Screenshot_25-12-2024_11926_127.0.0.1.jpeg?raw=true",
-    link: "https://github.com/romanshrestha20/django-blog",
+      "https://github.com/romanshrestha20/portfolio/blob/main/public/hamro-pasal.png?raw=true",
+    link: "https://hamro-pasal-frontend-1dqm.vercel.app/",
   },
   {
     name: "Django Blog",
@@ -41,14 +41,7 @@ const projects = [
     image: "https://github.com/Mobile-Development-Project-Group-22/CleanSync/blob/main/Screenshot_20250428_135436.png?raw=true",
     link: "https://github.com/Mobile-Development-Project-Group-22/CleanSync/",
   },
-  {
-    name: "Hamro Pasal",
-    description:
-      "An e-commerce platform for buying and selling products online with secure transactions and user-friendly interface.",
-    image:
-      "https://github.com/romanshrestha20/portfolio/blob/main/public/hamro-pasal.jpeg?raw=true",
-    link: "https://hamro-pasal-frontend-1dqm.vercel.app/",
-  },
+ 
 ];
 
 export default function Projects() {
