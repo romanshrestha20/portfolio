@@ -10,7 +10,7 @@ const AnimatedNavLink = ({ link, index, onClick }) => (
   <motion.a
     key={link}
     href={`#${link.toLowerCase()}`}
-    className="block text-gray-600 transition dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+    className="block transition text-textSecondary-light dark:text-textSecondary-dark hover:text-primary-light dark:hover:text-primary-dark"
     onClick={onClick}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
@@ -29,7 +29,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="fixed z-50 w-full font-mono transition-colors bg-white shadow dark:bg-gray-800"
+      className="fixed z-50 w-full font-mono transition-colors shadow bg-background-light dark:bg-background-dark"
       aria-label="Main navigation"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
@@ -39,7 +39,7 @@ const Navbar = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-xl font-bold text-blue-600 dark:text-blue-400"
+            className="text-xl font-bold text-primary-light dark:text-primary-dark"
           >
             <a href="#about">MyPortfolio</a>
           </motion.div>
@@ -69,7 +69,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <motion.div
-            className="absolute left-0 z-40 w-full font-mono bg-white shadow-md md:hidden dark:bg-gray-800 top-14"
+            className="absolute left-0 z-40 w-full font-mono shadow-md bg-surface-light dark:bg-surface-dark md:hidden top-14"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
