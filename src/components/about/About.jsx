@@ -19,7 +19,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="w-full py-20 text-gray-900 bg-background dark:bg-gray-900 dark:text-white"
+      className="w-full py-20 text-text-light bg-background-light dark:bg-background-dark dark:text-text-dark"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         {/* Heading Section */}
@@ -58,7 +58,7 @@ export default function About() {
           className="mt-16 text-center cursor-pointer"
           onClick={scrollToProjects}
         >
-          <ArrowDown className="mx-auto text-gray-400 transition-all hover:text-gray-700 dark:hover:text-gray-300" />
+          <ArrowDown className="mx-auto transition-all text-textSecondary-light hover:text-text-light dark:text-textSecondary-dark dark:hover:text-text-dark" />
         </motion.div>
       </div>
     </section>

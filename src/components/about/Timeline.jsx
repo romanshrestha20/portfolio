@@ -21,32 +21,36 @@ export default function Timeline() {
       title: "Year 1",
       subtitle: "2023–2024",
       text: "Foundations & coursework in software engineering.",
-      color: "bg-purple-500",
-      glow: "rgba(168,85,247,0.7)",
+      colorClass: "bg-accent-light dark:bg-accent-dark",
+      colorHex: "#F9A825",
+      glow: "rgba(249,168,37,0.7)",
     },
     {
       icon: <Laptop className="w-8 h-8 text-white" />,
       title: "Year 2",
       subtitle: "2024–2025",
       text: "Targeting first major internship and expanding skills.",
-      color: "bg-blue-500",
-      glow: "rgba(59,130,246,0.7)",
+      colorClass: "bg-primary-light dark:bg-primary-dark",
+      colorHex: "#1A73E8",
+      glow: "rgba(26,115,232,0.7)",
     },
     {
       icon: <Briefcase className="w-8 h-8 text-white" />,
       title: "Year 3",
       subtitle: "2025–2026",
       text: "Advanced study and second internship aligned with goals.",
-      color: "bg-green-500",
-      glow: "rgba(34,197,94,0.7)",
+      colorClass: "bg-success-light dark:bg-success-dark",
+      colorHex: "#16A34A",
+      glow: "rgba(22,163,74,0.7)",
     },
     {
       icon: <Rocket className="w-8 h-8 text-white" />,
       title: "Year 4",
       subtitle: "2026–2027",
       text: "Final year, graduation & traineeship applications.",
-      color: "bg-teal-500",
-      glow: "rgba(20,184,166,0.7)",
+      colorClass: "bg-info-light dark:bg-info-dark",
+      colorHex: "#0284C7",
+      glow: "rgba(2,132,199,0.7)",
     },
   ];
 
@@ -78,9 +82,9 @@ export default function Timeline() {
       {/* Container */}
       <div className="relative flex flex-col items-start w-full max-w-5xl mx-auto md:flex-row md:items-center">
         {/* Horizontal line (desktop) */}
-        <div className="absolute left-0 hidden w-full h-1 bg-gray-300 md:block top-10 dark:bg-gray-600"></div>
+        <div className="absolute left-0 hidden w-full h-1 bg-border-light md:block top-10 dark:bg-border-dark"></div>
         {/* Vertical line (mobile) */}
-        <div className="absolute top-0 w-1 h-full bg-gray-300 md:hidden left-8 dark:bg-gray-600"></div>
+        <div className="absolute top-0 w-1 h-full bg-border-light md:hidden left-8 dark:bg-border-dark"></div>
 
         {timelineEvents.map((event, index) => (
           <div
@@ -122,7 +126,7 @@ export default function Timeline() {
 
               {/* Icon circle */}
               <div
-                className={`flex items-center justify-center w-16 h-16 rounded-full ${event.color}  relative z-10`}
+                className={`flex items-center justify-center w-16 h-16 rounded-full ${event.colorClass} relative z-10`}
               >
                 {event.icon}
               </div>
@@ -130,21 +134,21 @@ export default function Timeline() {
 
             {/* Title */}
             <h3
-              className="mt-1 font-mono text-lg font-semibold dark:text-gray-300"
-              style={{ color: event.current ? event.glow : event.color }}
+              className="mt-1 font-mono text-lg font-semibold text-text-dark dark:text-text-dark"
+              style={{ color: event.current ? event.glow : event.colorHex }}
             >
               {event.title}
             </h3>
-            <p className="mt-2 font-mono text-lg text-gray-700 dark:text-gray-300">
+            <p className="mt-2 font-mono text-lg text-textSecondary-light dark:text-textSecondary-dark">
               {event.subtitle}
             </p>
-            <p className="mt-2 font-mono text-sm text-gray-500 dark:text-gray-400 max-w-[180px]">
+            <p className="mt-2 font-mono text-sm text-textSecondary-light dark:text-textSecondary-dark max-w-[180px]">
               {event.text}
             </p>
 
             {/* Connecting dots for mobile */}
             {index !== timelineEvents.length - 1 && (
-              <span className="absolute md:hidden top-16 left-[2.1rem] w-1 h-full bg-gray-300 dark:bg-gray-600"></span>
+              <span className="absolute md:hidden top-16 left-[2.1rem] w-1 h-full bg-border-light dark:bg-border-dark"></span>
             )}
           </div>
         ))}

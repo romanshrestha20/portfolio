@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Linkedin, Github, Instagram } from "lucide-react";
 
 const iconColors = {
-  linkedin: "text-blue-600 dark:text-blue-400",
-  github: "text-gray-800 dark:text-gray-200",
-  instagram: "text-pink-600 dark:text-pink-400",
+  linkedin: "text-primary-light dark:text-primary-dark",
+  github: "text-textSecondary-light dark:text-textSecondary-dark",
+  instagram: "text-accent-light dark:text-accent-dark",
 };
 
 export default function SocialLinks() {
@@ -15,7 +15,7 @@ export default function SocialLinks() {
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.2 }}
-        className={`${iconColors.linkedin} hover:text-blue-700 dark:hover:text-blue-500 transition-all duration-300`}
+        className={`${iconColors.linkedin} hover:text-primary-light dark:hover:text-primary-dark transition-all duration-300`}
         aria-label="LinkedIn Profile"
       >
         <Linkedin className="w-8 h-8" />
@@ -25,7 +25,7 @@ export default function SocialLinks() {
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.2 }}
-        className={`${iconColors.github} hover:text-gray-600 dark:hover:text-gray-400 transition-all duration-300`}
+        className={`${iconColors.github} hover:text-text-light dark:hover:text-text-dark transition-all duration-300`}
         aria-label="GitHub Profile"
       >
         <Github className="w-8 h-8" />
@@ -35,7 +35,7 @@ export default function SocialLinks() {
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.2 }}
-        className={`${iconColors.instagram} hover:text-pink-700 dark:hover:text-pink-500 transition-all duration-300`}
+        className={`${iconColors.instagram} hover:text-accent-light dark:hover:text-accent-dark transition-all duration-300`}
         aria-label="Instagram Profile"
       >
         <Instagram className="w-8 h-8" />
