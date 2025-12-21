@@ -22,10 +22,10 @@ export default function SkillItem({ iconClass, color, name }) {
         },
       }}
       whileTap={{ scale: 0.9 }}
-      className="text-center transform transition-transform"
+      className="text-center transition-transform transform"
     >
       <motion.i className={`${iconClass} text-5xl ${color}`}></motion.i>
-      <p className="font-mono text-xl mt-2 text-gray-800 dark:text-gray-100">
+      <p className="mt-2 font-mono text-xl text-text-light dark:text-text-dark">
         {name}
       </p>
     </motion.div>

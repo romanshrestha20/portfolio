@@ -15,37 +15,37 @@ const containerVariants = {
 const skills = [
   {
     iconClass: "fab fa-react",
-    color: "text-blue-600 dark:text-blue-400",
+    color: "text-primary-light dark:text-primary-dark",
     name: "React",
   },
   {
     iconClass: "fab fa-js-square",
-    color: "text-yellow-600 dark:text-yellow-400",
+    color: "text-accent-light dark:text-accent-dark",
     name: "JavaScript",
   },
   {
     iconClass: "fab fa-node",
-    color: "text-green-600 dark:text-green-400",
+    color: "text-success-light dark:text-success-dark",
     name: "Node.js",
   },
   {
     iconClass: "fab fa-java",
-    color: "text-red-600 dark:text-red-400",
+    color: "text-danger-light dark:text-danger-dark",
     name: "Java",
   },
   {
     iconClass: "fab fa-python",
-    color: "text-green-600 dark:text-green-400",
+    color: "text-info-light dark:text-info-dark",
     name: "Python",
   },
   {
     iconClass: "fab fa-linux",
-    color: "text-black dark:text-gray-300",
+    color: "text-secondary dark:text-text-dark",
     name: "Linux",
   },
   {
     iconClass: "fas fa-fire",
-    color: "text-orange-500 dark:text-orange-400",
+    color: "text-accent-dark dark:text-accent-light",
     name: "Firebase",
   },
 ];
@@ -54,9 +54,9 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-16 bg-background dark:bg-gray-900 text-gray-900 dark:text-white"
+      className="py-16 text-text-light bg-background-light dark:bg-background-dark dark:text-text-dark"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <div className="container max-w-4xl px-4 mx-auto sm:px-6 lg:px-8">
         <SectionHeader title="My Skills" subtitle="Technologies I work with" />
 
         <motion.div
@@ -64,7 +64,7 @@ export default function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center mx-auto"
+          className="grid justify-center grid-cols-1 gap-8 mx-auto sm:grid-cols-2 lg:grid-cols-3"
         >
           {skills.map((skill, index) => (
             <SkillItem key={index} {...skill} />
