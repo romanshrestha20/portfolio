@@ -61,8 +61,8 @@ module.exports = {
       },
 
       fontFamily: {
-        sans: ["Poppins", "sans-serif"],
-        mono: ["Roboto Mono", "monospace"],
+        sans: ["Poppins", "sans-serif"], // Primary font
+        mono: ["Roboto Mono", "monospace"], // Monospace font for code and technical text
       },
     },
   },
