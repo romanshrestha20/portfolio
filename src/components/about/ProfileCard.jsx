@@ -14,7 +14,7 @@ export default function ProfileCard() {
       </motion.div>
 
       <a
-        href="https://drive.google.com/file/d/1P_dSCImycPxXuhAWe_FCgSB2bBXIgKgd/view?usp=drive_link"
+        href="https://tinyurl.com/ycyjhkbk"
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center px-8 py-4 mb-6 space-x-3 transition-all rounded-lg text-text-dark bg-primary-light hover:bg-accent-light dark:bg-primary-light dark:hover:bg-accent-dark"
