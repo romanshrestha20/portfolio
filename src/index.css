@@ -2,6 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .type-display {
+    @apply font-display uppercase leading-[0.88] tracking-[-0.06em];
+  }
+
+  .type-kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+  }
+
+  .type-page {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+  }
+
+  .type-byline {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+
+  .editorial-columns {
+    column-count: 1;
+    column-gap: 2rem;
+    column-rule: 4px solid #101010;
+  }
+
+  .dark .editorial-columns {
+    column-rule-color: #1f7d4e;
+  }
+
+  .section-frame {
+    @apply border-t-[4px] border-border-light dark:border-border-dark;
+  }
+
+  .card-frame {
+    @apply border-[4px] border-border-light dark:border-border-dark;
+  }
+}
+
+@media (min-width: 768px) {
+  .editorial-columns {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 640px) {
+  .type-kicker {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+  }
+
+  .type-page {
+    letter-spacing: 0.34em;
+  }
+
+  .type-byline {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+  }
+}
+
+@media (min-width: 1280px) {
+  .editorial-columns {
+    column-count: 3;
+  }
+}
+
 html {
   transition: background-color 0.3s, color 0.3s;
   scroll-behavior: smooth;
@@ -9,11 +82,62 @@ html {
 
 body {
   transition: background-color 0.3s, color 0.3s;
-  font-family: 'Roboto', sans-serif;
-
+  font-family: "Space Grotesk", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(201, 51, 46, 0.08), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(31, 77, 216, 0.08), transparent 22%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(18, 18, 18, 0.035) 0,
+      rgba(18, 18, 18, 0.035) 1px,
+      transparent 1px,
+      transparent 34px
+    ),
+    #f5efdf;
+  color: #121212;
 }
 
+body.dark {
+  background:
+    radial-gradient(circle at top left, rgba(255, 139, 128, 0.08), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(143, 180, 255, 0.08), transparent 22%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(245, 239, 223, 0.05) 0,
+      rgba(245, 239, 223, 0.05) 1px,
+      transparent 1px,
+      transparent 34px
+    ),
+    #121315;
+  color: #f5efdf;
+}
 
+::selection {
+  background: rgba(201, 51, 46, 0.2);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a,
+button {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
 
 /* Fade-in animation */
 @keyframes fadeIn {

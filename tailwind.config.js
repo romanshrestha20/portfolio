@@ -6,63 +6,61 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // ---------- Brand Colors ----------
         primary: {
-          light: "#1A73E8", // Bright Blue
-          dark: "#64B5F6",  // Soft Blue for Dark Mode
+          light: "#c9332e",
+          dark: "#ff8b80",
         },
 
         accent: {
-          light: "#F9A825", // Amber
-          dark: "#FFD54F",
+          light: "#1f4dd8",
+          dark: "#8fb4ff",
         },
 
-        // ---------- Neutrals ----------
         background: {
-          light: "#FFFFFF",
-          dark: "#0F172A",  // Deep Navy
+          light: "#f5efdf",
+          dark: "#121315",
         },
 
         surface: {
-          light: "#F5F7FA",
-          dark: "#1E293B",
+          light: "#fff9ef",
+          dark: "#1b1d21",
         },
 
         text: {
-          light: "#1C1C1C",
-          dark: "#F1F5F9",
+          light: "#121212",
+          dark: "#f5efdf",
         },
 
         textSecondary: {
-          light: "#444444",
-          dark: "#CBD5E1",
+          light: "#51483e",
+          dark: "#d8cebe",
         },
 
         border: {
-          light: "#E1E5ED",
-          dark: "#2E3A4F",
+          light: "#1c1a17",
+          dark: "#5b564e",
         },
 
-        // ---------- Status Colors ----------
         success: {
-          light: "#16A34A",
-          dark: "#34D399",
+          light: "#177245",
+          dark: "#6ed9a0",
         },
 
         danger: {
-          light: "#DC2626",
-          dark: "#F87171",
+          light: "#9f1f1a",
+          dark: "#ff8e83",
         },
 
         info: {
-          light: "#0284C7",
-          dark: "#38BDF8",
+          light: "#2352b0",
+          dark: "#9fc1ff",
         },
       },
 
       fontFamily: {
-        sans: ["Poppins", "sans-serif"], // Primary font
-        mono: ["Roboto Mono", "monospace"], // Monospace font for code and technical text
+        sans: ["Space Grotesk", "sans-serif"],
+        display: ["Oswald", "sans-serif"],
+        mono: ["IBM Plex Mono", "monospace"],
       },
     },
   },
