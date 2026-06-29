@@ -64,23 +64,24 @@ export default function Timeline() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       className="w-full mt-16"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         <SectionHeader
           title="Timeline"
           subtitle="Here is a brief overview of my educational path."
+          eyebrow="Academic Track"
         />
       </motion.div>
 
       {/* Container */}
-      <div className="relative flex flex-col items-start w-full max-w-5xl mx-auto md:flex-row md:items-center">
+      <div className="relative mx-auto flex w-full max-w-5xl flex-col items-start md:flex-row md:items-center">
         {/* Horizontal line (desktop) */}
         <div className="absolute left-0 hidden w-full h-1 bg-border-light md:block top-10 dark:bg-border-dark"></div>
         {/* Vertical line (mobile) */}
@@ -89,14 +90,14 @@ export default function Timeline() {
         {timelineEvents.map((event, index) => (
           <div
             key={index}
-            className="relative flex flex-col items-center w-full mb-12 text-center md:w-1/4 md:text-center md:mb-0"
+            className="relative mb-12 flex w-full flex-col items-start pl-20 text-left md:mb-0 md:w-1/4 md:items-center md:pl-0 md:text-center"
           >
             {/* Icon circle */}
             <div className="relative group">
               {/* Tooltip with dynamic color */}
               {event.current && (
                 <span
-                  className="absolute px-2 py-1 text-xs text-white transition -translate-x-1/2 rounded opacity-0 top-20 group-hover:opacity-100"
+                  className="absolute top-20 rounded px-2 py-1 text-xs text-white opacity-0 transition group-hover:opacity-100 md:-translate-x-1/2"
                   style={{
                     backgroundColor: event.glow,
                   }}
@@ -126,7 +127,7 @@ export default function Timeline() {
 
               {/* Icon circle */}
               <div
-                className={`flex items-center justify-center w-16 h-16 rounded-full ${event.colorClass} relative z-10`}
+                className={`relative z-10 flex h-16 w-16 items-center justify-center rounded-full ${event.colorClass}`}
               >
                 {event.icon}
               </div>
@@ -134,21 +135,21 @@ export default function Timeline() {
 
             {/* Title */}
             <h3
-              className="mt-1 font-mono text-lg font-semibold text-text-dark dark:text-text-dark"
+              className="mt-2 font-display text-3xl uppercase tracking-[-0.05em] text-text-dark dark:text-text-dark"
               style={{ color: event.current ? event.glow : event.colorHex }}
             >
               {event.title}
             </h3>
-            <p className="mt-2 font-mono text-lg text-textSecondary-light dark:text-textSecondary-dark">
+            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.3em] text-textSecondary-light dark:text-textSecondary-dark">
               {event.subtitle}
             </p>
-            <p className="mt-2 font-mono text-sm text-textSecondary-light dark:text-textSecondary-dark max-w-[180px]">
+            <p className="mt-3 max-w-[180px] font-mono text-[11px] uppercase tracking-[0.18em] text-textSecondary-light dark:text-textSecondary-dark">
               {event.text}
             </p>
 
             {/* Connecting dots for mobile */}
             {index !== timelineEvents.length - 1 && (
-              <span className="absolute md:hidden top-16 left-[2.1rem] w-1 h-full bg-border-light dark:bg-border-dark"></span>
+              <span className="absolute left-[2.1rem] top-16 h-full w-1 bg-border-light dark:bg-border-dark md:hidden"></span>
             )}
           </div>
         ))}
