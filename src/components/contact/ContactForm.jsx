@@ -78,9 +78,9 @@ const ContactForm = () => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-lg p-8 mx-auto rounded-lg shadow-md bg-surface-light text-text-light dark:bg-surface-dark dark:text-text-dark"
+      className="card-frame mx-auto max-w-lg bg-surface-light p-4 text-text-light shadow-md dark:bg-surface-dark dark:text-text-dark sm:p-8"
     >
       <form onSubmit={handleSubmit}>
         <Box mb={2}>
@@ -148,7 +148,7 @@ const ContactForm = () => {
         <div className="flex justify-center mt-6">
           <motion.button
             type="submit"
-            className="px-6 py-3 transition rounded-lg bg-primary-light text-text-dark hover:bg-accent-light focus:outline-none focus:ring-2 focus:ring-primary-light dark:bg-primary-dark dark:text-text-dark dark:hover:bg-accent-dark dark:focus:ring-primary-dark"
+            className="w-full bg-primary-light px-6 py-3 text-text-dark transition hover:bg-accent-light focus:outline-none focus:ring-2 focus:ring-primary-light dark:bg-primary-dark dark:text-text-dark dark:hover:bg-accent-dark dark:focus:ring-primary-dark sm:w-auto"
             disabled={isLoading}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

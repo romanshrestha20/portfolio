@@ -7,16 +7,18 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="w-full py-20 text-text-light bg-background-light dark:bg-background-dark dark:text-text-dark"
+      className="section-frame w-full bg-background-light py-14 text-text-light dark:bg-background-dark dark:text-text-dark sm:py-20"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <SectionHeader
             title="Get In Touch"
+            number="04"
+            eyebrow="Letters Desk"
             subtitle={
               <>
                 Have a question or want to work together? <br />
@@ -25,8 +27,9 @@ const Contact = () => {
             }
           />
         </motion.div>
-        <br />
-        <ContactForm />
+        <div className="mt-8 sm:mt-10">
+          <ContactForm />
+        </div>
       </div>
     </section>
   );
