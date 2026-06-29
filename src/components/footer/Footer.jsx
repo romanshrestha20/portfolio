@@ -3,31 +3,36 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="py-6 text-text-dark bg-surface-dark dark:bg-background-dark dark:text-text-dark">
-      <div className="container flex flex-col items-center justify-between mx-auto space-y-4 md:flex-row md:space-y-0">
+    <footer className="bg-surface-dark py-6 text-text-dark dark:bg-background-dark dark:text-text-dark">
+      <div className="container mx-auto flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
         {/* Privacy and Terms Links */}
-        <div className="flex items-center ml-6 space-x-4">
+        <div className="ml-6 flex items-center space-x-4">
           <a
             href="/privacy-policy"
-            className="text-sm transition-all text-textSecondary-dark hover:text-text-dark dark:text-textSecondary-dark dark:hover:text-text-dark"
+            className="font-mono text-[10px] uppercase tracking-[0.24em] text-textSecondary-dark transition-all hover:text-text-dark dark:text-textSecondary-dark dark:hover:text-text-dark"
           >
             Privacy Policy
           </a>
           <a
             href="/terms"
-            className="text-sm transition-all text-textSecondary-dark hover:text-text-dark dark:text-textSecondary-dark dark:hover:text-text-dark"
+            className="font-mono text-[10px] uppercase tracking-[0.24em] text-textSecondary-dark transition-all hover:text-text-dark dark:text-textSecondary-dark dark:hover:text-text-dark"
           >
             Terms of Service
           </a>
         </div>
 
         {/* Copyright Info */}
-        <p className="font-mono text-sm text-center md:text-base text-text-dark dark:text-text-dark">
-          © {new Date().getFullYear()} Roman. All rights reserved.
-        </p>
+        <div className="text-center">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-textSecondary-dark">
+            Page 99 / Closing Notes
+          </p>
+          <p className="mt-2 font-display text-2xl uppercase tracking-[-0.05em] text-text-dark dark:text-text-dark">
+            © {new Date().getFullYear()} Roman
+          </p>
+        </div>
 
         {/* Social Media Links */}
-        <div className="flex items-center space-x-6 mr-7">
+        <div className="mr-7 flex items-center space-x-6">
           <a
             href="https://www.linkedin.com/in/romanshrr/"
             target="_blank"
