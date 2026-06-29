@@ -1,64 +1,51 @@
+import { useState } from "react";
 import SectionHeader from "../common/SectionHeader";
 import ProjectCard from "./ProjectCard";
-
-const projects = [
- {
-    name: "Hamro Pasal",
-    description:
-      "An e-commerce platform for buying and selling products online with secure transactions and user-friendly interface.",
-    image:
-      "https://github.com/romanshrestha20/portfolio/blob/main/public/hamro-pasal.png?raw=true",
-    link: "https://hamro-pasal-frontend-1dqm.vercel.app/",
-  },
-  {
-    name: "Django Blog",
-    description:
-      "A web app for creating, reading, updating, and deleting blog posts with user authentication and profiles.",
-    image:
-      "https://github.com/romanshrestha20/portfolio/blob/main/public/Screenshot_25-12-2024_11926_127.0.0.1.jpeg?raw=true",
-    link: "https://github.com/romanshrestha20/django-blog",
-  },
-  {
-    name: "Movie Application",
-    description:
-      "Keeps users updated with the latest movies and TV shows, featuring popular and trending titles.",
-    image:
-      "https://github.com/romanshrestha20/portfolio/blob/main/public/Screenshot_25-12-2024_0462_mango-rock-0b5b48e10.5.azurestaticapps.net.jpeg?raw=true",
-    link: "https://github.com/AWAP-Group8-2024/Movie-App.git",
-  },
-  {
-    name: "My Book Library",
-    description:
-      "A web app for managing books and authors, including adding, viewing, editing, and deleting records, with user authentication and profiles for personalized experiences.",
-    image:
-      "https://github.com/romanshrestha20/portfolio/blob/main/public/Screenshot_29-12-2024_123130_localhost.jpeg?raw=true",
-    link: "https://github.com/romanshrestha20/my-book-library",
-  },
-  {
-    name: "CleanSync",
-    description:
-      "CleanSync is a modern Android app built with Kotlin and Jetpack Compose, designed for seamless user management, booking services, and notifications.",
-    image: "https://github.com/Mobile-Development-Project-Group-22/CleanSync/blob/main/Screenshot_20250428_135436.png?raw=true",
-    link: "https://github.com/Mobile-Development-Project-Group-22/CleanSync/",
-  },
- 
-];
+import ProjectCaseStudyModal from "./ProjectCaseStudyModal";
+import { projects } from "../../data/projects";
 
 export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   return (
     <section
       id="projects"
-      className="py-16 text-text-light bg-background-light dark:bg-background-dark dark:text-text-dark"
+      className="section-frame bg-background-light py-16 text-text-light dark:bg-background-dark dark:text-text-dark"
     >
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-        <SectionHeader title="My Projects" subtitle="Explore some of the work I've done" />
+        <SectionHeader
+          title="Project Archive"
+          subtitle="A table of contents for the work: framed layouts, case-study reading, and narrow editorial columns instead of generic cards."
+          number="02"
+          eyebrow="Feature Index"
+        />
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
-            <ProjectCard key={i} project={project} />
+        <div className="mb-8 flex flex-col gap-4 border-y-[4px] border-border-light py-4 dark:border-border-dark md:flex-row md:items-center md:justify-between">
+          <p className="type-kicker text-primary-light dark:text-primary-dark">
+            Table of Features
+          </p>
+          <div className="flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-textSecondary-light dark:text-textSecondary-dark">
+            <span>{projects.length} archive entries</span>
+            <span className="hidden h-4 w-px bg-border-light dark:bg-border-dark sm:block" />
+            <span>Read by issue number</span>
+          </div>
+        </div>
+
+        <div className="space-y-8">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onOpenCaseStudy={setSelectedProject}
+            />
           ))}
         </div>
       </div>
+
+      <ProjectCaseStudyModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 }
