@@ -1,165 +1,37 @@
-import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import emailjs from "emailjs-com";
-import ContactInput from "./ContactInput";
-import Spinner from "../common/Spinner";
 
-import PersonIcon from "@mui/icons-material/Person";
-import MailIcon from "@mui/icons-material/Mail";
-import ChatIcon from "@mui/icons-material/Chat";
-
-const ContactForm = () => {
+export default function ContactForm() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [formErrors, setFormErrors] = useState({ name: "", email: "", message: "" });
-  const [formStatus, setFormStatus] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
+  const update = ({ target }) => setFormData((current) => ({ ...current, [target.name]: target.value }));
 
-  const validateField = (name, value) => {
-    switch (name) {
-      case "name":
-        return value.trim() === "" ? "Name is required." : "";
-      case "email":
-        return /\S+@\S+\.\S+/.test(value) ? "" : "Please enter a valid email address.";
-      case "message":
-        return value.trim() === "" ? "Message is required." : "";
-      default:
-        return "";
-    }
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setFormErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const errors = {
-      name: validateField("name", formData.name),
-      email: validateField("email", formData.email),
-      message: validateField("message", formData.message),
-    };
-
-    setFormErrors(errors);
-
-    if (Object.values(errors).some((err) => err !== "")) {
-      setFormStatus("Please fix the errors above.");
-      return;
-    }
-
-    setIsLoading(true);
-    setFormStatus("Sending...");
-
-    emailjs
-      .send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-        formData,
-        process.env.REACT_APP_EMAILJS_USER_ID
-      )
-      .then(() => {
-        setFormStatus("Email sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-        setFormErrors({ name: "", email: "", message: "" });
-      })
-      .catch((error) => {
-        console.error("FAILED:", error);
-        setFormStatus("Failed to send email.");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+  const submit = async (event) => {
+    event.preventDefault();
+    setLoading(true); setStatus("Sending signal…");
+    try {
+      await emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, formData, process.env.REACT_APP_EMAILJS_USER_ID);
+      setFormData({ name: "", email: "", message: "" });
+      setStatus("Message received. I’ll be in touch.");
+    } catch (error) {
+      console.error("Contact form failed:", error);
+      setStatus("The signal dropped. Please email me directly.");
+    } finally { setLoading(false); }
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="card-frame mx-auto max-w-lg bg-surface-light p-4 text-text-light shadow-md dark:bg-surface-dark dark:text-text-dark sm:p-8"
-    >
-      <form onSubmit={handleSubmit}>
-        <Box mb={2}>
-          <ContactInput
-            label="Name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Your Name"
-            error={formErrors.name}
-            helperText={formErrors.name}
-            icon={
-              <PersonIcon className="text-textSecondary-light dark:text-textSecondary-dark" />
-            }
-          />
-        </Box>
-
-        <Box mb={2}>
-          <ContactInput
-            label="Email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder="Your Email"
-            error={formErrors.email}
-            helperText={formErrors.email}
-            icon={
-              <MailIcon className="text-textSecondary-light dark:text-textSecondary-dark" />
-            }
-          />
-        </Box>
-
-        <Box mb={2}>
-          <ContactInput
-            label="Message"
-            name="message"
-            value={formData.message}
-            onChange={handleInputChange}
-            placeholder="Your Message"
-            error={formErrors.message}
-            helperText={formErrors.message}
-            icon={
-              <ChatIcon className="text-textSecondary-light dark:text-textSecondary-dark" />
-            }
-            multiline
-            rows={4}
-          />
-        </Box>
-
-        {formStatus && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className={`text-center mt-4 ${
-              formStatus.includes("success")
-                ? "text-success-light dark:text-success-dark"
-                : "text-danger-light dark:text-danger-dark"
-            }`}
-          >
-            {formStatus}
-          </motion.p>
-        )}
-
-        <div className="flex justify-center mt-6">
-          <motion.button
-            type="submit"
-            className="w-full bg-primary-light px-6 py-3 text-text-dark transition hover:bg-accent-light focus:outline-none focus:ring-2 focus:ring-primary-light dark:bg-primary-dark dark:text-text-dark dark:hover:bg-accent-dark dark:focus:ring-primary-dark sm:w-auto"
-            disabled={isLoading}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {isLoading ? <Spinner /> : "Send Message"}
-          </motion.button>
-        </div>
-      </form>
-    </motion.div>
+    <form onSubmit={submit} className="space-y-7">
+      <div className="grid gap-7 sm:grid-cols-2">
+        <label className="signal-label">Your name<input className="field-input" name="name" value={formData.name} onChange={update} placeholder="Name" required /></label>
+        <label className="signal-label">Email address<input className="field-input" type="email" name="email" value={formData.email} onChange={update} placeholder="you@example.com" required /></label>
+      </div>
+      <label className="signal-label block">Message<textarea className="field-input min-h-[130px] resize-y" name="message" value={formData.message} onChange={update} placeholder="Tell me a little about the opportunity…" required /></label>
+      <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+        <button type="submit" disabled={loading} className="signal-button signal-button-primary disabled:cursor-wait disabled:opacity-60">{loading ? "Sending…" : "Send message"}<ArrowUpRight className="h-4 w-4" /></button>
+        {status && <p aria-live="polite" className="text-sm text-signal-muted">{status}</p>}
+      </div>
+    </form>
   );
-};
-
-export default ContactForm;
+}

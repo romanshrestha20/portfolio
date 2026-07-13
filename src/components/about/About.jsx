@@ -1,180 +1,44 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, BriefcaseBusiness, Code2, Compass, Newspaper } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 
-import SectionHeader from "../common/SectionHeader";
-import SocialLinks from "./SocialLinks";
-import AboutText from "./AboutText";
-import ProfileCard from "./ProfileCard";
-import Timeline from "./Timeline";
-
-const features = [
-  {
-    icon: BriefcaseBusiness,
-    label: "Current Focus",
-    title: "Internships and junior software roles.",
-    copy:
-      "Looking for real product environments where I can ship, learn, and get stronger at frontend and full-stack engineering.",
-    span: "lg:col-span-4",
-  },
-  {
-    icon: Code2,
-    label: "Working Stack",
-    title: "React, Django, Python, JavaScript, Kotlin.",
-    copy:
-      "Most of my recent work combines interface design, CRUD backend logic, API integration, and practical case-study thinking.",
-    span: "lg:col-span-4",
-  },
-  {
-    icon: Compass,
-    label: "Outside Code",
-    title: "Football, travel, and team environments.",
-    copy:
-      "I like work that mixes technical craft with momentum, collaboration, and a strong sense of progress.",
-    span: "lg:col-span-4",
-  },
+const facts = [
+  ["Based", "Helsinki, Finland"],
+  ["Study", "Software Engineering · 2023—2027"],
+  ["Focus", "Frontend and full-stack product work"],
+  ["Outside code", "Football, travel, strong team environments"],
 ];
 
-const cardClass =
-  "card-frame rounded-[24px] bg-surface-light p-4 shadow-sm dark:bg-surface-dark sm:rounded-[30px] sm:p-6";
-
 export default function About() {
-  const scrollToProjects = () => {
-    const projectsSection = document.getElementById("projects");
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   return (
-    <section
-      id="about"
-      className="section-frame w-full bg-background-light py-16 text-text-light dark:bg-background-dark dark:text-text-dark md:py-18"
-    >
-      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <SectionHeader
-            title="About Me"
-            subtitle="A personal feature spread about my work, direction, and the kind of engineering I want to keep growing into."
-            number="01"
-            eyebrow="Cover Feature"
-            className="mb-8 md:mb-10"
-          />
-        </motion.div>
-
-        <div className="grid gap-6 lg:grid-cols-12">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className={`${cardClass} lg:col-span-4`}
-          >
-            <ProfileCard />
-            <div className="mt-6">
-              <p className="type-byline text-textSecondary-light dark:text-textSecondary-dark">
-                Social Desk
-              </p>
-              <div className="mt-4">
-                <SocialLinks />
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className={`${cardClass} relative overflow-hidden lg:col-span-8`}
-          >
-            <div className="absolute right-5 top-5 hidden rounded-full border-[3px] border-border-light px-3 py-1 font-mono text-[10px] uppercase tracking-[0.3em] text-textSecondary-light dark:border-border-dark dark:text-textSecondary-dark sm:block">
-              Vol. 01
-            </div>
-            <p className="type-kicker text-primary-light dark:text-primary-dark">
-              Cover Story
-            </p>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <span className="type-page text-textSecondary-light dark:text-textSecondary-dark">
-                By Roman Shrestha
-              </span>
-              <span className="hidden h-px w-10 bg-border-light dark:bg-border-dark sm:block" />
-              <span className="type-page text-textSecondary-light dark:text-textSecondary-dark">
-                Software Engineering Student
-              </span>
-            </div>
-            <h3 className="type-display mt-4 max-w-4xl text-4xl text-text-light dark:text-text-dark sm:text-6xl lg:text-7xl">
-              Building software with an editorial eye for structure.
-            </h3>
-            <div className="mt-6 max-w-3xl">
-              <AboutText />
-            </div>
-          </motion.div>
+    <section id="about" className="signal-section bg-signal-surface">
+      <div className="mx-auto grid max-w-[1600px] gap-14 px-5 sm:px-8 lg:grid-cols-12 lg:px-12">
+        <div className="lg:col-span-4">
+          <p className="signal-kicker">02 · About the builder</p>
+          <h2 className="mt-5 text-5xl font-semibold leading-[.92] tracking-[-.06em] text-signal-text sm:text-7xl">Curious by default. Practical by design.</h2>
         </div>
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-12">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
+        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} className="lg:col-span-7 lg:col-start-6">
+          <p className="max-w-3xl text-2xl leading-snug tracking-[-.03em] text-signal-text sm:text-4xl">
+            I’m Roman, a software engineering student who likes turning complex flows into products that feel direct and dependable.
+          </p>
+          <p className="mt-7 max-w-2xl text-base leading-8 text-signal-muted sm:text-lg">
+            My recent work spans React interfaces, Django backends, API-driven products, and mobile applications. I care about readable code, calm interfaces, and understanding the reason behind every feature I build.
+          </p>
 
-            return (
-              <motion.article
-                key={feature.title}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
-                whileHover={{ y: -4 }}
-                className={`${cardClass} ${feature.span}`}
-              >
-                <div className="inline-flex rounded-full border border-border-light p-3 text-primary-light dark:border-border-dark dark:text-primary-dark">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <p className="type-byline mt-5 text-textSecondary-light dark:text-textSecondary-dark">
-                  {feature.label}
-                </p>
-                <h4 className="type-display mt-3 text-3xl text-text-light dark:text-text-dark">
-                  {feature.title}
-                </h4>
-                <p className="mt-4 text-base leading-7 text-textSecondary-light dark:text-textSecondary-dark">
-                  {feature.copy}
-                </p>
-              </motion.article>
-            );
-          })}
-
-          <motion.article
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.12 }}
-            className={`${cardClass} lg:col-span-12`}
-          >
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <div className="max-w-3xl">
-                <p className="type-kicker text-primary-light dark:text-primary-dark">
-                  Editorial Note
-                </p>
-                <h4 className="type-display mt-3 text-3xl text-text-light dark:text-text-dark">
-                  I care about code that reads clearly and interfaces that scan quickly.
-                </h4>
+          <dl className="mt-12 border-t border-signal-line">
+            {facts.map(([term, detail]) => (
+              <div key={term} className="grid gap-2 border-b border-signal-line py-5 sm:grid-cols-[150px_1fr]">
+                <dt className="font-mono text-[10px] uppercase tracking-[.18em] text-signal">{term}</dt>
+                <dd className="text-sm text-signal-text sm:text-base">{detail}</dd>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full border-[3px] border-border-light px-4 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-textSecondary-light dark:border-border-dark dark:text-textSecondary-dark">
-                <Newspaper className="h-4 w-4" />
-                Layout Meets Engineering
-              </div>
-            </div>
-          </motion.article>
-        </div>
+            ))}
+          </dl>
 
-        <Timeline />
-
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
-          className="mt-16 text-center cursor-pointer"
-          onClick={scrollToProjects}
-        >
-          <ArrowDown className="mx-auto transition-all text-textSecondary-light hover:text-text-light dark:text-textSecondary-dark dark:hover:text-text-dark" />
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="https://www.linkedin.com/in/romanshrr/" target="_blank" rel="noreferrer" className="signal-button">LinkedIn <ArrowUpRight className="h-4 w-4" /></a>
+            <a href="https://github.com/romanshrestha20" target="_blank" rel="noreferrer" className="signal-button">GitHub <ArrowUpRight className="h-4 w-4" /></a>
+            <span className="inline-flex items-center gap-2 px-3 text-xs text-signal-muted"><MapPin className="h-4 w-4 text-signal" /> 60.1699° N, 24.9384° E</span>
+          </div>
         </motion.div>
       </div>
     </section>
