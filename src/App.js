@@ -6,7 +6,7 @@ import ErrorBoundary from "./components/common/ErrorBoundary";
 
 function App() {
   return (
-    <div className="App dark:bg-gray-800 w-full overflow-x-hidden">
+    <div className="App w-full overflow-x-hidden bg-signal-bg text-signal-text">
       <ErrorBoundary>
         {sections.map(({ id, Component, delay }) => (
           <SectionWrapper key={id} delay={delay}>
