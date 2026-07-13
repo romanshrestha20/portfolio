@@ -6,6 +6,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        signal: {
+          DEFAULT: "var(--signal)",
+          bg: "var(--signal-bg)",
+          surface: "var(--signal-surface)",
+          text: "var(--signal-text)",
+          muted: "var(--signal-muted)",
+          line: "var(--signal-line)",
+        },
         primary: {
           light: "#c9332e",
           dark: "#ff8b80",
