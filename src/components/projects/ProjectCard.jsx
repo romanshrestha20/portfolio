@@ -1,131 +1,28 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 
-const fallbackImage = "/portfolio-preview.jpeg";
-
-export default function ProjectCard({ project, onOpenCaseStudy }) {
+export default function ProjectCard({ project, index, onOpenCaseStudy }) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45 }}
-      whileHover={{ y: -6 }}
-      className="overflow-hidden border-[4px] border-border-light bg-surface-light text-text-light shadow-[8px_8px_0_0_rgba(18,18,18,0.08)] dark:border-border-dark dark:bg-surface-dark dark:text-text-dark"
-    >
-      <div className="flex items-center justify-between border-b-[4px] border-border-light px-4 py-3 dark:border-border-dark">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="type-kicker text-primary-light dark:text-primary-dark">
-            {project.issue}
-          </span>
-          <span className="h-4 w-px bg-border-light dark:bg-border-dark" />
-          <span className="type-byline text-textSecondary-light dark:text-textSecondary-dark">
-            Archive Entry
-          </span>
-        </div>
-
-        <div className="hidden flex-wrap gap-2 sm:flex">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="border border-border-light px-2 py-1 font-mono text-[10px] uppercase tracking-[0.22em] dark:border-border-dark"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+    <motion.article initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .12 }} className="project-row grid gap-7 border-t border-signal-line py-12 lg:grid-cols-12 lg:gap-12 lg:py-20">
+      <div className={`project-media relative aspect-[16/11] lg:col-span-7 ${index % 2 ? "lg:order-2" : ""}`}>
+        <img src={project.image} alt={`${project.name} interface`} loading="lazy" className="h-full w-full object-cover" />
+        <span className="absolute left-4 top-4 bg-signal px-3 py-2 font-mono text-[9px] uppercase tracking-[.16em] text-signal-bg">Signal 0{index + 1}</span>
       </div>
 
-      <div className="grid lg:grid-cols-[240px_1fr]">
-        <div className="border-b-[4px] border-border-light dark:border-border-dark lg:border-b-0 lg:border-r-[4px]">
-          <img
-            src={project.image}
-            alt={project.name}
-            className="h-full min-h-[220px] w-full object-cover"
-            onError={(event) => {
-              event.currentTarget.onerror = null;
-              event.currentTarget.src = fallbackImage;
-            }}
-          />
+      <div className={`flex flex-col justify-between lg:col-span-5 ${index % 2 ? "lg:order-1" : ""}`}>
+        <div>
+          <p className="signal-kicker">{project.caseStudy.kicker}</p>
+          <h3 className="mt-4 text-5xl font-semibold leading-[.88] tracking-[-.06em] text-signal-text sm:text-7xl">{project.name}</h3>
+          <p className="mt-6 max-w-xl text-base leading-7 text-signal-muted sm:text-lg">{project.dek}</p>
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+            {project.tags.map((tag) => <span key={tag} className="font-mono text-[10px] uppercase tracking-[.16em] text-signal-muted">{tag}</span>)}
+          </div>
         </div>
 
-        <div className="flex flex-col">
-          <div className="border-b-[4px] border-border-light p-4 dark:border-border-dark sm:p-6">
-            <p className="type-kicker text-primary-light dark:text-primary-dark">
-              {project.caseStudy.kicker}
-            </p>
-            <div className="mt-3 flex flex-wrap items-center gap-3">
-              <span className="type-page text-textSecondary-light dark:text-textSecondary-dark">
-                Pg. {project.issue}
-              </span>
-              <span className="hidden h-px w-10 bg-border-light dark:bg-border-dark sm:block" />
-              <span className="type-page text-textSecondary-light dark:text-textSecondary-dark">
-                By Roman Shrestha
-              </span>
-            </div>
-            <h3 className="type-display mt-3 text-[2.3rem] sm:text-[2.9rem]">
-              {project.name}
-            </h3>
-            <p className="mt-4 max-w-3xl text-base leading-7 text-textSecondary-light dark:text-textSecondary-dark">
-              {project.dek}
-            </p>
-          </div>
-
-          <div className="grid border-b-[4px] border-border-light sm:grid-cols-3 dark:border-border-dark">
-            {project.facts.map((fact, index) => (
-              <div
-                key={fact.label}
-                className={`px-5 py-4 ${
-                  index < project.facts.length - 1
-                    ? "border-b-[3px] border-border-light sm:border-b-0 sm:border-r-[3px] dark:border-border-dark"
-                    : ""
-                }`}
-              >
-                <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-textSecondary-light dark:text-textSecondary-dark">
-                  {fact.label}
-                </p>
-                <p className="mt-1 text-sm font-semibold uppercase tracking-[0.02em]">
-                  {fact.value}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-            <button
-              type="button"
-              onClick={() => onOpenCaseStudy(project)}
-              className="inline-flex items-center justify-center gap-2 border-[3px] border-border-light bg-primary-light px-5 py-3 font-mono text-[10px] uppercase tracking-[0.26em] text-surface-light hover:translate-x-1 dark:border-border-dark dark:bg-primary-dark dark:text-background-dark"
-            >
-              Read case study
-              <ArrowRight className="h-4 w-4" />
-            </button>
-
-            <div className="flex flex-wrap gap-3">
-              {project.links.live && (
-                <a
-                  href={project.links.live}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 border-[3px] border-border-light px-4 py-3 font-mono text-[10px] uppercase tracking-[0.22em] hover:bg-surface-light/40 dark:border-border-dark sm:w-auto"
-                >
-                  Live
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              )}
-              {project.links.code && (
-                <a
-                  href={project.links.code}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 border-[3px] border-border-light px-4 py-3 font-mono text-[10px] uppercase tracking-[0.22em] hover:bg-surface-light/40 dark:border-border-dark sm:w-auto"
-                >
-                  Code
-                  <Github className="h-4 w-4" />
-                </a>
-              )}
-            </div>
-          </div>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <button type="button" onClick={() => onOpenCaseStudy(project)} className="signal-button signal-button-primary">Read case study <ArrowUpRight className="h-4 w-4" /></button>
+          {project.links.live && <a href={project.links.live} target="_blank" rel="noreferrer" className="signal-button">Live site <ArrowUpRight className="h-4 w-4" /></a>}
+          {project.links.code && <a href={project.links.code} target="_blank" rel="noreferrer" className="signal-button" aria-label={`${project.name} source code`}><Github className="h-4 w-4" /></a>}
         </div>
       </div>
     </motion.article>
