@@ -1,3 +1,5 @@
+"use client";
+
 import { Menu, X } from "lucide-react";
 
 export default function HamburgerMenu({ isOpen, toggleMenu }) {

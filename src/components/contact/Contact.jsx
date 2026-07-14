@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ArrowUpRight, Mail } from "lucide-react";
 import ContactForm from "./ContactForm";
