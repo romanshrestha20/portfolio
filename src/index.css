@@ -28,7 +28,7 @@ body {
   margin: 0;
   background: var(--signal-bg);
   color: var(--signal-text);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: var(--font-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -66,13 +66,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .portrait-orbit::after { content: ""; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--signal); left: 10%; top: 20%; box-shadow: 0 0 30px var(--signal); }
 .portrait-glow { position: absolute; inset: 24% 0 0; border-radius: 50%; background: color-mix(in srgb, var(--signal) 18%, transparent); filter: blur(55px); }
 
-.signal-label { font-family: "IBM Plex Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .2em; color: var(--signal-muted); }
+.signal-label { font-family: var(--font-mono), monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .2em; color: var(--signal-muted); }
 .signal-pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 6px color-mix(in srgb, var(--signal) 14%, transparent), 0 0 22px var(--signal); }
 .signal-button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: .65rem; border: 1px solid var(--signal-line); padding: .85rem 1.15rem; color: var(--signal-text); font-size: .8rem; font-weight: 650; transition: transform .2s ease, background .2s ease, color .2s ease, border .2s ease; }
 .signal-button:hover { transform: translateY(-2px); border-color: var(--signal); }
 .signal-button-primary { background: var(--signal); color: var(--signal-bg); border-color: var(--signal); }
 .signal-button-primary:hover { background: var(--signal-text); border-color: var(--signal-text); }
-.signal-kicker { font-family: "IBM Plex Mono", monospace; font-size: 10px; line-height: 1.5; text-transform: uppercase; letter-spacing: .2em; color: var(--signal); }
+.signal-kicker { font-family: var(--font-mono), monospace; font-size: 10px; line-height: 1.5; text-transform: uppercase; letter-spacing: .2em; color: var(--signal); }
 .signal-section { position: relative; border-top: 1px solid var(--signal-line); padding: 6rem 0; }
 .signal-rule { height: 1px; background: var(--signal-line); }
 .project-media { background: var(--signal-surface); overflow: hidden; }
@@ -81,6 +81,32 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .field-input { width: 100%; border: 0; border-bottom: 1px solid var(--signal-line); background: transparent; padding: .9rem 0; color: var(--signal-text); font-size: 1rem; border-radius: 0; }
 .field-input:focus { border-color: var(--signal); outline: none; box-shadow: none; }
 .field-input::placeholder { color: var(--signal-muted); }
+
+/* Signal Control: compact operational UI */
+.admin-shell { background: #0b0d0e; color: #f4f4ef; }
+.admin-shell * { border-color: rgba(255,255,255,.1); }
+.admin-kicker { font-family: var(--font-mono), monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .18em; color: #b8ff47; }
+.admin-title { margin-top: .8rem; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 600; line-height: .9; letter-spacing: -.06em; color: white; }
+.admin-subtitle { margin-top: 1rem; max-width: 42rem; font-size: .9rem; line-height: 1.65; color: #8b8b92; }
+.admin-nav { display: flex; align-items: center; gap: .7rem; min-width: max-content; padding: .7rem .8rem; border-radius: .45rem; font-size: .8rem; color: #92929a; transition: background .2s, color .2s; }
+.admin-nav:hover { background: rgba(255,255,255,.06); color: white; }
+.admin-primary, .admin-secondary { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; gap: .55rem; padding: .7rem 1rem; border: 1px solid #b8ff47; border-radius: .35rem; background: #b8ff47; color: #080a09; font-size: .78rem; font-weight: 700; transition: transform .2s, background .2s; }
+.admin-primary:hover { transform: translateY(-1px); background: #d0ff84; }
+.admin-secondary { border-color: rgba(255,255,255,.14); background: transparent; color: #e5e5df; }
+.admin-secondary:hover { border-color: #b8ff47; }
+.admin-label { display: flex; flex-direction: column; gap: .6rem; font-family: var(--font-mono), monospace; font-size: 9px; text-transform: uppercase; letter-spacing: .15em; color: #8b8b92; }
+.admin-input { width: 100%; border: 1px solid rgba(255,255,255,.12); border-radius: .35rem; background: rgba(255,255,255,.025); padding: .8rem .9rem; color: white; font-family: var(--font-sans), sans-serif; font-size: .9rem; line-height: 1.5; letter-spacing: normal; text-transform: none; }
+.admin-input:focus { border-color: #b8ff47; outline: none; box-shadow: 0 0 0 3px rgba(184,255,71,.08); }
+.admin-form-grid { margin-top: 1.25rem; display: grid; gap: 1.25rem; }
+.admin-section-title { border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: .8rem; font-size: 1.15rem; font-weight: 600; color: white; }
+.admin-metric { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,.1); padding: 1.25rem 0; color: #8b8b92; }
+.admin-metric svg { width: 17px; color: #b8ff47; }.admin-metric strong { font-size: 1.8rem; color: white; }
+.admin-status { width: max-content; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; padding: .3rem .6rem; font-family: var(--font-mono), monospace; font-size: 8px; text-transform: uppercase; letter-spacing: .12em; color: #9b9ba1; }
+.admin-status-live { border-color: rgba(184,255,71,.25); background: rgba(184,255,71,.06); color: #cfff80; }
+.admin-icon { display: inline-flex; height: 38px; width: 38px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.12); border-radius: .35rem; color: #aaaab0; transition: border .2s, color .2s; }
+.admin-icon:hover { border-color: #b8ff47; color: white; }
+
+@media (min-width: 640px) { .admin-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 @media (max-width: 640px) {
   .signal-grid { background-size: 42px 42px; }
