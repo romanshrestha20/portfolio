@@ -1,10 +1,11 @@
+"use client";
+
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import ProjectCard from "./ProjectCard";
 import ProjectCaseStudyModal from "./ProjectCaseStudyModal";
-import { projects } from "../../data/projects";
 
-export default function Projects() {
+export default function Projects({ projects }) {
   const [selectedProject, setSelectedProject] = useState(null);
   const featured = projects.slice(0, 3);
   const archive = projects.slice(3);
