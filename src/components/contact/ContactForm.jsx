@@ -1,6 +1,7 @@
+"use client";
+
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import emailjs from "emailjs-com";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -12,7 +13,12 @@ export default function ContactForm() {
     event.preventDefault();
     setLoading(true); setStatus("Sending signal…");
     try {
-      await emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, formData, process.env.REACT_APP_EMAILJS_USER_ID);
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) throw new Error("Message request failed");
       setFormData({ name: "", email: "", message: "" });
       setStatus("Message received. I’ll be in touch.");
     } catch (error) {
