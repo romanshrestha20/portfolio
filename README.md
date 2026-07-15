@@ -33,6 +33,12 @@ The Supabase secret key belongs only in server and deployment environment variab
 - Environment readiness view
 - Public content cache refresh after publishing
 
+## Media library migration
+
+Existing Supabase projects must run `supabase/migrations/20260715_media_library.sql` once in the Supabase SQL Editor. The migration adds searchable media metadata and raises the portfolio-media bucket limit to 10 MB.
+
+The media workflow converts uploads to WebP, creates a thumbnail, records dimensions and compression size, and prevents deletion while a project still uses the image.
+
 ## Commands
 
 ```bash
