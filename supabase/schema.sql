@@ -37,7 +37,7 @@ alter table public.messages enable row level security;
 alter table public.site_settings enable row level security;
 alter table public.media_assets enable row level security;
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
-values ('portfolio-media', 'portfolio-media', true, 10000000, array['image/png','image/jpeg','image/webp','image/avif'])
+values ('portfolio-media', 'portfolio-media', true, 12000000, array['image/png','image/jpeg','image/webp','image/avif'])
 on conflict (id) do update set
   public = excluded.public,
   file_size_limit = excluded.file_size_limit,

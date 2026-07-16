@@ -6,15 +6,16 @@ import Skills from "@/components/skills/Skills";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/footer/Footer";
 import { getPublishedProjects } from "@/lib/projects";
+import { getPortfolioProfile } from "@/lib/site-settings";
 
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  const projects = await getPublishedProjects();
+  const [projects, profile] = await Promise.all([getPublishedProjects(), getPortfolioProfile()]);
   return (
     <main className="w-full overflow-x-hidden bg-signal-bg text-signal-text">
       <Navbar />
-      <Hero />
+      <Hero profileImageUrl={profile.imageUrl} profileImageAlt={profile.altText} />
       <Projects projects={projects} />
       <About />
       <Skills />

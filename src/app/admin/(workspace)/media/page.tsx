@@ -1,10 +1,11 @@
 import MediaLibrary from "@/components/admin/MediaLibrary";
 import { getMediaAssets } from "@/lib/media";
+import { getPortfolioProfile } from "@/lib/site-settings";
 
 export const dynamic = "force-dynamic";
 
 export default async function MediaPage() {
-  const { assets, error } = await getMediaAssets();
+  const [{ assets, error }, profile] = await Promise.all([getMediaAssets(), getPortfolioProfile()]);
 
   return (
     <div className="mx-auto max-w-6xl">
@@ -20,7 +21,7 @@ export default async function MediaPage() {
           {error} Run <code>supabase/migrations/20260715_media_library.sql</code> in the Supabase SQL Editor, then refresh this page.
         </div>
       ) : (
-        <MediaLibrary initialAssets={assets} />
+        <MediaLibrary initialAssets={assets} initialProfile={profile} />
       )}
     </div>
   );

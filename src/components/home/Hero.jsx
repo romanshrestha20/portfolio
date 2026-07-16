@@ -8,7 +8,7 @@ const reveal = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function Hero() {
+export default function Hero({ profileImageUrl = "/profile-portrait.png", profileImageAlt = "Roman Shrestha" }) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -57,8 +57,8 @@ export default function Hero() {
           <div className="portrait-orbit" aria-hidden="true" />
           <div className="portrait-glow" aria-hidden="true" />
           <img
-            src="/profile-portrait.png"
-            alt="Roman Shrestha"
+            src={profileImageUrl}
+            alt={profileImageAlt}
             className="absolute bottom-0 left-1/2 z-10 h-full w-auto max-w-none -translate-x-1/2 object-contain grayscale-[18%]"
           />
           <div className="absolute bottom-3 left-0 z-20 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-signal-text lg:-left-12">

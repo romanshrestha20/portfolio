@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { requireAdmin } from "@/lib/auth";
@@ -36,6 +37,8 @@ export async function PATCH(request: Request, context: { params: Promise<{ id: s
     .single();
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  revalidatePath("/");
+  revalidatePath("/admin/media");
   return NextResponse.json({ asset: mediaRowToAsset(data as MediaAssetRow) });
 }
 
@@ -48,6 +51,19 @@ export async function DELETE(_request: Request, context: { params: Promise<{ id:
   const { data, error } = await db.from("media_assets").select("*").eq("id", id).single();
   if (error || !data) return NextResponse.json({ error: "Media asset was not found." }, { status: 404 });
   const asset = data as MediaAssetRow;
+
+  const { data: settings } = await db
+    .from("site_settings")
+    .select("content")
+    .eq("id", "main")
+    .maybeSingle();
+  const content = settings?.content as { profileImageId?: unknown } | undefined;
+  if (content?.profileImageId === asset.id) {
+    return NextResponse.json(
+      { error: "This image is your active portfolio portrait. Remove or replace it before deleting it." },
+      { status: 409 }
+    );
+  }
 
   const { data: projectUsingAsset } = await db
     .from("projects")

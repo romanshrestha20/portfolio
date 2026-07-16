@@ -11,6 +11,7 @@ import {
   Search,
   Trash2,
   Upload,
+  UserRound,
   X,
 } from "lucide-react";
 import type { MediaAsset } from "@/types/media";
@@ -23,7 +24,10 @@ function formatBytes(bytes: number) {
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }
 
-export default function MediaLibrary({ initialAssets }: { initialAssets: MediaAsset[] }) {
+export default function MediaLibrary({ initialAssets, initialProfile }: {
+  initialAssets: MediaAsset[];
+  initialProfile: { assetId: string | null; imageUrl: string; altText: string };
+}) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [assets, setAssets] = useState(initialAssets);
   const [file, setFile] = useState<File | null>(null);
@@ -37,6 +41,9 @@ export default function MediaLibrary({ initialAssets }: { initialAssets: MediaAs
   const [notice, setNotice] = useState<Notice>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [profile, setProfile] = useState(initialProfile);
+  const [settingProfileId, setSettingProfileId] = useState<string | null>(null);
+  const [clearingProfile, setClearingProfile] = useState(false);
 
   useEffect(() => {
     if (!file) {
@@ -157,6 +164,42 @@ export default function MediaLibrary({ initialAssets }: { initialAssets: MediaAs
     setNotice({ tone: "success", message: "Image and thumbnail deleted." });
   }
 
+  async function useAsProfile(asset: MediaAsset) {
+    setSettingProfileId(asset.id);
+    setNotice(null);
+    const response = await fetch("/api/admin/profile-image", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ assetId: asset.id }),
+    });
+    const result = await response.json();
+    setSettingProfileId(null);
+    if (!response.ok) {
+      setNotice({ tone: "error", message: result.error ?? "The portfolio portrait could not be updated." });
+      return;
+    }
+    setProfile({
+      assetId: asset.id,
+      imageUrl: asset.publicUrl,
+      altText: asset.altText || "Roman Shrestha",
+    });
+    setNotice({ tone: "success", message: "Portfolio portrait updated. The homepage now uses this image." });
+  }
+
+  async function clearProfile() {
+    setClearingProfile(true);
+    setNotice(null);
+    const response = await fetch("/api/admin/profile-image", { method: "DELETE" });
+    const result = await response.json();
+    setClearingProfile(false);
+    if (!response.ok) {
+      setNotice({ tone: "error", message: result.error ?? "The portfolio portrait could not be removed." });
+      return;
+    }
+    setProfile({ assetId: null, imageUrl: result.imageUrl, altText: "Roman Shrestha" });
+    setNotice({ tone: "success", message: "Managed portrait removed. The homepage is using the default image." });
+  }
+
   return (
     <div className="mt-10">
       <div className="grid border-y border-white/10 sm:grid-cols-3">
@@ -164,6 +207,30 @@ export default function MediaLibrary({ initialAssets }: { initialAssets: MediaAs
         <div className="media-stat"><span>Optimized storage</span><strong>{formatBytes(totalOptimizedBytes)}</strong></div>
         <div className="media-stat"><span>Saved by compression</span><strong>{formatBytes(bytesSaved)}</strong></div>
       </div>
+
+      <section className="mt-10 grid gap-6 border-y border-white/10 py-6 sm:grid-cols-[180px_1fr_auto] sm:items-center">
+        <div className="relative aspect-square max-w-[180px] overflow-hidden bg-black/40">
+          <img src={profile.imageUrl} alt={profile.altText} className="h-full w-full object-cover" />
+          <span className="absolute bottom-3 left-3 inline-flex items-center gap-2 bg-black/75 px-2.5 py-1.5 font-mono text-[8px] uppercase tracking-[.14em] text-[#dfffab] backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#b8ff47]" /> Live
+          </span>
+        </div>
+        <div>
+          <p className="admin-kicker">Homepage portrait</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-[-.04em] text-white">
+            {profile.assetId ? "Managed in this library" : "Using the default portrait"}
+          </h2>
+          <p className="mt-3 max-w-xl text-sm leading-6 text-zinc-500">
+            Use the portrait button beside any asset to show it in the homepage hero. Edit that asset to keep its alt text accessible.
+          </p>
+        </div>
+        {profile.assetId && (
+          <button type="button" onClick={clearProfile} disabled={clearingProfile} className="admin-secondary w-fit">
+            {clearingProfile ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <X className="h-4 w-4" />}
+            Use default
+          </button>
+        )}
+      </section>
 
       {notice && (
         <div className={`mt-6 flex items-start justify-between gap-4 border px-4 py-3 text-sm ${notice.tone === "success" ? "border-[#b8ff47]/30 bg-[#b8ff47]/5 text-[#dfffab]" : "border-red-400/30 bg-red-400/5 text-red-200"}`} role="status">
@@ -183,7 +250,7 @@ export default function MediaLibrary({ initialAssets }: { initialAssets: MediaAs
           {!file ? (
             <button type="button" onClick={() => inputRef.current?.click()} className="flex min-h-44 w-full flex-col items-center justify-center text-center">
               <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 text-[#b8ff47]"><ImagePlus className="h-5 w-5" /></span>
-              <strong className="mt-5 text-base text-white">Drop a screenshot here</strong>
+              <strong className="mt-5 text-base text-white">Drop an image here</strong>
               <span className="mt-2 max-w-md text-sm leading-6 text-zinc-500">PNG, JPEG, WebP, or AVIF up to 12 MB. It will be converted to WebP and resized automatically.</span>
               <span className="admin-secondary mt-5">Choose image</span>
             </button>
@@ -225,11 +292,14 @@ export default function MediaLibrary({ initialAssets }: { initialAssets: MediaAs
             asset={asset}
             editing={editingId === asset.id}
             deleting={deletingId === asset.id}
+            activeProfile={profile.assetId === asset.id}
+            settingProfile={settingProfileId === asset.id}
             onEdit={() => setEditingId(asset.id)}
             onCancelEdit={() => setEditingId(null)}
             onSave={saveMetadata}
             onCopy={copyUrl}
             onDelete={deleteAsset}
+            onUseProfile={useAsProfile}
           />
         ))}
       </div>
@@ -244,15 +314,18 @@ export default function MediaLibrary({ initialAssets }: { initialAssets: MediaAs
   );
 }
 
-function MediaRow({ asset, editing, deleting, onEdit, onCancelEdit, onSave, onCopy, onDelete }: {
+function MediaRow({ asset, editing, deleting, activeProfile, settingProfile, onEdit, onCancelEdit, onSave, onCopy, onDelete, onUseProfile }: {
   asset: MediaAsset;
   editing: boolean;
   deleting: boolean;
+  activeProfile: boolean;
+  settingProfile: boolean;
   onEdit: () => void;
   onCancelEdit: () => void;
   onSave: (asset: MediaAsset, altText: string, tags: string) => Promise<void>;
   onCopy: (url: string) => Promise<void>;
   onDelete: (asset: MediaAsset) => Promise<void>;
+  onUseProfile: (asset: MediaAsset) => Promise<void>;
 }) {
   const [draftAlt, setDraftAlt] = useState(asset.altText);
   const [draftTags, setDraftTags] = useState(asset.tags.join(", "));
@@ -289,6 +362,16 @@ function MediaRow({ asset, editing, deleting, onEdit, onCancelEdit, onSave, onCo
         )}
       </div>
       <div className="flex gap-2 md:justify-end">
+        <button
+          type="button"
+          disabled={activeProfile || settingProfile}
+          onClick={() => onUseProfile(asset)}
+          className={`admin-icon ${activeProfile ? "border-[#b8ff47]/40 bg-[#b8ff47]/10 text-[#b8ff47]" : ""}`}
+          aria-label={activeProfile ? `${asset.originalName} is the active portfolio portrait` : `Use ${asset.originalName} as portfolio portrait`}
+          title={activeProfile ? "Active portfolio portrait" : "Use as portfolio portrait"}
+        >
+          {settingProfile ? <LoaderCircle className="h-4 w-4 animate-spin" /> : activeProfile ? <Check className="h-4 w-4" /> : <UserRound className="h-4 w-4" />}
+        </button>
         <button type="button" onClick={() => onCopy(asset.publicUrl)} className="admin-icon" aria-label={`Copy URL for ${asset.originalName}`}><Copy className="h-4 w-4" /></button>
         <button type="button" onClick={onEdit} className="admin-icon" aria-label={`Edit ${asset.originalName}`}><Pencil className="h-4 w-4" /></button>
         <button type="button" disabled={deleting} onClick={() => onDelete(asset)} className="admin-icon hover:text-red-300" aria-label={`Delete ${asset.originalName}`}>{deleting ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}</button>
