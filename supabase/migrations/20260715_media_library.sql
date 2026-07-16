@@ -21,6 +21,6 @@ alter table public.media_assets enable row level security;
 
 update storage.buckets
 set public = true,
-    file_size_limit = 10000000,
+    file_size_limit = 12000000,
     allowed_mime_types = array['image/png','image/jpeg','image/webp','image/avif']
 where id = 'portfolio-media';
