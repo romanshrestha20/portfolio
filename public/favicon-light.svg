@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <style>
+    .border-line { stroke: #9a4300; stroke-width: 4; opacity: 0.25; fill: none; }
+    .text-main { 
+      font-family: 'JetBrains Mono', 'Fira Code', monospace; 
+      font-size: 320px; 
+      font-weight: 700; 
+      fill: #9a4300;
+    }
+    .cursor-main {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 320px;
+      font-weight: 700;
+      fill: #9a4300;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+  
+  <!-- Retro Bezel Line -->
+  <rect x="24" y="24" width="464" height="464" rx="16" class="border-line" />
+  
+  <!-- Giant centered layout -->
+  <text x="70" y="380" class="text-main">R</text>
+  <text x="270" y="380" class="cursor-main">_</text>
+</svg>
