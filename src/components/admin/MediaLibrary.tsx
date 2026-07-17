@@ -211,8 +211,8 @@ export default function MediaLibrary({ initialAssets, initialProfile }: {
       <section className="mt-10 grid gap-6 border-y border-white/10 py-6 sm:grid-cols-[180px_1fr_auto] sm:items-center">
         <div className="relative aspect-square max-w-[180px] overflow-hidden bg-black/40">
           <img src={profile.imageUrl} alt={profile.altText} className="h-full w-full object-cover" />
-          <span className="absolute bottom-3 left-3 inline-flex items-center gap-2 bg-black/75 px-2.5 py-1.5 font-mono text-[8px] uppercase tracking-[.14em] text-[#dfffab] backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#b8ff47]" /> Live
+          <span className="absolute bottom-3 left-3 inline-flex items-center gap-2 bg-black/75 px-2.5 py-1.5 font-mono text-[8px] uppercase tracking-[.14em] text-signal backdrop-blur">
+            <span className="admin-live-dot h-1.5 w-1.5" /> Live
           </span>
         </div>
         <div>
@@ -225,7 +225,7 @@ export default function MediaLibrary({ initialAssets, initialProfile }: {
           </p>
         </div>
         {profile.assetId && (
-          <button type="button" onClick={clearProfile} disabled={clearingProfile} className="admin-secondary w-fit">
+          <button type="button" onClick={clearProfile} disabled={clearingProfile} className="signal-button w-fit">
             {clearingProfile ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <X className="h-4 w-4" />}
             Use default
           </button>
@@ -233,7 +233,7 @@ export default function MediaLibrary({ initialAssets, initialProfile }: {
       </section>
 
       {notice && (
-        <div className={`mt-6 flex items-start justify-between gap-4 border px-4 py-3 text-sm ${notice.tone === "success" ? "border-[#b8ff47]/30 bg-[#b8ff47]/5 text-[#dfffab]" : "border-red-400/30 bg-red-400/5 text-red-200"}`} role="status">
+        <div className={`mt-6 flex items-start justify-between gap-4 border px-4 py-3 text-sm ${notice.tone === "success" ? "admin-notice-success" : "border-red-400/30 bg-red-400/5 text-red-200"}`} role="status">
           <span>{notice.message}</span>
           <button type="button" onClick={() => setNotice(null)} aria-label="Dismiss message"><X className="h-4 w-4" /></button>
         </div>
@@ -241,7 +241,7 @@ export default function MediaLibrary({ initialAssets, initialProfile }: {
 
       <form onSubmit={upload} className="mt-10">
         <div
-          className={`relative border border-dashed p-6 transition sm:p-8 ${dragging ? "border-[#b8ff47] bg-[#b8ff47]/5" : "border-white/20 bg-white/[.015]"}`}
+          className={`relative border border-dashed p-6 transition sm:p-8 ${dragging ? "admin-selected" : "border-white/20 bg-white/[.015]"}`}
           onDragEnter={(event) => { event.preventDefault(); setDragging(true); }}
           onDragOver={(event) => event.preventDefault()}
           onDragLeave={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) setDragging(false); }}
@@ -249,10 +249,10 @@ export default function MediaLibrary({ initialAssets, initialProfile }: {
         >
           {!file ? (
             <button type="button" onClick={() => inputRef.current?.click()} className="flex min-h-44 w-full flex-col items-center justify-center text-center">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 text-[#b8ff47]"><ImagePlus className="h-5 w-5" /></span>
+              <span className="flex h-12 w-12 items-center justify-center border border-white/10 text-signal"><ImagePlus className="h-5 w-5" /></span>
               <strong className="mt-5 text-base text-white">Drop an image here</strong>
               <span className="mt-2 max-w-md text-sm leading-6 text-zinc-500">PNG, JPEG, WebP, or AVIF up to 12 MB. It will be converted to WebP and resized automatically.</span>
-              <span className="admin-secondary mt-5">Choose image</span>
+              <span className="signal-button mt-5">Choose image</span>
             </button>
           ) : (
             <div className="grid gap-7 md:grid-cols-[260px_1fr]">
@@ -263,15 +263,15 @@ export default function MediaLibrary({ initialAssets, initialProfile }: {
               <div>
                 <div className="flex items-start justify-between gap-4">
                   <div><p className="font-medium text-white">{file.name}</p><p className="mt-1 text-xs text-zinc-500">{formatBytes(file.size)}</p></div>
-                  <button type="button" onClick={resetUpload} className="admin-icon" aria-label="Remove selected image"><X className="h-4 w-4" /></button>
+                  <button type="button" onClick={resetUpload} className="signal-icon-button" aria-label="Remove selected image"><X className="h-4 w-4" /></button>
                 </div>
                 <div className="mt-6 grid gap-5">
-                  <label className="admin-label">Alt text<input className="admin-input" value={altText} onChange={(event) => setAltText(event.target.value)} placeholder="Describe the image for screen readers" maxLength={240} /></label>
-                  <label className="admin-label">Tags<input className="admin-input" value={tags} onChange={(event) => setTags(event.target.value)} placeholder="project, mobile, dashboard" /></label>
+                  <label className="signal-label flex flex-col gap-2">Alt text<input className="signal-control" value={altText} onChange={(event) => setAltText(event.target.value)} placeholder="Describe the image for screen readers" maxLength={240} /></label>
+                  <label className="signal-label flex flex-col gap-2">Tags<input className="signal-control" value={tags} onChange={(event) => setTags(event.target.value)} placeholder="project, mobile, dashboard" /></label>
                 </div>
                 <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <button className="admin-primary" disabled={uploading}>{uploading ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}{uploading ? `Uploading ${progress}%` : "Optimize and upload"}</button>
-                  {uploading && <div className="h-1.5 min-w-36 flex-1 overflow-hidden rounded-full bg-white/10"><div className="h-full bg-[#b8ff47] transition-[width]" style={{ width: `${progress}%` }} /></div>}
+                  <button className="signal-button signal-button-primary" disabled={uploading}>{uploading ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}{uploading ? `Uploading ${progress}%` : "Optimize and upload"}</button>
+                  {uploading && <div className="h-1.5 min-w-36 flex-1 overflow-hidden bg-white/10"><div className="h-full bg-signal transition-[width]" style={{ width: `${progress}%` }} /></div>}
                 </div>
               </div>
             </div>
@@ -282,7 +282,7 @@ export default function MediaLibrary({ initialAssets, initialProfile }: {
 
       <div className="mt-16 flex flex-col gap-5 border-b border-white/10 pb-5 sm:flex-row sm:items-end sm:justify-between">
         <div><p className="admin-kicker">Library</p><h2 className="mt-2 text-2xl font-semibold tracking-[-.04em] text-white">Uploaded assets</h2></div>
-        <label className="relative block w-full sm:max-w-xs"><Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-600" /><input className="admin-input pl-10" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search name, alt text, or tag" aria-label="Search media" /></label>
+        <label className="relative block w-full sm:max-w-xs"><Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-600" /><input className="signal-control pl-10" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search name, alt text, or tag" aria-label="Search media" /></label>
       </div>
 
       <div className="divide-y divide-white/10">
@@ -350,14 +350,14 @@ function MediaRow({ asset, editing, deleting, activeProfile, settingProfile, onE
         <p className="mt-2 text-xs text-zinc-500">{asset.width}×{asset.height} · {formatBytes(asset.sizeBytes)} · {reduction}% smaller</p>
         {editing ? (
           <div className="mt-5 grid gap-4">
-            <label className="admin-label">Alt text<input className="admin-input" value={draftAlt} onChange={(event) => setDraftAlt(event.target.value)} maxLength={240} /></label>
-            <label className="admin-label">Tags<input className="admin-input" value={draftTags} onChange={(event) => setDraftTags(event.target.value)} /></label>
-            <div className="flex gap-2"><button type="button" disabled={saving} onClick={handleSave} className="admin-primary">{saving ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4" />}Save details</button><button type="button" onClick={onCancelEdit} className="admin-secondary">Cancel</button></div>
+            <label className="signal-label flex flex-col gap-2">Alt text<input className="signal-control" value={draftAlt} onChange={(event) => setDraftAlt(event.target.value)} maxLength={240} /></label>
+            <label className="signal-label flex flex-col gap-2">Tags<input className="signal-control" value={draftTags} onChange={(event) => setDraftTags(event.target.value)} /></label>
+            <div className="flex gap-2"><button type="button" disabled={saving} onClick={handleSave} className="signal-button signal-button-primary">{saving ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4" />}Save details</button><button type="button" onClick={onCancelEdit} className="signal-button">Cancel</button></div>
           </div>
         ) : (
           <>
             <p className="mt-4 text-sm leading-6 text-zinc-400">{asset.altText || "No alt text added."}</p>
-            {asset.tags.length > 0 && <div className="mt-3 flex flex-wrap gap-2">{asset.tags.map((tag) => <span key={tag} className="rounded-full border border-white/10 px-2 py-1 font-mono text-[8px] uppercase tracking-[.12em] text-zinc-500">{tag}</span>)}</div>}
+            {asset.tags.length > 0 && <div className="mt-3 flex flex-wrap gap-2">{asset.tags.map((tag) => <span key={tag} className="border border-white/10 px-2 py-1 font-mono text-[8px] uppercase tracking-[.12em] text-zinc-500">{tag}</span>)}</div>}
           </>
         )}
       </div>
@@ -366,15 +366,15 @@ function MediaRow({ asset, editing, deleting, activeProfile, settingProfile, onE
           type="button"
           disabled={activeProfile || settingProfile}
           onClick={() => onUseProfile(asset)}
-          className={`admin-icon ${activeProfile ? "border-[#b8ff47]/40 bg-[#b8ff47]/10 text-[#b8ff47]" : ""}`}
+          className={`signal-icon-button ${activeProfile ? "admin-selected" : ""}`}
           aria-label={activeProfile ? `${asset.originalName} is the active portfolio portrait` : `Use ${asset.originalName} as portfolio portrait`}
           title={activeProfile ? "Active portfolio portrait" : "Use as portfolio portrait"}
         >
           {settingProfile ? <LoaderCircle className="h-4 w-4 animate-spin" /> : activeProfile ? <Check className="h-4 w-4" /> : <UserRound className="h-4 w-4" />}
         </button>
-        <button type="button" onClick={() => onCopy(asset.publicUrl)} className="admin-icon" aria-label={`Copy URL for ${asset.originalName}`}><Copy className="h-4 w-4" /></button>
-        <button type="button" onClick={onEdit} className="admin-icon" aria-label={`Edit ${asset.originalName}`}><Pencil className="h-4 w-4" /></button>
-        <button type="button" disabled={deleting} onClick={() => onDelete(asset)} className="admin-icon hover:text-red-300" aria-label={`Delete ${asset.originalName}`}>{deleting ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}</button>
+        <button type="button" onClick={() => onCopy(asset.publicUrl)} className="signal-icon-button" aria-label={`Copy URL for ${asset.originalName}`}><Copy className="h-4 w-4" /></button>
+        <button type="button" onClick={onEdit} className="signal-icon-button" aria-label={`Edit ${asset.originalName}`}><Pencil className="h-4 w-4" /></button>
+        <button type="button" disabled={deleting} onClick={() => onDelete(asset)} className="signal-icon-button hover:text-red-300" aria-label={`Delete ${asset.originalName}`}>{deleting ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}</button>
       </div>
     </article>
   );
