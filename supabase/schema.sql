@@ -32,12 +32,21 @@ create table if not exists public.media_assets (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+create table if not exists public.resume_assets (
+  id uuid primary key default gen_random_uuid(),
+  original_name text not null,
+  storage_path text unique not null,
+  public_url text not null,
+  size_bytes bigint not null check (size_bytes > 0 and size_bytes <= 12000000),
+  created_at timestamptz not null default now()
+);
 alter table public.projects enable row level security;
 alter table public.messages enable row level security;
 alter table public.site_settings enable row level security;
 alter table public.media_assets enable row level security;
+alter table public.resume_assets enable row level security;
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
-values ('portfolio-media', 'portfolio-media', true, 12000000, array['image/png','image/jpeg','image/webp','image/avif'])
+values ('portfolio-media', 'portfolio-media', true, 12000000, array['image/png','image/jpeg','image/webp','image/avif','application/pdf'])
 on conflict (id) do update set
   public = excluded.public,
   file_size_limit = excluded.file_size_limit,
