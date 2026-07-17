@@ -15,15 +15,15 @@ export default function About() {
     <section id="about" className="signal-section bg-signal-surface">
       <div className="mx-auto grid max-w-[1600px] gap-14 px-5 sm:px-8 lg:grid-cols-12 lg:px-12">
         <div className="lg:col-span-4">
-          <p className="signal-kicker">02 · About the builder</p>
-          <h2 className="mt-5 text-5xl font-semibold leading-[.92] tracking-[-.06em] text-signal-text sm:text-7xl">Curious by default. Practical by design.</h2>
+          <p className="signal-kicker">02 / Personnel archive</p>
+          <h2 className="mt-5 text-5xl leading-[.92] tracking-[-.06em] text-signal-text sm:text-7xl">Curious by nature.<br /><em className="text-signal">Practical by design.</em></h2>
         </div>
 
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} className="lg:col-span-7 lg:col-start-6">
           <p className="max-w-3xl text-2xl leading-snug tracking-[-.03em] text-signal-text sm:text-4xl">
             I’m Roman, a software engineering student who likes turning complex flows into products that feel direct and dependable.
           </p>
-          <p className="mt-7 max-w-2xl text-base leading-8 text-signal-muted sm:text-lg">
+          <p className="max-w-2xl text-base leading-8 mt-7 text-signal-muted sm:text-lg">
             My recent work spans React interfaces, Django backends, API-driven products, and mobile applications. I care about readable code, calm interfaces, and understanding the reason behind every feature I build.
           </p>
 
@@ -36,10 +36,12 @@ export default function About() {
             ))}
           </dl>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="https://www.linkedin.com/in/romanshrr/" target="_blank" rel="noreferrer" className="signal-button">LinkedIn <ArrowUpRight className="h-4 w-4" /></a>
-            <a href="https://github.com/romanshrestha20" target="_blank" rel="noreferrer" className="signal-button">GitHub <ArrowUpRight className="h-4 w-4" /></a>
-            <span className="inline-flex items-center gap-2 px-3 text-xs text-signal-muted"><MapPin className="h-4 w-4 text-signal" /> 60.1699° N, 24.9384° E</span>
+          <div className="flex flex-wrap gap-3 mt-8">
+            <a href="https://www.linkedin.com/in/romanshrr/" target="_blank" rel="noreferrer" className="signal-button">
+            LinkedIn <ArrowUpRight className="w-4 h-4" /></a>
+            <a href="https://github.com/romanshrestha20" target="_blank" rel="noreferrer" className="signal-button">GitHub <ArrowUpRight className="w-4 h-4" /></a>
+            <span className="inline-flex items-center gap-2 px-3 text-xs text-signal-muted">
+              <MapPin className="w-4 h-4 text-signal" /> 60.1699° N, 24.9384° E</span>
           </div>
         </motion.div>
       </div>
