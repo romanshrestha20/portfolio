@@ -12,12 +12,10 @@ export default async function AdminLoginPage() {
       <div className="absolute right-5 top-5"><AdminThemeToggle /></div>
       <div className="w-full max-w-md">
         <Link href="/" className="flex items-center gap-3 group" aria-label="Return to Roman Shrestha portfolio">
-          <img
-            src={theme === "dark" ? "/favicon-dark.svg" : "/favicon-light.svg"}
-            alt=""
-            aria-hidden="true"
-            className="size-9 shrink-0"
-          />
+          <span className="size-9 shrink-0" aria-hidden="true">
+            <img src="/favicon-light.svg" alt="" className="size-9 dark:hidden" />
+            <img src="/favicon-dark.svg" alt="" className="hidden size-9 dark:block" />
+          </span>
           <span className="text-[10px] font-bold uppercase tracking-[.13em] text-signal-text">Roman Shrestha</span>
           </Link>
         <p className="mt-14 admin-kicker">Portfolio control / authorized personnel</p>
