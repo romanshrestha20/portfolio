@@ -8,7 +8,11 @@ const reveal = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function Hero({ profileImageUrl = "/profile-portrait.png", profileImageAlt = "Roman Shrestha" }) {
+export default function Hero({
+  profileImageUrl = "/profile-portrait.png",
+  profileImageAlt = "Roman Shrestha",
+  resumeUrl = "https://tinyurl.com/ycyjhkbk",
+}) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -40,7 +44,7 @@ export default function Hero({ profileImageUrl = "/profile-portrait.png", profil
             <a href="#projects" className="signal-button signal-button-primary">
               See selected work <ArrowDownRight className="h-4 w-4" />
             </a>
-            <a href="https://tinyurl.com/ycyjhkbk" target="_blank" rel="noreferrer" className="signal-button">
+            <a href={resumeUrl} target="_blank" rel="noreferrer" className="signal-button">
               Open résumé <ArrowUpRight className="h-4 w-4" />
             </a>
           </motion.div>
