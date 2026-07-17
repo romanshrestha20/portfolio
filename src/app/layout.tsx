@@ -6,7 +6,7 @@ const mono = Space_Mono({ subsets: ["latin"], variable: "--font-sans", weight: [
 const display = IBM_Plex_Serif({ subsets: ["latin"], variable: "--font-display", weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://romanshrestha.info"),
+  metadataBase: new URL("https://www.romanshrestha.info"),
   title: { default: "Roman Shrestha | Software Engineer", template: "%s | Roman Shrestha" },
   description: "Roman Shrestha is a software engineering student building clear web and mobile products with React, Django, and Kotlin.",
   icons: {
