@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { LockKeyhole } from "lucide-react";
 import useDarkMode from "../../hooks/useDarkMode";
 import DarkModeToggle from "../DarkModeToggle";
 import HamburgerMenu from "../HamburgerMenu";
@@ -39,6 +41,14 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
+          <Link
+            href="/admin"
+            className="signal-icon-button"
+            aria-label="Open admin workspace"
+            title="Open admin workspace"
+          >
+            <LockKeyhole className="h-4 w-4" aria-hidden="true" />
+          </Link>
           <DarkModeToggle theme={theme} toggleTheme={toggleTheme} />
           <div className="md:hidden"><HamburgerMenu isOpen={open} toggleMenu={() => setOpen((value) => !value)} /></div>
         </div>
