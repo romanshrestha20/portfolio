@@ -4,6 +4,7 @@ import { FolderKanban, Gauge, ImageIcon, Inbox, LogOut, Settings } from "lucide-
 import { getAdminUser } from "@/lib/auth";
 import { hasSupabaseAdminConfig } from "@/lib/supabase/config";
 import { signOut } from "../actions";
+import AdminThemeToggle from "@/components/admin/AdminThemeToggle";
 
 const nav = [
   ["Overview", "/admin", Gauge], ["Projects", "/admin/projects", FolderKanban],
@@ -17,17 +18,27 @@ export default async function WorkspaceLayout({ children }: { children: React.Re
   if (!user) redirect("/admin/login");
   return (
     <div className="admin-shell min-h-screen lg:grid lg:grid-cols-[240px_1fr]">
-      <aside className="border-b border-white/10 p-5 lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-r lg:p-6">
-        <Link href="/" className="flex items-center gap-3 text-sm font-semibold text-white"><span className="h-2 w-2 rounded-full bg-[#b8ff47] shadow-[0_0_16px_#b8ff47]" />Signal Control</Link>
+      <aside className="admin-sidebar border-b p-5 backdrop-blur-sm lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-r lg:p-6">
+        <div className="flex items-center justify-between gap-4">
+          <Link href="/" className="group flex items-center gap-3" aria-label="Roman Shrestha, public portfolio">
+            <span className="studio-monogram">RS</span>
+            <span><strong className="block text-[11px] uppercase tracking-[.13em] text-signal-text">Roman Shrestha</strong><span className="mt-1 block text-[8px] uppercase tracking-[.18em] text-signal-muted">Portfolio control</span></span>
+          </Link>
+          <AdminThemeToggle />
+        </div>
+        <p className="mt-5 border-t border-signal-line pt-4 text-[8px] uppercase tracking-[.18em] text-signal">[Workspace / online]</p>
         <nav className="mt-9 flex gap-2 overflow-x-auto lg:flex-col" aria-label="Admin navigation">
           {nav.map(([label, href, Icon]) => <Link key={href} href={href} className="admin-nav"><Icon className="h-4 w-4" />{label}</Link>)}
         </nav>
-        <div className="mt-8 hidden border-t border-white/10 pt-5 lg:block">
-          <p className="truncate text-xs text-zinc-500">{user.email}</p>
-          <form action={signOut}><button className="mt-4 flex items-center gap-2 text-xs text-zinc-400 hover:text-white"><LogOut className="h-4 w-4" />Sign out</button></form>
+        <div className="mt-8 border-t border-signal-line pt-5">
+          <p className="hidden truncate text-[10px] text-signal-muted lg:block">{user.email}</p>
+          <form action={signOut}><button className="flex items-center gap-2 text-[10px] uppercase tracking-[.1em] text-signal-muted hover:text-signal lg:mt-4"><LogOut className="h-4 w-4" />Sign out</button></form>
         </div>
       </aside>
-      <main className="min-w-0 p-5 sm:p-8 lg:p-10">{children}</main>
+      <main className="relative min-w-0 p-5 sm:p-8 lg:p-10">
+        <div className="pointer-events-none absolute right-6 top-5 hidden text-[8px] uppercase tracking-[.18em] text-signal lg:block">SYS / HEL-01 / STABLE</div>
+        {children}
+      </main>
     </div>
   );
 }
