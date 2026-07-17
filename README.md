@@ -234,9 +234,10 @@ The schema creates:
 - `messages`
 - `site_settings`
 - `media_assets`
+- `resume_assets`
 - `portfolio-media` Storage bucket
 - Row Level Security configuration
-- Public read policy for portfolio images
+- Public read policy for portfolio media
 
 ### Existing Supabase project
 
@@ -247,6 +248,14 @@ supabase/migrations/20260715_media_library.sql
 ```
 
 This adds `media_assets` and updates the Storage bucket configuration.
+
+To enable admin-managed résumé PDFs on an existing project, also run:
+
+```text
+supabase/migrations/20260718_resume_assets.sql
+```
+
+This adds `resume_assets` and permits PDFs in the existing public media bucket.
 
 Do not run the media migration separately on a fresh project after running the latest `schema.sql`; the current full schema already includes it.
 
@@ -346,6 +355,14 @@ clean-sync
 Published project changes call `revalidatePath("/")` so the public portfolio refreshes without a full redeployment.
 
 ## Media workflow
+
+### Publish a résumé
+
+1. Open `/admin/settings`.
+2. Choose a PDF up to 12 MB.
+3. Select **Upload & publish**.
+
+Each upload is stored under `resumes/{asset-id}.pdf` and becomes the live homepage résumé. Previous versions remain in the Settings history and can be restored with **Make active**.
 
 ### Upload an image
 
