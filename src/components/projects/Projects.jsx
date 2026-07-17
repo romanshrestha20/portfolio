@@ -15,10 +15,10 @@ export default function Projects({ projects }) {
       <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
         <div className="mb-16 grid gap-7 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
-            <p className="signal-kicker">01 · Selected transmissions</p>
-            <h2 className="mt-5 text-[clamp(3.8rem,9vw,8.5rem)] font-semibold leading-[.82] tracking-[-.075em] text-signal-text">WORK THAT<br />MADE IT OUT.</h2>
+            <p className="signal-kicker">01 / Timeline monitor / selected work</p>
+            <h2 className="mt-5 text-[clamp(3.8rem,9vw,8.5rem)] leading-[.82] tracking-[-.075em] text-signal-text">Recorded<br /><em className="text-signal">transmissions.</em></h2>
           </div>
-          <p className="max-w-md text-base leading-7 text-signal-muted lg:col-span-4 lg:pb-2">Three product builds where interface, backend logic, and real user flows had to work together.</p>
+          <p className="max-w-md text-sm leading-7 text-signal-muted lg:col-span-4 lg:pb-2">Three product builds where interface, backend logic, and real user flows had to resolve into one dependable system.</p>
         </div>
 
         <div>
@@ -27,7 +27,7 @@ export default function Projects({ projects }) {
 
         {archive.length > 0 && (
           <div className="mt-20">
-            <p className="signal-kicker mb-6">Additional field work</p>
+            <p className="signal-kicker mb-6">More from the studio</p>
             <div className="border-t border-signal-line">
               {archive.map((project) => (
                 <button key={project.id} type="button" onClick={() => setSelectedProject(project)} className="group grid w-full gap-3 border-b border-signal-line py-6 text-left transition hover:pl-3 sm:grid-cols-[1fr_1fr_auto] sm:items-center">

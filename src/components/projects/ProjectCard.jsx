@@ -8,7 +8,7 @@ export default function ProjectCard({ project, index, onOpenCaseStudy }) {
     <motion.article initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .12 }} className="project-row grid gap-7 border-t border-signal-line py-12 lg:grid-cols-12 lg:gap-12 lg:py-20">
       <div className={`project-media relative aspect-[16/11] lg:col-span-7 ${index % 2 ? "lg:order-2" : ""}`}>
         <img src={project.image} alt={`${project.name} interface`} loading="lazy" className="h-full w-full object-cover" />
-        <span className="absolute left-4 top-4 bg-signal px-3 py-2 font-mono text-[9px] uppercase tracking-[.16em] text-signal-bg">Signal 0{index + 1}</span>
+        <span className="absolute left-4 top-4 z-20 bg-signal px-3 py-2 font-mono text-[9px] font-bold uppercase tracking-[.16em] text-signal-bg">CASE FILE / 0{index + 1}</span>
       </div>
 
       <div className={`flex flex-col justify-between lg:col-span-5 ${index % 2 ? "lg:order-1" : ""}`}>

@@ -27,7 +27,7 @@ export default function ProjectCaseStudyModal({ project, onClose }) {
         <motion.div className="fixed inset-0 z-[80] overflow-y-auto bg-signal-bg/90 p-3 backdrop-blur-xl sm:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={onClose}>
           <motion.div role="dialog" aria-modal="true" aria-labelledby="case-study-title" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} onMouseDown={(event) => event.stopPropagation()} className="mx-auto min-h-full max-w-6xl bg-signal-surface">
             <div className="sticky top-0 z-20 flex items-center justify-between border-b border-signal-line bg-signal-surface/90 px-5 py-4 backdrop-blur-xl sm:px-8">
-              <p className="signal-kicker">Project transmission · {project.issue}</p>
+              <p className="signal-kicker">Project notes · {project.issue}</p>
               <button ref={closeRef} type="button" onClick={onClose} aria-label="Close case study" className="flex h-11 w-11 items-center justify-center rounded-full border border-signal-line text-signal-text hover:border-signal"><X className="h-5 w-5" /></button>
             </div>
 
