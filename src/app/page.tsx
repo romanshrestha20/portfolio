@@ -13,7 +13,7 @@ export const revalidate = 3600;
 export default async function HomePage() {
   const [projects, profile] = await Promise.all([getPublishedProjects(), getPortfolioProfile()]);
   return (
-    <main className="w-full overflow-x-hidden bg-signal-bg text-signal-text">
+    <main className="signal-site w-full overflow-x-hidden bg-signal-bg text-signal-text">
       <Navbar />
       <Hero profileImageUrl={profile.imageUrl} profileImageAlt={profile.altText} />
       <Projects projects={projects} />
