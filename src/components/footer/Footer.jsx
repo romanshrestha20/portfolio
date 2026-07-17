@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex items-center gap-6">
           <a href="https://github.com/romanshrestha20" target="_blank" rel="noreferrer" className="hover:text-signal-text">GitHub</a>
           <a href="https://www.linkedin.com/in/romanshrr/" target="_blank" rel="noreferrer" className="hover:text-signal-text">LinkedIn</a>
-          <a href="#home" className="flex items-center gap-2 hover:text-signal-text">Back to signal <ArrowUp className="h-4 w-4" /></a>
+          <a href="#home" className="flex items-center gap-2 hover:text-signal-text">Back to top <ArrowUp className="h-4 w-4" /></a>
         </div>
       </div>
     </footer>

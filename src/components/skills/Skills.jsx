@@ -15,8 +15,8 @@ export default function Skills() {
       <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="signal-kicker">03 · Capabilities</p>
-            <h2 className="mt-5 text-6xl font-semibold leading-[.88] tracking-[-.065em] text-signal-text sm:text-8xl">THE<br />TOOLKIT.</h2>
+            <p className="signal-kicker">03 / Systems capability index</p>
+            <h2 className="mt-5 text-6xl leading-[.88] tracking-[-.065em] text-signal-text sm:text-8xl">Field<br /><em className="text-signal">equipment.</em></h2>
             <p className="mt-6 max-w-sm text-base leading-7 text-signal-muted">A compact view of what I use—and the kind of problems I use it for.</p>
           </div>
 
