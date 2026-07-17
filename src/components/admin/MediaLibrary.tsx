@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Check,
   Copy,
@@ -28,6 +29,7 @@ export default function MediaLibrary({ initialAssets, initialProfile }: {
   initialAssets: MediaAsset[];
   initialProfile: { assetId: string | null; imageUrl: string; altText: string };
 }) {
+  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const [assets, setAssets] = useState(initialAssets);
   const [file, setFile] = useState<File | null>(null);
@@ -183,6 +185,7 @@ export default function MediaLibrary({ initialAssets, initialProfile }: {
       imageUrl: asset.publicUrl,
       altText: asset.altText || "Roman Shrestha",
     });
+    router.refresh();
     setNotice({ tone: "success", message: "Portfolio portrait updated. The homepage now uses this image." });
   }
 
@@ -197,6 +200,7 @@ export default function MediaLibrary({ initialAssets, initialProfile }: {
       return;
     }
     setProfile({ assetId: null, imageUrl: result.imageUrl, altText: "Roman Shrestha" });
+    router.refresh();
     setNotice({ tone: "success", message: "Managed portrait removed. The homepage is using the default image." });
   }
 

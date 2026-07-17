@@ -9,7 +9,9 @@ import { getPublishedProjects } from "@/lib/projects";
 import { getPortfolioSettings } from "@/lib/site-settings";
 
 
-export const revalidate = 3600;
+// Portrait and resume selections are managed from the admin workspace and must
+// be reflected immediately instead of waiting for an ISR snapshot to expire.
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const [projects, settings] = await Promise.all([getPublishedProjects(), getPortfolioSettings()]);

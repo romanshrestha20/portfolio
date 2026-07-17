@@ -20,7 +20,7 @@ export default async function WorkspaceLayout({ children }: { children: React.Re
     <div className="admin-shell min-h-screen lg:grid lg:grid-cols-[240px_1fr]">
       <aside className="admin-sidebar border-b p-5 backdrop-blur-sm lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-r lg:p-6">
         <div className="flex items-center justify-between gap-4">
-          <Link href="/" className="group flex items-center gap-3" aria-label="Roman Shrestha, public portfolio">
+          <Link href="/" prefetch={false} className="group flex items-center gap-3" aria-label="Roman Shrestha, public portfolio">
             <span className="studio-monogram">RS</span>
             <span><strong className="block text-[11px] uppercase tracking-[.13em] text-signal-text">Roman Shrestha</strong><span className="mt-1 block text-[8px] uppercase tracking-[.18em] text-signal-muted">Portfolio control</span></span>
           </Link>
