@@ -1,2 +1,45 @@
 import { CheckCircle2 } from "lucide-react";
-export default function SettingsPage() { const items = [["Database", Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL)], ["Server authorization", Boolean(process.env.SUPABASE_SECRET_KEY)], ["Admin allowlist", Boolean(process.env.ADMIN_EMAIL)]]; return <div className="mx-auto max-w-3xl"><p className="admin-kicker">04 / System configuration</p><h1 className="admin-title">Settings</h1><p className="admin-subtitle">Environment and production readiness checks.</p><div className="mt-10 border-t border-white/10">{items.map(([label, ready]) => <div key={String(label)} className="flex items-center justify-between border-b border-white/10 py-5"><span className="text-sm text-zinc-300">{label}</span><span className={ready ? "text-signal" : "text-amber-300"}>{ready ? <CheckCircle2 className="h-5 w-5" /> : "Missing"}</span></div>)}</div><p className="mt-8 text-sm leading-7 text-zinc-500">Secrets are read from the deployment environment and are never exposed through this interface.</p></div>; }
+import ResumeManager from "@/components/admin/ResumeManager";
+import { getResumeAssets } from "@/lib/resumes";
+
+export const dynamic = "force-dynamic";
+
+export default async function SettingsPage() {
+  const resumes = await getResumeAssets();
+  const items = [
+    ["Database", Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL)],
+    ["Server authorization", Boolean(process.env.SUPABASE_SECRET_KEY)],
+    ["Admin allowlist", Boolean(process.env.ADMIN_EMAIL)],
+  ] as const;
+
+  return (
+    <div className="mx-auto max-w-4xl">
+      <p className="admin-kicker">04 / System configuration</p>
+      <h1 className="admin-title">Settings</h1>
+      <p className="admin-subtitle">Publish résumé versions and review production readiness.</p>
+
+      {resumes.error ? (
+        <div className="mt-10 border border-amber-400/30 bg-amber-400/5 p-6 text-sm leading-7 text-amber-100">
+          <strong className="block text-white">Résumé storage setup required</strong>
+          {resumes.error} Run <code>supabase/migrations/20260718_resume_assets.sql</code> in the Supabase SQL Editor, then refresh this page.
+        </div>
+      ) : (
+        <ResumeManager initialAssets={resumes.assets} initialActiveId={resumes.activeId} />
+      )}
+
+      <section className="mt-16">
+        <p className="admin-kicker">Environment</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-[-.04em] text-white">Production readiness</h2>
+        <div className="mt-6 border-t border-white/10">
+          {items.map(([label, ready]) => (
+            <div key={label} className="flex items-center justify-between border-b border-white/10 py-5">
+              <span className="text-sm text-zinc-300">{label}</span>
+              <span className={ready ? "text-signal" : "text-amber-300"}>{ready ? <CheckCircle2 className="h-5 w-5" /> : "Missing"}</span>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-sm leading-7 text-zinc-500">Secrets are read from the deployment environment and are never exposed through this interface.</p>
+      </section>
+    </div>
+  );
+}
