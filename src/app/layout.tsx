@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Serif, Space_Mono } from "next/font/google";
 import "../index.css";
-
+import { Analytics } from "@vercel/analytics/next"
 const mono = Space_Mono({ subsets: ["latin"], variable: "--font-sans", weight: ["400", "700"] });
 const display = IBM_Plex_Serif({ subsets: ["latin"], variable: "--font-display", weight: ["400", "500", "600", "700"] });
 
@@ -33,6 +33,7 @@ export const viewport: Viewport = { themeColor: "#1a1b12", colorScheme: "dark li
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+     <Analytics />
       <body className={`${mono.variable} ${display.variable}`}>{children}</body>
     </html>
   );

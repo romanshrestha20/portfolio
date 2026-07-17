@@ -7,7 +7,7 @@ import Contact from "@/components/contact/Contact";
 import Footer from "@/components/footer/Footer";
 import { getPublishedProjects } from "@/lib/projects";
 import { getPortfolioProfile } from "@/lib/site-settings";
-import { Analytics } from "@vercel/analytics/next"
+
 
 export const revalidate = 3600;
 
@@ -22,7 +22,7 @@ export default async function HomePage() {
       <Skills />
       <Contact />
       <Footer />
-        <Analytics />
+
     </main>
   );
 }
