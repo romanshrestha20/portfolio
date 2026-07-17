@@ -18,10 +18,10 @@ export default function LoginForm() {
   }
   return (
     <form onSubmit={submit} className="mt-10 space-y-6">
-      <label className="admin-label">Email<input className="admin-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /></label>
-      <label className="admin-label">Password<input className="admin-input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required /></label>
+      <label className="signal-label flex flex-col gap-2">Email<input className="signal-control" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /></label>
+      <label className="signal-label flex flex-col gap-2">Password<input className="signal-control" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required /></label>
       {error && <p className="text-sm text-red-400" role="alert">{error}</p>}
-      <button className="admin-primary" disabled={loading}>{loading ? "Checking…" : "Open workspace"}<ArrowRight className="w-4 h-4" /></button>
+      <button className="signal-button signal-button-primary" disabled={loading}>{loading ? "Checking…" : "Open workspace"}<ArrowRight className="w-4 h-4" /></button>
     </form>
   );
 }

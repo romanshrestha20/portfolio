@@ -9,7 +9,7 @@ export default async function MediaPage() {
 
   return (
     <div className="mx-auto max-w-6xl">
-      <p className="admin-kicker">Storage</p>
+      <p className="admin-kicker">02 / Asset storage</p>
       <h1 className="admin-title">Media library</h1>
       <p className="admin-subtitle">
         Optimize screenshots, manage accessibility details, and reuse stable public URLs across projects.
