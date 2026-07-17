@@ -4,12 +4,10 @@ import { useState, useEffect, useCallback } from "react";
 
 export function useDarkMode() {
   const getInitialTheme = useCallback(() => {
-    if (typeof window === "undefined") return "light";
+    if (typeof window === "undefined") return "dark";
     const stored = localStorage.getItem("theme");
     if (stored === "light" || stored === "dark") return stored;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    return "dark";
   }, []);
 
   const [theme, setTheme] = useState(getInitialTheme);
@@ -31,6 +29,14 @@ export function useDarkMode() {
     if (theme === "dark") root.classList.add("dark");
     else root.classList.remove("dark");
     localStorage.setItem("theme", theme);
+
+    const faviconHref = theme === "dark" ? "/favicon-dark.svg" : "/favicon-light.svg";
+    document
+      .querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]')
+      .forEach((link) => {
+        link.setAttribute("href", faviconHref);
+        link.removeAttribute("media");
+      });
   }, [theme]);
 
   const toggleTheme = () =>

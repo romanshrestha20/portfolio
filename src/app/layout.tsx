@@ -1,14 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { IBM_Plex_Serif, Space_Mono } from "next/font/google";
 import "../index.css";
 
-const sans = Space_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
-const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono" });
+const mono = Space_Mono({ subsets: ["latin"], variable: "--font-sans", weight: ["400", "700"] });
+const display = IBM_Plex_Serif({ subsets: ["latin"], variable: "--font-display", weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://romanshrestha.info"),
   title: { default: "Roman Shrestha | Software Engineer", template: "%s | Roman Shrestha" },
   description: "Roman Shrestha is a software engineering student building clear web and mobile products with React, Django, and Kotlin.",
+  icons: {
+    icon: [
+      { url: "/favicon-light.svg", type: "image/svg+xml", media: "(prefers-color-scheme: light)" },
+      { url: "/favicon-dark.svg", type: "image/svg+xml", media: "(prefers-color-scheme: dark)" },
+    ],
+    apple: "/logo192.png",
+  },
   openGraph: {
     title: "Roman Shrestha | Software Engineer",
     description: "Selected full-stack web and mobile product work by Roman Shrestha.",
@@ -21,12 +28,12 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export const viewport: Viewport = { themeColor: "#090b0c", colorScheme: "dark light" };
+export const viewport: Viewport = { themeColor: "#1a1b12", colorScheme: "dark light" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${sans.variable} ${mono.variable}`}>{children}</body>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`${mono.variable} ${display.variable}`}>{children}</body>
     </html>
   );
 }
