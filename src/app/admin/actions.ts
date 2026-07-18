@@ -63,7 +63,40 @@ export async function markMessageRead(formData: FormData) {
   const id = text.parse(formData.get("id"));
   const db = createSupabaseAdminClient();
   if (!db) throw new Error("Supabase is not configured");
-  await db.from("messages").update({ read: true }).eq("id", id);
+  const { error } = await db.from("messages").update({ read: true }).eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin");
+  revalidatePath("/admin/messages");
+}
+
+export async function markAllMessagesRead() {
+  await requireAdmin();
+  const db = createSupabaseAdminClient();
+  if (!db) throw new Error("Supabase is not configured");
+  const { error } = await db.from("messages").update({ read: true }).eq("read", false);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin");
+  revalidatePath("/admin/messages");
+}
+
+export async function deleteMessage(formData: FormData) {
+  await requireAdmin();
+  const id = z.string().uuid().parse(formData.get("id"));
+  const db = createSupabaseAdminClient();
+  if (!db) throw new Error("Supabase is not configured");
+  const { error } = await db.from("messages").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin");
+  revalidatePath("/admin/messages");
+}
+
+export async function clearMessages() {
+  await requireAdmin();
+  const db = createSupabaseAdminClient();
+  if (!db) throw new Error("Supabase is not configured");
+  const { error } = await db.from("messages").delete().not("id", "is", null);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin");
   revalidatePath("/admin/messages");
 }
 

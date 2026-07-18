@@ -156,6 +156,29 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .admin-notice-success { border-color: color-mix(in srgb, var(--signal) 30%, transparent) !important; background: color-mix(in srgb, var(--signal) 5%, transparent); color: var(--signal); }
 .admin-selected { border-color: var(--signal) !important; background: color-mix(in srgb, var(--signal) 6%, transparent); color: var(--signal); }
 .admin-dialog { border-color: var(--signal-line) !important; background: var(--signal-surface); }
+.admin-inline-confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .5rem;
+  animation: admin-confirm-in .14s ease-out;
+}
+.admin-inline-confirm--compact { flex-wrap: nowrap; }
+.admin-inline-confirm__copy {
+  max-width: 18rem;
+  margin-right: .35rem;
+  color: var(--admin-muted);
+  font-size: 9px;
+  line-height: 1.5;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+@keyframes admin-confirm-in {
+  from { opacity: 0; transform: translateX(5px); }
+  to { opacity: 1; transform: translateX(0); }
+}
 .admin-live-dot { background: var(--signal); box-shadow: 0 0 10px var(--signal); }
 .admin-checkbox { accent-color: var(--signal); }
 .media-stat { display: flex; min-height: 96px; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--admin-line); padding: 1rem; }
