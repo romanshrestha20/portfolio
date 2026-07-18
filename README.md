@@ -411,9 +411,20 @@ The API:
 1. Validates the payload with Zod.
 2. Rejects invalid submissions.
 3. Stores valid submissions in `messages`.
-4. Makes them available under `/admin/messages`.
+4. Sends an email notification through Resend when email credentials are configured.
+5. Makes them available under `/admin/messages`.
 
-When Supabase is not configured, production contact requests fail safely instead of exposing credentials or silently discarding messages.
+Database storage is the source of truth. If Resend is unavailable or not configured, the saved message remains available in the admin inbox. When Supabase is not configured, production contact requests fail safely instead of exposing credentials or silently discarding messages.
+
+To enable notifications, create a Resend API key, verify a sending domain, and configure:
+
+```text
+RESEND_API_KEY
+CONTACT_EMAIL_FROM
+CONTACT_EMAIL_TO
+```
+
+`CONTACT_EMAIL_FROM` must use the domain verified in Resend. `CONTACT_EMAIL_TO` is optional and falls back to `ADMIN_EMAIL`. Notification emails set the visitor's address as `Reply-To`, so replying from your inbox responds directly to them.
 
 ## Security model
 
@@ -461,7 +472,7 @@ The application requires a Next.js server runtime. Static GitHub Pages hosting c
 
 1. Import the GitHub repository into Vercel.
 2. Confirm that Vercel detects Next.js.
-3. Add all four environment variables.
+3. Add the Supabase, admin, and Resend environment variables.
 4. Deploy.
 5. Test `/admin/login`, project publishing, media upload, and contact submission.
 6. Add `romanshrestha.info` under project domains.
@@ -474,6 +485,9 @@ NEXT_PUBLIC_SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 SUPABASE_SECRET_KEY
 ADMIN_EMAIL
+RESEND_API_KEY
+CONTACT_EMAIL_FROM
+CONTACT_EMAIL_TO
 ```
 
 After deployment, set the Supabase Authentication Site URL to the production domain.

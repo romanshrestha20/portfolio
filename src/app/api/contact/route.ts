@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { sendContactNotification } from "@/lib/contact-email";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 const messageSchema = z.object({
@@ -21,7 +22,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Contact service is not configured" }, { status: 503 });
   }
 
-  const { error } = await db.from("messages").insert(result.data);
+  const { data: savedMessage, error } = await db
+    .from("messages")
+    .insert(result.data)
+    .select("id")
+    .single();
   if (error) return NextResponse.json({ error: "Could not save message" }, { status: 500 });
+
+  await sendContactNotification({ ...result.data, id: savedMessage.id });
   return NextResponse.json({ ok: true }, { status: 201 });
 }

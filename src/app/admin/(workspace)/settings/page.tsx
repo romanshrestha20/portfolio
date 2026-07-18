@@ -10,6 +10,14 @@ export default async function SettingsPage() {
     ["Database", Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL)],
     ["Server authorization", Boolean(process.env.SUPABASE_SECRET_KEY)],
     ["Admin allowlist", Boolean(process.env.ADMIN_EMAIL)],
+    [
+      "Email notifications",
+      Boolean(
+        process.env.RESEND_API_KEY &&
+        process.env.CONTACT_EMAIL_FROM &&
+        (process.env.CONTACT_EMAIL_TO || process.env.ADMIN_EMAIL)
+      ),
+    ],
   ] as const;
 
   return (
