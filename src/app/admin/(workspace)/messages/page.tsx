@@ -46,10 +46,16 @@ export default async function MessagesPage() {
 
       <div className={messages.length > 0 ? "" : "mt-10 border-t border-white/10"}>
         {messages.map((message) => (
-          <article key={message.id} className={`border-b border-white/10 py-7 transition-opacity ${message.read ? "opacity-60" : ""}`}>
+          <article
+            key={message.id}
+            className={`border-b border-white/10 py-7 transition ${message.read ? "opacity-60" : "admin-message-unread"}`}
+          >
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p className="font-semibold text-white">{message.name}</p>
+                <div className="flex items-center gap-3">
+                  <p className="font-semibold text-white">{message.name}</p>
+                  {!message.read && <span className="signal-status signal-status-active">New</span>}
+                </div>
                 <a href={`mailto:${message.email}`} className="text-sm text-signal">{message.email}</a>
               </div>
               <div className="flex items-center gap-3">

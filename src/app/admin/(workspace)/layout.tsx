@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { FolderKanban, Gauge, ImageIcon, Inbox, LogOut, Settings } from "lucide-react";
 import { getAdminUser } from "@/lib/auth";
 import { hasSupabaseAdminConfig } from "@/lib/supabase/config";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { signOut } from "../actions";
 import AdminThemeToggle from "@/components/admin/AdminThemeToggle";
 
@@ -16,6 +17,11 @@ export default async function WorkspaceLayout({ children }: { children: React.Re
   if (!hasSupabaseAdminConfig) redirect("/admin/login");
   const user = await getAdminUser();
   if (!user) redirect("/admin/login");
+  const db = createSupabaseAdminClient();
+  const { count: unreadCount = 0 } = db
+    ? await db.from("messages").select("id", { count: "exact", head: true }).eq("read", false)
+    : { count: 0 };
+
   return (
     <div className="admin-shell min-h-screen lg:grid lg:grid-cols-[240px_1fr]">
       <aside className="admin-sidebar border-b p-5 backdrop-blur-sm lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-r lg:p-6">
@@ -28,7 +34,20 @@ export default async function WorkspaceLayout({ children }: { children: React.Re
         </div>
         <p className="mt-5 border-t border-signal-line pt-4 text-[8px] uppercase tracking-[.18em] text-signal">[Workspace / online]</p>
         <nav className="mt-9 flex gap-2 overflow-x-auto lg:flex-col" aria-label="Admin navigation">
-          {nav.map(([label, href, Icon]) => <Link key={href} href={href} className="admin-nav"><Icon className="h-4 w-4" />{label}</Link>)}
+          {nav.map(([label, href, Icon]) => (
+            <Link key={href} href={href} className="admin-nav">
+              <Icon className="h-4 w-4" />
+              <span>{label}</span>
+              {href === "/admin/messages" && Boolean(unreadCount) && (
+                <span
+                  className="admin-nav-badge"
+                  aria-label={`${unreadCount} unread ${unreadCount === 1 ? "message" : "messages"}`}
+                >
+                  {unreadCount! > 99 ? "99+" : unreadCount}
+                </span>
+              )}
+            </Link>
+          ))}
         </nav>
         <div className="mt-8 border-t border-signal-line pt-5">
           <p className="hidden truncate text-[10px] text-signal-muted lg:block">{user.email}</p>
