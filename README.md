@@ -47,7 +47,7 @@ Signal Control is a protected admin workspace available at `/admin`.
 
 It provides:
 
-- Email and password authentication
+- Passwordless email OTP authentication
 - Admin-email allowlisting
 - Project creation and editing
 - Draft and published states
@@ -135,7 +135,7 @@ Browser
 │           └── Bundled projects.js fallback
 │
 └── Signal Control
-    ├── Supabase password authentication
+    ├── Supabase passwordless OTP authentication
     ├── Session cookies refreshed by proxy.ts
     ├── ADMIN_EMAIL authorization
     ├── Next.js Server Actions
@@ -235,6 +235,7 @@ The schema creates:
 - `site_settings`
 - `media_assets`
 - `resume_assets`
+- `personal_details_history`
 - `portfolio-media` Storage bucket
 - Row Level Security configuration
 - Public read policy for portfolio media
@@ -257,16 +258,29 @@ supabase/migrations/20260718_resume_assets.sql
 
 This adds `resume_assets` and permits PDFs in the existing public media bucket.
 
+To record and restore every published personal-details revision, also run:
+
+```text
+supabase/migrations/20260802_personal_details_history.sql
+```
+
+This creates the revision archive and a database trigger that captures changes
+to `site_settings.content.personalDetails`.
+
 Do not run the media migration separately on a fresh project after running the latest `schema.sql`; the current full schema already includes it.
 
 ### Create the admin account
 
 1. Open **Authentication → Users**.
 2. Select **Add user**.
-3. Create a user with an email and strong password.
+3. Create a user with the admin email. A password is not used by the application.
 4. Confirm the user’s email.
 5. Set `ADMIN_EMAIL` to that exact email address.
 6. Disable public registration if the project is only for portfolio administration.
+
+Supabase generates the one-time code and Resend delivers the login email.
+Configure a verified Resend sending domain before production. The login UI
+enforces a 60-second resend cooldown.
 
 ### Obtain API credentials
 
@@ -290,6 +304,8 @@ NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_YOUR_KEY
 SUPABASE_SECRET_KEY=sb_secret_YOUR_KEY
 ADMIN_EMAIL=your-admin-email@example.com
+RESEND_API_KEY=re_YOUR_KEY
+AUTH_EMAIL_FROM=Signal Control <auth@your-verified-domain.example>
 ```
 
 | Variable | Purpose | Browser-visible |
@@ -298,6 +314,8 @@ ADMIN_EMAIL=your-admin-email@example.com
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Authentication and public Supabase client | Yes |
 | `SUPABASE_SECRET_KEY` | Privileged server database and Storage operations | No |
 | `ADMIN_EMAIL` | Restricts admin access to one account | No |
+| `RESEND_API_KEY` | Delivers passwordless login and contact emails | No |
+| `AUTH_EMAIL_FROM` | Verified sender for login emails; falls back to `CONTACT_EMAIL_FROM` | No |
 
 Never:
 
@@ -312,7 +330,9 @@ If a secret key is exposed, rotate it immediately in Supabase and update every d
 
 ### Sign in
 
-Open `/admin/login` and use the account created under Supabase Authentication.
+Open `/admin/login`, enter the configured admin email, and enter the eight-digit
+code delivered by Resend. Supabase generates and verifies the code. It expires
+according to the Supabase Auth settings and cannot be reused after verification.
 
 Successful access requires:
 
@@ -432,6 +452,9 @@ CONTACT_EMAIL_TO
 - Every Server Action performing a mutation calls `requireAdmin()`.
 - Media APIs independently verify the authenticated admin.
 - `ADMIN_EMAIL` provides an additional allowlist beyond authentication.
+- Admin authorization fails closed when `ADMIN_EMAIL` is missing.
+- Magic-link requests do not reveal whether an email is allowlisted.
+- Post-login redirects are limited to local application paths.
 - Database tables have Row Level Security enabled.
 - Browser clients receive only the publishable key.
 - The secret key is restricted to server modules.
@@ -486,6 +509,7 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 SUPABASE_SECRET_KEY
 ADMIN_EMAIL
 RESEND_API_KEY
+AUTH_EMAIL_FROM
 CONTACT_EMAIL_FROM
 CONTACT_EMAIL_TO
 ```
