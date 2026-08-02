@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 const reveal = {
   hidden: { opacity: 0, y: 24 },
@@ -61,11 +62,16 @@ export default function Hero({
           transition={{ duration: 0.9, delay: 0.2 }}
           className="timeline-monitor relative mt-12 h-[38vh] min-h-[290px] lg:col-span-5 lg:mt-0 lg:h-[68vh]"
         >
-          <img
-            src={profileImageUrl}
-            alt={profileImageAlt}
-            className="portrait-image"
-          />
+          <div className="absolute inset-[13px] z-10">
+            <Image
+              src={profileImageUrl}
+              alt={profileImageAlt}
+              fill
+              priority
+              sizes="(max-width: 1023px) 100vw, 42vw"
+              className="portrait-image"
+            />
+          </div>
           <span className="monitor-corner left-3 top-3 border-l border-t" aria-hidden="true" />
           <span className="monitor-corner right-3 top-3 border-r border-t" aria-hidden="true" />
           <span className="monitor-corner bottom-3 right-3 border-b border-r" aria-hidden="true" />

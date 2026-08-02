@@ -89,7 +89,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .timeline-monitor { position: relative; border: 1px solid var(--signal); background: color-mix(in srgb, var(--signal-bg) 87%, black); box-shadow: 0 0 0 5px var(--signal-bg), 0 0 0 6px var(--signal-line), inset 0 0 45px color-mix(in srgb, var(--signal) 7%, transparent); }
 .timeline-monitor::before { content: ""; position: absolute; inset: 12px; z-index: 20; pointer-events: none; border: 1px solid var(--signal-line); background-image: linear-gradient(var(--signal-line) 1px, transparent 1px), linear-gradient(90deg, var(--signal-line) 1px, transparent 1px); background-size: 44px 44px; opacity: .34; }
 .timeline-monitor::after { content: "SUBJECT / R.S. — TEMPORAL ID 0197"; position: absolute; left: 1.5rem; bottom: 1.25rem; z-index: 30; background: var(--signal-bg); padding: .35rem .5rem; color: var(--signal); font-size: 8px; letter-spacing: .16em; }
-.portrait-image { position: absolute; inset: 13px; z-index: 10; height: calc(100% - 26px); width: calc(100% - 26px); object-fit: cover; object-position: center 30%; filter: sepia(.28) saturate(.72) contrast(1.08); mix-blend-mode: luminosity; opacity: .78; }
+.portrait-image { object-fit: cover; object-position: center 30%; filter: sepia(.28) saturate(.72) contrast(1.08); mix-blend-mode: luminosity; opacity: .78; }
 .monitor-corner { position: absolute; z-index: 30; height: 16px; width: 16px; border-color: var(--signal); }
 
 .signal-label { font-family: var(--font-sans), monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .16em; color: var(--signal-muted); }
@@ -149,6 +149,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .admin-subtitle { margin-top: 1rem; max-width: 42rem; font-size: .82rem; line-height: 1.75; color: var(--admin-muted); }
 .admin-nav { display: flex; align-items: center; gap: .7rem; min-width: max-content; padding: .75rem .8rem; border-left: 1px solid transparent; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--admin-muted); transition: background .18s, color .18s, border .18s, transform .18s; }
 .admin-nav:hover { border-color: var(--admin-accent); background: color-mix(in srgb, var(--signal) 6%, transparent); color: var(--admin-accent); transform: translateX(2px); }
+.admin-nav-active { border-color: var(--admin-accent); background: color-mix(in srgb, var(--signal) 6%, transparent); color: var(--admin-accent); }
 .admin-nav-badge { display: inline-flex; min-width: 1.3rem; height: 1.3rem; align-items: center; justify-content: center; margin-left: auto; border: 1px solid color-mix(in srgb, var(--signal) 45%, transparent); background: color-mix(in srgb, var(--signal) 10%, transparent); padding: 0 .3rem; color: var(--admin-accent); font-size: 8px; line-height: 1; letter-spacing: 0; box-shadow: 0 0 12px color-mix(in srgb, var(--signal) 12%, transparent); }
 .admin-message-unread { border-left: 2px solid var(--admin-accent); padding-left: 1rem; background: linear-gradient(90deg, color-mix(in srgb, var(--signal) 6%, transparent), transparent 42%); }
 .admin-form-grid { margin-top: 1.25rem; display: grid; gap: 1.25rem; }
