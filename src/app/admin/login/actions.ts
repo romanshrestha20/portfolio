@@ -8,7 +8,7 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 const emailSchema = z.string().trim().email().max(254);
-const otpSchema = z.string().trim().regex(/^\d{8}$/, "Enter the eight-digit code.");
+const otpSchema = z.string().trim().regex(/^\d{6}$/, "Enter the six-digit code.");
 
 export type LoginState = {
   status: "idle" | "sent" | "error";
@@ -79,7 +79,7 @@ export async function verifyAdminOtp(
   const email = emailSchema.safeParse(formData.get("email"));
   const otp = otpSchema.safeParse(formData.get("otp"));
   if (!email.success || !otp.success) {
-    return { status: "error", message: "Enter the eight-digit code from your email." };
+    return { status: "error", message: "Enter the six-digit code from your email." };
   }
 
   const client = await createSupabaseServerClient();

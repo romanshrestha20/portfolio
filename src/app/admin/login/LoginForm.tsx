@@ -98,10 +98,10 @@ export default function LoginForm({ initialError, next = "/admin" }: LoginFormPr
               name="otp"
               inputMode="numeric"
               autoComplete="one-time-code"
-              pattern="[0-9]{8}"
-              minLength={8}
-              maxLength={8}
-              placeholder="00000000"
+              pattern="[0-9]{6}"
+              minLength={6}
+              maxLength={6}
+              placeholder="000000"
               required
             />
           </span>
