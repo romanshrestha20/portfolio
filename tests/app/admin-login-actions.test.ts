@@ -45,7 +45,7 @@ describe("passwordless admin OTP login", () => {
     vi.unstubAllEnvs();
     vi.stubEnv("ADMIN_EMAIL", "owner@example.com");
     mocks.generateLink.mockReset().mockResolvedValue({
-      data: { properties: { email_otp: "12345678" } },
+      data: { properties: { email_otp: "123456" } },
       error: null,
     });
     mocks.sendAdminOtpEmail.mockReset().mockResolvedValue("sent");
@@ -79,24 +79,24 @@ describe("passwordless admin OTP login", () => {
     expect(mocks.sendAdminOtpEmail).not.toHaveBeenCalled();
   });
 
-  it("generates and emails an eight-digit OTP to the admin", async () => {
+  it("generates and emails a six-digit OTP to the admin", async () => {
     await expect(requestAdminOtp(initialLoginState, requestForm("OWNER@example.com"))).resolves.toEqual({
       status: "sent",
       email: "OWNER@example.com",
     });
     expect(mocks.generateLink).toHaveBeenCalledWith({ type: "magiclink", email: "OWNER@example.com" });
-    expect(mocks.sendAdminOtpEmail).toHaveBeenCalledWith("OWNER@example.com", "12345678");
+    expect(mocks.sendAdminOtpEmail).toHaveBeenCalledWith("OWNER@example.com", "123456");
   });
 
   it("verifies the OTP and redirects to a safe admin path", async () => {
-    await verifyAdminOtp(initialVerifyState, verifyForm("owner@example.com", "12345678", "/admin/projects"));
-    expect(mocks.verifyOtp).toHaveBeenCalledWith({ email: "owner@example.com", token: "12345678", type: "email" });
+    await verifyAdminOtp(initialVerifyState, verifyForm("owner@example.com", "123456", "/admin/projects"));
+    expect(mocks.verifyOtp).toHaveBeenCalledWith({ email: "owner@example.com", token: "123456", type: "email" });
     expect(mocks.redirect).toHaveBeenCalledWith("/admin/projects");
   });
 
   it("rejects an invalid OTP without redirecting", async () => {
     mocks.verifyOtp.mockResolvedValue({ error: new Error("expired") });
-    await expect(verifyAdminOtp(initialVerifyState, verifyForm("owner@example.com", "00000000"))).resolves.toEqual({
+    await expect(verifyAdminOtp(initialVerifyState, verifyForm("owner@example.com", "000000"))).resolves.toEqual({
       status: "error",
       message: "That code is invalid or has expired. Request a new one.",
     });
@@ -105,7 +105,7 @@ describe("passwordless admin OTP login", () => {
 
   it("signs out a verified account outside the admin allowlist", async () => {
     mocks.getUser.mockResolvedValue({ data: { user: { id: "user-2", email: "someone@example.com" } } });
-    await expect(verifyAdminOtp(initialVerifyState, verifyForm("someone@example.com", "12345678"))).resolves.toEqual({
+    await expect(verifyAdminOtp(initialVerifyState, verifyForm("someone@example.com", "123456"))).resolves.toEqual({
       status: "error",
       message: "This account is not authorized for the admin workspace.",
     });

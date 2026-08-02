@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState } from "react";
-import { ArrowRight, CheckCircle2, KeyRound, Mail, RotateCcw } from "lucide-react";
+import { ArrowRight, CheckCircle2, RotateCcw } from "lucide-react";
 import {
   requestAdminOtp,
   verifyAdminOtp,
@@ -46,24 +46,21 @@ export default function LoginForm({ initialError, next = "/admin" }: LoginFormPr
       <form action={requestAction} className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
         <label className="flex flex-col gap-2 signal-label">
           Admin email
-          <span className="relative ">
-            <Mail className="absolute w-4 h-4 -translate-y-1/2 pointer-events-none left-4 top-1/2 text-signal-muted" aria-hidden="true" />
-            <input
-              className="signal-control signal-control-icon"
-              type="email"
-              name="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              autoComplete="email"
-              placeholder="you@example.com"
-              required
-            />
-          </span>
+          <input
+            className="signal-control"
+            type="email"
+            name="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            autoComplete="email"
+            placeholder="you@example.com"
+            required
+          />
         </label>
         {requestState.message ? (
           <p className="text-sm text-red-400" role="alert">{requestState.message}</p>
         ) : (
-          <p className="text-xs leading-5 text-signal-muted">We will email an eight-digit one-time code. No password is required.</p>
+          <p className="text-xs leading-5 text-signal-muted">We will email a six-digit one-time code. No password is required.</p>
         )}
         <button className="w-full signal-button signal-button-primary sm:w-auto" disabled={requesting}>
           {requesting ? "Sending code…" : "Email verification code"}
@@ -80,7 +77,7 @@ export default function LoginForm({ initialError, next = "/admin" }: LoginFormPr
           <CheckCircle2 className="w-4 h-4 text-signal" /> Code sent
         </p>
         <p className="mt-2 text-xs leading-5 text-signal-muted">
-          Enter the eight-digit code sent to {submittedEmail}. It can only be used once.
+          Enter the six-digit code sent to {submittedEmail}. It can only be used once.
         </p>
       </div>
 
@@ -89,22 +86,19 @@ export default function LoginForm({ initialError, next = "/admin" }: LoginFormPr
         <input type="hidden" name="next" value={next} />
         <label className="flex flex-col gap-2 signal-label">
           Verification code
-          <span className="relative">
-            <KeyRound className="absolute w-4 h-4 -translate-y-1/2 pointer-events-none left-4 top-1/2 text-signal-muted" aria-hidden="true" />
-            <input
-              ref={otpRef}
-              className="signal-control signal-control-icon font-mono text-lg tracking-[.3em]"
-              type="text"
-              name="otp"
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              pattern="[0-9]{6}"
-              minLength={6}
-              maxLength={6}
-              placeholder="000000"
-              required
-            />
-          </span>
+          <input
+            ref={otpRef}
+            className="signal-control font-mono text-lg tracking-[.3em]"
+            type="text"
+            name="otp"
+            inputMode="numeric"
+            autoComplete="one-time-code"
+            pattern="[0-9]{6}"
+            minLength={6}
+            maxLength={6}
+            placeholder="000000"
+            required
+          />
         </label>
         {verifyState.message && <p className="text-sm text-red-400" role="alert">{verifyState.message}</p>}
         <button className="w-full signal-button signal-button-primary sm:w-auto" disabled={verifying}>

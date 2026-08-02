@@ -101,7 +101,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .signal-icon-button:hover { transform: translate(-1px, -1px); border-color: var(--signal); color: var(--signal); box-shadow: 2px 2px 0 var(--signal); }
 .signal-button:disabled, .signal-icon-button:disabled { cursor: wait; opacity: .55; transform: none; box-shadow: none; }
 .signal-control { width: 100%; border: 1px solid var(--signal-line); background: color-mix(in srgb, var(--signal) 2%, transparent); padding: .8rem .9rem; color: var(--signal-text); font-family: var(--font-sans), monospace; font-size: .8rem; line-height: 1.5; border-radius: 0; }
-.signal-control-icon { padding-left: 3rem; }
 .signal-control:focus { border-color: var(--signal); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 7%, transparent), inset 0 0 18px color-mix(in srgb, var(--signal) 3%, transparent); }
 .signal-control::placeholder { color: color-mix(in srgb, var(--signal-muted) 75%, transparent); }
 .signal-status { width: max-content; border: 1px solid var(--signal-line); padding: .3rem .6rem; font-size: 8px; text-transform: uppercase; letter-spacing: .12em; color: var(--signal-muted); }

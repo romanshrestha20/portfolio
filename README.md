@@ -330,7 +330,7 @@ If a secret key is exposed, rotate it immediately in Supabase and update every d
 
 ### Sign in
 
-Open `/admin/login`, enter the configured admin email, and enter the eight-digit
+Open `/admin/login`, enter the configured admin email, and enter the six-digit
 code delivered by Resend. Supabase generates and verifies the code. It expires
 according to the Supabase Auth settings and cannot be reused after verification.
 
