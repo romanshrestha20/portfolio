@@ -2,12 +2,16 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function ProjectCard({ project, index, onOpenCaseStudy }) {
+export default function ProjectCard({ project, index }) {
+  const projectHref = `/projects/${project.slug ?? project.id}`;
+
   return (
     <motion.article initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .12 }} className="project-row grid gap-7 border-t border-signal-line py-12 lg:grid-cols-12 lg:gap-12 lg:py-20">
       <div className={`project-media relative aspect-[16/11] lg:col-span-7 ${index % 2 ? "lg:order-2" : ""}`}>
-        <img src={project.image} alt={`${project.name} interface`} loading="lazy" className="h-full w-full object-cover" />
+        <Image src={project.image} alt={`${project.name} interface`} fill sizes="(max-width: 1023px) 100vw, 58vw" className="object-cover" />
         <span className="absolute left-4 top-4 z-20 bg-signal px-3 py-2 font-mono text-[9px] font-bold uppercase tracking-[.16em] text-signal-bg">CASE FILE / 0{index + 1}</span>
       </div>
 
@@ -22,7 +26,7 @@ export default function ProjectCard({ project, index, onOpenCaseStudy }) {
         </div>
 
         <div className="mt-10 flex flex-wrap gap-3">
-          <button type="button" onClick={() => onOpenCaseStudy(project)} className="signal-button signal-button-primary">Read case study <ArrowUpRight className="h-4 w-4" /></button>
+          <Link href={projectHref} className="signal-button signal-button-primary">Read case study <ArrowUpRight className="h-4 w-4" /></Link>
           {project.links.live && <a href={project.links.live} target="_blank" rel="noreferrer" className="signal-button">Live site <ArrowUpRight className="h-4 w-4" /></a>}
           {project.links.code && <a href={project.links.code} target="_blank" rel="noreferrer" className="signal-button" aria-label={`${project.name} source code`}><Github className="h-4 w-4" /></a>}
         </div>

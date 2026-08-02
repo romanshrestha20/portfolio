@@ -1,12 +1,8 @@
-"use client";
-
-import { useState } from "react";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import ProjectCard from "./ProjectCard";
-import ProjectCaseStudyModal from "./ProjectCaseStudyModal";
 
 export default function Projects({ projects }) {
-  const [selectedProject, setSelectedProject] = useState(null);
   const featured = projects.slice(0, 3);
   const archive = projects.slice(3);
 
@@ -22,7 +18,7 @@ export default function Projects({ projects }) {
         </div>
 
         <div>
-          {featured.map((project, index) => <ProjectCard key={project.id} project={project} index={index} onOpenCaseStudy={setSelectedProject} />)}
+          {featured.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}
         </div>
 
         {archive.length > 0 && (
@@ -30,17 +26,16 @@ export default function Projects({ projects }) {
             <p className="signal-kicker mb-6">More from the studio</p>
             <div className="border-t border-signal-line">
               {archive.map((project) => (
-                <button key={project.id} type="button" onClick={() => setSelectedProject(project)} className="group grid w-full gap-3 border-b border-signal-line py-6 text-left transition hover:pl-3 sm:grid-cols-[1fr_1fr_auto] sm:items-center">
+                <Link key={project.id} href={`/projects/${project.slug ?? project.id}`} className="group grid w-full gap-3 border-b border-signal-line py-6 text-left transition hover:pl-3 sm:grid-cols-[1fr_1fr_auto] sm:items-center">
                   <span className="text-2xl font-semibold tracking-[-.04em] text-signal-text">{project.name}</span>
                   <span className="text-sm text-signal-muted">{project.tags.join(" · ")}</span>
                   <ArrowUpRight className="h-5 w-5 text-signal transition group-hover:rotate-45" />
-                </button>
+                </Link>
               ))}
             </div>
           </div>
         )}
       </div>
-      <ProjectCaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   );
 }

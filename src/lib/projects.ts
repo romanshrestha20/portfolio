@@ -21,6 +21,22 @@ export async function getPublishedProjects(): Promise<Project[]> {
   return (data as ProjectRow[]).map(rowToProject);
 }
 
+export async function getPublishedProjectBySlug(slug: string): Promise<Project | null> {
+  const fallback = (fallbackProjects as Project[]).find((project) => (project.slug ?? project.id) === slug) ?? null;
+  const db = createSupabaseAdminClient();
+  if (!db) return fallback;
+
+  const { data, error } = await db
+    .from("projects")
+    .select("*")
+    .eq("slug", slug)
+    .eq("status", "published")
+    .maybeSingle();
+
+  if (error) return fallback;
+  return data ? rowToProject(data as ProjectRow) : fallback;
+}
+
 export async function getAllProjects(): Promise<Project[]> {
   const db = createSupabaseAdminClient();
   if (!db) return fallbackProjects.map((project, index) => ({ ...project, status: "published" as const, featured: index < 3, displayOrder: index }));
