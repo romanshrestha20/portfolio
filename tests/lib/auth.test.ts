@@ -8,7 +8,12 @@ vi.mock("@/lib/supabase/server", () => ({
   createSupabaseServerClient: mocks.createSupabaseServerClient,
 }));
 
-import { getAdminUser, requireAdmin } from "@/lib/auth";
+import {
+  getAdminUser,
+  isAdminEmail,
+  requireAdmin,
+  safeAdminRedirect,
+} from "@/lib/auth";
 
 function clientWithUser(user: { id: string; email?: string } | null) {
   return {
@@ -30,11 +35,11 @@ describe("admin authorization", () => {
     await expect(getAdminUser()).resolves.toBeNull();
   });
 
-  it("allows a signed-in user when no email restriction is configured", async () => {
+  it("fails closed when no admin email is configured", async () => {
     const user = { id: "user-1", email: "owner@example.com" };
     mocks.createSupabaseServerClient.mockResolvedValue(clientWithUser(user));
 
-    await expect(getAdminUser()).resolves.toBe(user);
+    await expect(getAdminUser()).resolves.toBeNull();
   });
 
   it("compares the configured admin email without case sensitivity", async () => {
@@ -52,5 +57,27 @@ describe("admin authorization", () => {
     );
 
     await expect(requireAdmin()).rejects.toThrow("Unauthorized");
+  });
+});
+
+describe("admin auth helpers", () => {
+  beforeEach(() => {
+    vi.unstubAllEnvs();
+  });
+
+  it("normalizes whitespace and casing in the admin allowlist", () => {
+    vi.stubEnv("ADMIN_EMAIL", " OWNER@EXAMPLE.COM ");
+
+    expect(isAdminEmail("owner@example.com")).toBe(true);
+    expect(isAdminEmail("someone@example.com")).toBe(false);
+  });
+
+  it.each([
+    ["https://evil.example", "/admin"],
+    ["//evil.example/admin", "/admin"],
+    ["javascript:alert(1)", "/admin"],
+    ["/admin/projects?status=draft", "/admin/projects?status=draft"],
+  ])("sanitizes a requested post-login path", (value, expected) => {
+    expect(safeAdminRedirect(value)).toBe(expected);
   });
 });
