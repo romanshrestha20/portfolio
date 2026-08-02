@@ -7,8 +7,13 @@ import { requireAdmin } from "@/lib/auth";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { projects as fallbackProjects } from "@/data/projects";
+import type { PersonalDetails } from "@/types/site-settings";
 
 const text = z.string().trim().min(1);
+const webUrl = z.string().trim().url().max(300).refine((value) => {
+  const protocol = new URL(value).protocol;
+  return protocol === "http:" || protocol === "https:";
+}, "Use an http or https URL");
 const projectSchema = z.object({
   id: text, name: text, slug: text.regex(/^[a-z0-9-]+$/), issue: text, dek: text,
   image: text, tags: text, role: text, focus: text, format: text,
@@ -18,6 +23,97 @@ const projectSchema = z.object({
 });
 
 export type SaveProjectState = { status: "idle" | "success" | "error"; message?: string };
+export type SavePersonalDetailsState = { status: "idle" | "success" | "error"; message?: string };
+export type RestorePersonalDetailsState = { status: "idle" | "success" | "error"; message?: string };
+
+const personalDetailsSchema = z.object({
+  name: text.max(80),
+  role: text.max(100),
+  location: text.max(100),
+  availability: text.max(120),
+  heroIntro: text.max(320),
+  aboutIntro: text.max(500),
+  aboutBody: text.max(1200),
+  study: text.max(160),
+  focus: text.max(160),
+  outsideCode: text.max(200),
+  email: z.string().trim().email().max(160),
+  linkedinUrl: webUrl,
+  githubUrl: webUrl,
+  coordinates: text.max(100),
+  contactPrompt: text.max(240),
+  responseTime: text.max(300),
+  footerNote: text.max(120),
+});
+
+export async function savePersonalDetails(
+  _previousState: SavePersonalDetailsState,
+  formData: FormData
+): Promise<SavePersonalDetailsState> {
+  try {
+    await requireAdmin();
+    const details = personalDetailsSchema.parse(Object.fromEntries(formData)) as PersonalDetails;
+    const db = createSupabaseAdminClient();
+    if (!db) return { status: "error", message: "Supabase is not configured." };
+
+    const { data: current } = await db.from("site_settings").select("content").eq("id", "main").maybeSingle();
+    const content = current?.content && typeof current.content === "object" && !Array.isArray(current.content)
+      ? current.content as Record<string, unknown>
+      : {};
+    const { error } = await db.from("site_settings").upsert({
+      id: "main",
+      content: { ...content, personalDetails: details },
+      updated_at: new Date().toISOString(),
+    });
+    if (error) return { status: "error", message: error.message };
+
+    revalidatePath("/");
+    revalidatePath("/admin/settings");
+    return { status: "success", message: "Personal details published." };
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return { status: "error", message: "Check every field and enter valid email and profile URLs." };
+    }
+    return { status: "error", message: error instanceof Error ? error.message : "Personal details could not be saved." };
+  }
+}
+
+export async function restorePersonalDetails(
+  _previousState: RestorePersonalDetailsState,
+  formData: FormData
+): Promise<RestorePersonalDetailsState> {
+  try {
+    await requireAdmin();
+    const versionId = z.string().uuid().parse(formData.get("versionId"));
+    const db = createSupabaseAdminClient();
+    if (!db) return { status: "error", message: "Supabase is not configured." };
+
+    const [{ data: version, error: versionError }, { data: current }] = await Promise.all([
+      db.from("personal_details_history").select("details").eq("id", versionId).maybeSingle(),
+      db.from("site_settings").select("content").eq("id", "main").maybeSingle(),
+    ]);
+    if (versionError || !version) {
+      return { status: "error", message: versionError?.message ?? "That version no longer exists." };
+    }
+
+    const details = personalDetailsSchema.parse(version.details) as PersonalDetails;
+    const content = current?.content && typeof current.content === "object" && !Array.isArray(current.content)
+      ? current.content as Record<string, unknown>
+      : {};
+    const { error } = await db.from("site_settings").upsert({
+      id: "main",
+      content: { ...content, personalDetails: details },
+      updated_at: new Date().toISOString(),
+    });
+    if (error) return { status: "error", message: error.message };
+
+    revalidatePath("/");
+    revalidatePath("/admin/settings");
+    return { status: "success", message: "Version restored and published as a new revision." };
+  } catch (error) {
+    return { status: "error", message: error instanceof Error ? error.message : "The version could not be restored." };
+  }
+}
 
 export async function saveProject(_previousState: SaveProjectState, formData: FormData): Promise<SaveProjectState> {
   try {

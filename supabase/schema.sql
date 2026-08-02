@@ -40,11 +40,39 @@ create table if not exists public.resume_assets (
   size_bytes bigint not null check (size_bytes > 0 and size_bytes <= 12000000),
   created_at timestamptz not null default now()
 );
+create table if not exists public.personal_details_history (
+  id uuid primary key default gen_random_uuid(),
+  details jsonb not null,
+  created_at timestamptz not null default now()
+);
 alter table public.projects enable row level security;
 alter table public.messages enable row level security;
 alter table public.site_settings enable row level security;
 alter table public.media_assets enable row level security;
 alter table public.resume_assets enable row level security;
+alter table public.personal_details_history enable row level security;
+create or replace function public.capture_personal_details_history()
+returns trigger
+language plpgsql
+set search_path = public
+as $$
+begin
+  if new.id = 'main' and new.content ? 'personalDetails' then
+    if tg_op = 'INSERT' then
+      insert into public.personal_details_history (details)
+      values (new.content -> 'personalDetails');
+    elsif old.content -> 'personalDetails' is distinct from new.content -> 'personalDetails' then
+      insert into public.personal_details_history (details)
+      values (new.content -> 'personalDetails');
+    end if;
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists site_settings_personal_details_history on public.site_settings;
+create trigger site_settings_personal_details_history
+after insert or update of content on public.site_settings
+for each row execute function public.capture_personal_details_history();
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('portfolio-media', 'portfolio-media', true, 12000000, array['image/png','image/jpeg','image/webp','image/avif','application/pdf'])
 on conflict (id) do update set

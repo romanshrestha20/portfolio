@@ -13,6 +13,7 @@ import { hasSupabaseAdminConfig } from "@/lib/supabase/config";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { signOut } from "../actions";
 import AdminThemeToggle from "@/components/admin/AdminThemeToggle";
+import { getPortfolioSettings } from "@/lib/site-settings";
 
 const nav = [
   ["Overview", "/admin", Gauge],
@@ -31,12 +32,14 @@ export default async function WorkspaceLayout({
   const user = await getAdminUser();
   if (!user) redirect("/admin/login");
   const db = createSupabaseAdminClient();
-  const { count: unreadCount = 0 } = db
-    ? await db
+  const [{ count: unreadCount = 0 }, settings] = await Promise.all([
+    db ? db
         .from("messages")
         .select("id", { count: "exact", head: true })
         .eq("read", false)
-    : { count: 0 };
+      : Promise.resolve({ count: 0 }),
+    getPortfolioSettings(),
+  ]);
 
   return (
     <div className="admin-shell min-h-screen lg:grid lg:grid-cols-[240px_1fr]">
@@ -45,7 +48,7 @@ export default async function WorkspaceLayout({
           <Link
             href="/"
             className="flex items-center gap-3 group"
-            aria-label="Return to Roman Shrestha portfolio"
+            aria-label={`Return to ${settings.personalDetails.name} portfolio`}
           >
             <span className="size-9 shrink-0" aria-hidden="true">
               <img
@@ -60,7 +63,7 @@ export default async function WorkspaceLayout({
               />
             </span>
             <span className="text-[10px] font-bold uppercase tracking-[.13em] text-signal-text">
-              Roman Shrestha
+              {settings.personalDetails.name}
             </span>
           </Link>
           <AdminThemeToggle />
