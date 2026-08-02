@@ -1,16 +1,19 @@
 import { CheckCircle2 } from "lucide-react";
 import ResumeManager from "@/components/admin/ResumeManager";
 import PersonalDetailsEditor from "@/components/admin/PersonalDetailsEditor";
+import ProfileImageManager from "@/components/admin/ProfileImageManager";
+import { getMediaAssets } from "@/lib/media";
 import { getResumeAssets } from "@/lib/resumes";
 import { getPersonalDetailsHistory, getPortfolioSettings } from "@/lib/site-settings";
 
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
-  const [resumes, settings, history] = await Promise.all([
+  const [resumes, settings, history, media] = await Promise.all([
     getResumeAssets(),
     getPortfolioSettings(),
     getPersonalDetailsHistory(),
+    getMediaAssets(),
   ]);
   const items = [
     ["Database", Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL)],
@@ -34,8 +37,15 @@ export default async function SettingsPage() {
 
       <section className="mt-12 border-t border-white/10 pt-8">
         <p className="admin-kicker">Public profile</p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-[-.04em] text-white">Personal details</h2>
-        <p className="mt-3 max-w-2xl text-sm leading-7 text-zinc-500">These values power the navigation, hero, about, contact, and footer sections of the live site.</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-[-.04em] text-white">Profile image</h2>
+        <p className="mt-3 max-w-2xl text-sm leading-7 text-zinc-500">Control the portrait shown in the homepage hero.</p>
+        <ProfileImageManager initialProfile={settings.profile} assets={media.assets} libraryError={media.error} />
+
+        <div className="mt-16 border-t border-white/10 pt-8">
+          <p className="admin-kicker">Profile content</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-[-.04em] text-white">Personal details</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-zinc-500">These values power the navigation, hero, about, contact, and footer sections of the live site.</p>
+        </div>
         <PersonalDetailsEditor
           details={settings.personalDetails}
           history={history.versions}

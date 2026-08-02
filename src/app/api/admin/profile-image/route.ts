@@ -41,6 +41,7 @@ export async function PATCH(request: Request) {
 
   revalidatePath("/");
   revalidatePath("/admin/media");
+  revalidatePath("/admin/settings");
   return NextResponse.json({ assetId: asset.id, imageUrl: asset.public_url });
 }
 
@@ -64,5 +65,6 @@ export async function DELETE() {
 
   revalidatePath("/");
   revalidatePath("/admin/media");
+  revalidatePath("/admin/settings");
   return NextResponse.json({ imageUrl: "/profile-portrait.png" });
 }
