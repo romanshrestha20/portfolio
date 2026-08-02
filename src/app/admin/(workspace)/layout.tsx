@@ -1,27 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
-  FolderKanban,
-  Gauge,
-  ImageIcon,
-  Inbox,
   LogOut,
-  Settings,
 } from "lucide-react";
 import { getAdminUser } from "@/lib/auth";
 import { hasSupabaseAdminConfig } from "@/lib/supabase/config";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { signOut } from "../actions";
 import AdminThemeToggle from "@/components/admin/AdminThemeToggle";
+import AdminNavigation from "@/components/admin/AdminNavigation";
 import { getPortfolioSettings } from "@/lib/site-settings";
 
-const nav = [
-  ["Overview", "/admin", Gauge],
-  ["Projects", "/admin/projects", FolderKanban],
-  ["Media", "/admin/media", ImageIcon],
-  ["Messages", "/admin/messages", Inbox],
-  ["Settings", "/admin/settings", Settings],
-] as const;
+export const metadata: Metadata = {
+  robots: { index: false, follow: false, nocache: true },
+};
 
 export default async function WorkspaceLayout({
   children,
@@ -71,25 +64,7 @@ export default async function WorkspaceLayout({
         <p className="mt-5 border-t border-signal-line pt-4 text-[8px] uppercase tracking-[.18em] text-signal">
           [Workspace / online]
         </p>
-        <nav
-          className="flex gap-2 overflow-x-auto mt-9 lg:flex-col"
-          aria-label="Admin navigation"
-        >
-          {nav.map(([label, href, Icon]) => (
-            <Link key={href} href={href} className="admin-nav">
-              <Icon className="w-4 h-4" />
-              <span>{label}</span>
-              {href === "/admin/messages" && Boolean(unreadCount) && (
-                <span
-                  className="admin-nav-badge"
-                  aria-label={`${unreadCount} unread ${unreadCount === 1 ? "message" : "messages"}`}
-                >
-                  {unreadCount! > 99 ? "99+" : unreadCount}
-                </span>
-              )}
-            </Link>
-          ))}
-        </nav>
+        <AdminNavigation unreadCount={unreadCount ?? 0} />
         <div className="pt-5 mt-8 border-t border-signal-line">
           <p className="hidden truncate text-[10px] text-signal-muted lg:block">
             {user.email}

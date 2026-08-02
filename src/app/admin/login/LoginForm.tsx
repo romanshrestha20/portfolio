@@ -43,11 +43,11 @@ export default function LoginForm({ initialError, next = "/admin" }: LoginFormPr
 
   if (!codeSent) {
     return (
-      <form action={requestAction} className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
+      <form action={requestAction} className="mt-9 min-w-0 space-y-5 sm:mt-10 sm:space-y-6">
         <label className="flex flex-col gap-2 signal-label">
           Admin email
           <input
-            className="signal-control"
+            className="signal-control min-w-0"
             type="email"
             name="email"
             value={email}
@@ -71,7 +71,7 @@ export default function LoginForm({ initialError, next = "/admin" }: LoginFormPr
   }
 
   return (
-    <div className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
+    <div className="mt-9 min-w-0 space-y-5 sm:mt-10 sm:space-y-6">
       <div className="py-1 pl-4 border-l-2 border-signal" role="status" aria-live="polite">
         <p className="flex items-center gap-2 text-sm font-semibold text-signal-text">
           <CheckCircle2 className="w-4 h-4 text-signal" /> Code sent
@@ -88,7 +88,7 @@ export default function LoginForm({ initialError, next = "/admin" }: LoginFormPr
           Verification code
           <input
             ref={otpRef}
-            className="signal-control font-mono text-lg tracking-[.3em]"
+            className="signal-control min-w-0 font-mono text-lg tracking-[.28em]"
             type="text"
             name="otp"
             inputMode="numeric"
