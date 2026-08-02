@@ -15,21 +15,21 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ name = "Roman Shrestha" }) {
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useDarkMode();
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-signal-line bg-signal-bg/90 backdrop-blur-xl" aria-label="Main navigation">
       <div className="mx-auto flex h-20 max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">
-        <a href="#home" className="flex items-center gap-3 group" aria-label="Roman Shrestha, home">
+        <a href="#home" className="flex items-center gap-3 group" aria-label={`${name}, home`}>
           <img
             src={theme === "dark" ? "/favicon-dark.svg" : "/favicon-light.svg"}
             alt=""
             aria-hidden="true"
             className="size-9 shrink-0"
           />
-          <span className="text-[11px] font-bold uppercase tracking-[.13em] text-signal-text">Roman Shrestha</span>
+          <span className="text-[11px] font-bold uppercase tracking-[.13em] text-signal-text">{name}</span>
         </a>
 
         <div className="items-center hidden gap-8 md:flex">

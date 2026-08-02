@@ -12,6 +12,11 @@ export default function Hero({
   profileImageUrl = "/profile-portrait.png",
   profileImageAlt = "Roman Shrestha",
   resumeUrl = "https://tinyurl.com/ycyjhkbk",
+  name = "Roman Shrestha",
+  role = "Software Engineer",
+  location = "Helsinki, Finland",
+  availability = "Available for internship",
+  intro = "Full-stack web and mobile products—engineered for clear flows, dependable systems, and actual people.",
 }) {
   const reduceMotion = useReducedMotion();
 
@@ -28,17 +33,17 @@ export default function Hero({
         >
           <motion.div variants={reveal} className="signal-label mb-7 flex items-center gap-3 text-signal">
             <span className="studio-mark">●</span>
-            [VARIANT STATUS: UNPRUNED / AVAIL. FOR INTERNSHIP]
+            [VARIANT STATUS: UNPRUNED / {availability}]
           </motion.div>
 
           <motion.p variants={reveal} className="mb-4 text-xs font-bold uppercase tracking-[.18em] text-signal-muted sm:text-sm">
-            Roman Shrestha / Software Engineer / Helsinki
+            {name} / {role} / {location}
           </motion.p>
           <motion.h1 variants={reveal} className="studio-hero-title max-w-[9ch] text-[clamp(3.6rem,15vw,6rem)] leading-[0.82] tracking-[-0.065em] text-signal-text lg:text-[clamp(5rem,8vw,9rem)]">
             Building<br /><span className="studio-italic">useful signals.</span>
           </motion.h1>
           <motion.p variants={reveal} className="mt-7 max-w-xl text-sm leading-7 text-signal-muted sm:text-base">
-            Full-stack web and mobile products—engineered for clear flows, dependable systems, and actual people.
+            {intro}
           </motion.p>
           <motion.div variants={reveal} className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a href="#projects" className="signal-button signal-button-primary">
