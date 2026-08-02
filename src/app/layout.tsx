@@ -28,15 +28,15 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/",
       siteName: personalDetails.name,
       images: [{
-        url: "/share-preview.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: `${personalDetails.name}'s portfolio homepage`,
-        type: "image/jpeg",
+        type: "image/png",
       }],
       type: "website",
     },
-    twitter: { card: "summary_large_image", images: ["/share-preview.jpg"] },
+    twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
     alternates: { canonical: "/" },
   };
 }
