@@ -2,7 +2,6 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "class",
-
   theme: {
     extend: {
       colors: {
@@ -15,63 +14,52 @@ module.exports = {
           line: "var(--signal-line)",
         },
         primary: {
-          light: "#c9332e",
-          dark: "#ff8b80",
+          light: "#6d28d9",
+          dark: "#8b5cf6",
         },
-
         accent: {
-          light: "#1f4dd8",
-          dark: "#8fb4ff",
+          light: "#2563eb",
+          dark: "#60a5fa",
         },
-
         background: {
-          light: "#f5efdf",
-          dark: "#121315",
+          light: "#f8f8fa",
+          dark: "#09090b",
         },
-
         surface: {
-          light: "#fff9ef",
-          dark: "#1b1d21",
+          light: "#ffffff",
+          dark: "#111114",
         },
-
         text: {
-          light: "#121212",
-          dark: "#f5efdf",
+          light: "#111114",
+          dark: "#f5f5f7",
         },
-
         textSecondary: {
-          light: "#51483e",
-          dark: "#d8cebe",
+          light: "#60606b",
+          dark: "#a1a1aa",
         },
-
         border: {
-          light: "#1c1a17",
-          dark: "#5b564e",
+          light: "#e2e2e8",
+          dark: "#27272a",
         },
-
         success: {
-          light: "#177245",
-          dark: "#6ed9a0",
+          light: "#15803d",
+          dark: "#4ade80",
         },
-
         danger: {
-          light: "#9f1f1a",
-          dark: "#ff8e83",
+          light: "#b91c1c",
+          dark: "#f87171",
         },
-
         info: {
-          light: "#2352b0",
-          dark: "#9fc1ff",
+          light: "#1d4ed8",
+          dark: "#60a5fa",
         },
       },
-
       fontFamily: {
-        sans: ["Space Grotesk", "sans-serif"],
-        display: ["Oswald", "sans-serif"],
-        mono: ["IBM Plex Mono", "monospace"],
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Space_Grotesk", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["JetBrains_Mono", "ui-monospace", "SFMono-Regular", "monospace"],
       },
     },
   },
-
   plugins: [],
 };
