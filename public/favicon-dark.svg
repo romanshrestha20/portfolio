@@ -1,26 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="theme-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6B8CF5"/>
+    </linearGradient>
+  </defs>
   <style>
-    .border-line { stroke: #FF9F00; stroke-width: 4; opacity: 0.2; fill: none; }
-    .text-main { 
-      font-family: 'JetBrains Mono', 'Fira Code', monospace; 
-      font-size: 320px; 
-      font-weight: 700; 
-      fill: #FF9F00;
+    .border-line { stroke: url(#theme-gradient); stroke-width: 4; opacity: 0.22; fill: none; }
+    .text-main {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 320px;
+      font-weight: 700;
+      fill: url(#theme-gradient);
     }
     .cursor-main {
       font-family: 'JetBrains Mono', 'Fira Code', monospace;
       font-size: 320px;
       font-weight: 700;
-      fill: #FF9F00;
+      fill: url(#theme-gradient);
       animation: blink 1s step-end infinite;
     }
     @keyframes blink { 50% { opacity: 0; } }
   </style>
-  
-  <!-- Retro Bezel Line framing the transparent void -->
+
   <rect x="24" y="24" width="464" height="464" rx="16" class="border-line" />
-  
-  <!-- Giant centered layout -->
   <text x="70" y="380" class="text-main">R</text>
   <text x="270" y="380" class="cursor-main">_</text>
 </svg>
